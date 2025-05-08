@@ -12,21 +12,76 @@
 # include "../minilibx-opengl/mlx.h"
 // # include "../minilibx-linux/mlx.h"
 
+####################  KEYS #####################################
+# define KEY_A 0x0061
+# define KEY_W 0x0077
+# define KEY_S 0x0073
+# define KEY_D 0x0064
+# define ESC 0x00ff1b
+# define LEFT 0x00ff51
+# define RIGHT 0x00ff53
 
+
+#################### SET  ########################################
 # define WIDTH		1000
 # define HEIGHT		800
 
+#define RED "\033[31m"
+#define RESET "\033[0m"
 
 
+##################### PERSO ######################################
+
+# define FAIL 1
 
 
+typedef struct s_track
+{
+	void			*ptr;
+	struct s_track	*next;
+}	t_track;
 
-typedef struct s_win
+typedef struct s_player
+{
+	double	x;
+	double	y;
+	int		color;
+	int		forward;
+	int		turn;
+}	t_player;
+
+typedef struct s_tex
+{
+	void	*img;
+	char	*addr;
+	int		bpp;
+	int		size_line;
+	int		endian;
+	int		width;
+	int		height;
+}	t_tex;
+
+typedef struct s_map
+{
+	char	**map;
+	char	**map_copy;
+	int		width;
+	int		height;
+	int		f_color;
+	int		c_color;
+}	t_map;
+
+//* Here I stcok all info of this game.
+typedef struct s_game
 {
 	void	*mlx_ptr;
 	void	*win_ptr;
+	t_track	*head;
+	t_map	*map;
+	t_tex	*tex;
+	t_play	*player;
+}	t_game;
 
-}	t_win;
 
 //util
 void error_msg(char *str, int exit_status);
@@ -36,18 +91,6 @@ int free_win(t_win *win);
 
 //key
 int	key(int key, void* param);
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

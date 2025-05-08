@@ -1,34 +1,21 @@
 #include "../include/cub3D.h"
 
-void open_window(t_win *win, char *win_name)
-{
-	(*win).mlx_ptr = mlx_init();
-	if ((*win).mlx_ptr == NULL)
-		error_msg("Error init MLX", EXIT_FAILURE);
-
-	(*win).win_ptr = mlx_new_window((*win).mlx_ptr, WIDTH, HEIGHT, win_name);
-	if ((*win).win_ptr == NULL)
-		error_msg("Error init WIN", EXIT_FAILURE);
-}
-
-//mlx_hook --> cliquer x sur la fenetre pour fermer
-//mlx_key_hook --> "esc" pour fermer la fenetre
+//* react to keypress and close
+//* refresh every loop and stay in the loop.
 int	main(int ac, char **av)
 {
-	int fd;
-	t_win win;
+	t_game	game;
 
-	if (ac != 2)
-		error_msg("Usage: ./cub3D source_file", EXIT_FAILURE);
-	fd = open(av[1], O_RDONLY);
-	if (fd == -1)
-		error_msg("Error opening file", EXIT_FAILURE);
-	//check map
-	//get map
-	open_window(&win, "my map");
-	//...
-	mlx_hook(win.win_ptr, 17, 0, free_win, (void *)&win);
-	mlx_key_hook(win.win_ptr, key, (void*)&win);
-    mlx_loop(win.mlx_ptr);
+	if (ft_check_args(ac, av))
+		return (0);
+	if (ft_init_map(&game))
+		return (0);
+	if (ft_init_game(&game))
+		return (0);
+	mlx_hook(game.win_ptr, 17, (1L << 17), ft_close, &game);
+	mlx_hook(game.win_ptr, 6, 1L << 6, &mouse, &game);
+	mlx_hook(game.win_ptr, 2, (1L << 0), ft_key, &game);
+	mlx_loop_hook(win.mlx_ptr, ft_refresh, &game);
+	mlx_loop(win.mlx_ptr);
 	return(0);
 }
