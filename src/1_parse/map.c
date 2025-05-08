@@ -14,7 +14,7 @@
 
 //TODO here, we allocate the map, and read the cub, check if they are valide.
 
-int	ft_init_map()
+int	ft_map()
 {
 	ft_allocate_map();
 	ft_get_map();
@@ -23,7 +23,9 @@ int	ft_init_map()
 
 int	ft_check_map()
 {
-	if (ft_color() || ft_setting() || ft_texture())
+	//check map fermee de mur
+	//del lignes vides
+	//del espaces
 		return (FAIL);
 	return (0);
 }
