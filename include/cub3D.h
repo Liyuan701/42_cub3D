@@ -82,17 +82,10 @@ typedef struct s_game
 	t_play	*player;
 }	t_game;
 
+##################### PARSE ######################################
 
-//util
-void error_msg(char *str, int exit_status);
+##################### RENDER #####################################
 
-//free
-int free_win(t_win *win);
-
-//key
-int	key(int key, void* param);
-
-
-
+##################### UTILS ######################################
 
 #endif

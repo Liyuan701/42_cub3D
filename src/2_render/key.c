@@ -1,5 +1,8 @@
 #include "../include/cub3D.h"
 
+//TODO This page we will control the movement of player
+//TODO Left/right trun, others move.
+
 int	ft_key(int code, t_game	*game)
 {
 	if (keycode == KEY_A)
