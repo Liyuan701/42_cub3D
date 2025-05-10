@@ -35,7 +35,7 @@ int	ft_get_text(t_game *game, char *file)
 
 	line = 0;
 	game->map->row = ft_count_lines(file);
-	game->map->text = (char **)ft_mylloc((game->map->row + 1) * sizeof(char *));
+	game->map->text = (char **)ft_mylloc((game, game->map->row + 1) * sizeof(char *));
 	if (!(data->map->file))
 		return (ft_error("Can't malloc the text tab."), FAIL);
 	ft_fill_text(game, game->map->file, line);

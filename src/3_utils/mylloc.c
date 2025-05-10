@@ -12,9 +12,10 @@
 
 #include "../include/cub3D.h"
 
-//TODO it's my malloc tracker
-//TODO  add malloc pointer to the tab, so we can free then all.
-//TODO so when you need malloc, you can simply ptr = mylloc(game, size);
+//* It's my malloc tracker
+//* add malloc pointer to the chain, so we hava a record, and can free then all.
+//* when need malloc, simply ptr = mylloc(game, size);
+//* Keep the head as the toppest one.
 
 void *ft_mylloc(t_game *game, size_t size)
 {

@@ -1,11 +1,12 @@
 #include "../include/cub3D.h"
 
+//* From the top, go through all to find the ptr.
 int free_one(t_game *game, void *ptr)
 {
 	t_track	*prev;
 	t_track	*curr;
 
-	prev =-NULL;
+	prev = NULL;
 	curr = game->head;
     while (curr)
     {
@@ -38,8 +39,6 @@ void free_all(t_game *game)
         free(tmp);
     }
 }
-
-
 
 void	ft_close(t_game	*game)
 {
