@@ -23,8 +23,11 @@
 
 
 #################### SET  ########################################
-# define WIDTH		1000
-# define HEIGHT		800
+# define WIDTH		640
+# define HEIGHT		480
+
+# define PARSE	101
+# define GAME	102
 
 #define RED "\033[31m"
 #define RESET "\033[0m"
@@ -59,16 +62,19 @@ typedef struct s_tex
 	int		endian;
 	int		width;
 	int		height;
+	int		f_color;
+	int		c_color;
 }	t_tex;
 
 typedef struct s_map
 {
+	int		fd;
+	int		line;
+	char	**text;
 	char	**map;
-	char	**map_copy;
 	int		width;
 	int		height;
-	int		f_color;
-	int		c_color;
+	int		end;
 }	t_map;
 
 //* Here I stcok all info of this game.
@@ -76,6 +82,9 @@ typedef struct s_game
 {
 	void	*mlx_ptr;
 	void	*win_ptr;
+	int		status;
+	int		width;
+	int		height;
 	t_track	*head;
 	t_map	*map;
 	t_tex	*tex;

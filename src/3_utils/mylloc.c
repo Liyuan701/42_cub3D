@@ -14,9 +14,9 @@
 
 //TODO it's my malloc tracker
 //TODO  add malloc pointer to the tab, so we can free then all.
+//TODO so when you need malloc, you can simply ptr = mylloc(game, size);
 
-
-void *mylloc(t_game *game, size_t size)
+void *ft_mylloc(t_game *game, size_t size)
 {
 	void	*new;
 

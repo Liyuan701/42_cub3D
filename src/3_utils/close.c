@@ -18,7 +18,7 @@ int free_one(t_game *game, void *ptr)
 
             free(curr->ptr);
             free(curr);
-            return 1;
+            return (1);
         }
         prev = curr;
         curr = curr->next;
@@ -38,12 +38,20 @@ void free_all(t_game *game)
         free(tmp);
     }
 }
+
+
+
 void	ft_close(t_game	*game)
 {
-	mlx_destroy_image(game->mlx_ptr, game->tex->img);
-	ft_free_all(game);
-	if (game->win_ptr)
-		mlx_destroy_window((game->mlx_ptr, game->win_ptr);
+	if (game->status == PARSE)
+		ft_free_all(game);
+	else if (game->status == GAME)
+	{
+		mlx_destroy_image(game->mlx_ptr, game->tex->img);
+		ft_free_all(game);
+		if (game->win_ptr)
+			mlx_destroy_window((game->mlx_ptr, game->win_ptr);
 	free(game->mlx_ptr);
+	}
 	exit (0);
 }

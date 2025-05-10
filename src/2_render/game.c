@@ -16,6 +16,7 @@ int	ft_init_game(t_game *game)
 {
 	ft_open_wind(game);
 	ft_render(game);
+
 	return (0);
 	//if wrong, print error, return (FAIL);
 }
@@ -24,10 +25,11 @@ void ft_open_window(t_game *game)
 {
 	game->mlx_ptr = mlx_init();
 	if (game->mlx_ptr == NULL)
-		ft_error_close("Error init MLX", EXIT_FAILURE);
+		ft_error_close("init MLX");
 	game->win_ptr = mlx_new_window(game->mlx_ptr, WIDTH, HEIGHT, "The Game");
 	if (game->win_ptr == NULL)
-		ft_error_close("Error init WIN", EXIT_FAILURE);
+		ft_error_close("init WIN");
+	game->status = GAME;
 }
 
 
