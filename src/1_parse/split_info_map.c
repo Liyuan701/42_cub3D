@@ -28,16 +28,16 @@ int	ft_split_info_map(t_game *game, t_map *map)
 	{
 		str = map.text[i];
 		if (map.text[i] != '\0' && is_config(str) == FAIL)
-			ft_error_close(game, "Error: Error: Invalid .cub file format");
+			ft_error_close(game, "Error: Invalid .cub file format");
 		if (is_config(str) == 0)
 		{
+			//get config
 			count++;
-			//get config?
 		}
 		i++;
 	}
 	if (count < 6)
-	ft_error_close(game, "Error: Missing config entries");
+		ft_error_close(game, "Error: Missing config entries");
 	map.end_config = i;
 }
 
@@ -45,10 +45,19 @@ int	ft_split_info_map(t_game *game, t_map *map)
 //voir si c'est config（NO, SO, WE, EA, F, C）
 int is_config(char *str)
 {
-	if (ft_strncmp(str, "NO ", 3) == 0 || ft_strncmp(str, "SO ", 3) == 0 ||
-		ft_strncmp(str, "WE ", 3) == 0 || ft_strncmp(str, "EA ", 3) == 0 ||
-		(str[0] == 'F' && ft_isspace(str[1]) == 1) || (str[0] == 'C' && ft_isspace(str[1]) == 1))
+	while (ft_isspace(*str))
+		str++;
+	if (ft_strncmp(str, "NO", 2) == 0 && ft_isspace(str[2]) != 0)
 		return (0);
-	else
-		return(FAIL);
+	if (ft_strncmp(str, "SO", 2) == 0 && ft_isspace(str[2]) != 0)
+		return (0);
+	if (ft_strncmp(str, "WE", 2) == 0 && ft_isspace(str[2]) != 0)
+		return (0);
+	if (ft_strncmp(str, "EA", 2) == 0 && ft_isspace(str[2]) != 0)
+		return (0);
+	if (str[0] == 'F' && ft_isspace(str[1]) != 0)
+		return (0);
+	if (str[0] == 'C' && ft_isspace(str[1]) != 0)
+		return (0);
+	return (FAIL);
 }
