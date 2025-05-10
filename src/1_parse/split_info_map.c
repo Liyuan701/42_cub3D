@@ -13,8 +13,39 @@
 #include "../include/cub3D.h"
 
 //* find the map, get the map, and know wether the map is on the end.
-int	ft_split_info_map(t_game *game, char **text)
-{
-	
 
+//si text[i] non vide ET pas la format de config -->exit
+//si c'est config et avoir 6 fois --> fin de la part de config
+int	ft_split_info_map(t_game *game, t_map *map)
+{
+	int i;
+	int count;
+	char *str;
+
+	i = 0;
+	count = 0;
+	while(i < map.line && count < 6)
+	{
+		str = map.text[i];
+		if (map.text[i] != '\0' && is_config(str) == FAIL)
+			ft_error_close(game, "Error: Error: Invalid .cub file format");
+		if (is_config(str) == 0)
+			count++;
+		i++;
+	}
+	if (count < 6)
+	ft_error_close(game, "Error: Missing config entries");
+	map.end_config = i;
+}
+
+// 0 -->yes, 1 --> no
+//voir si c'est config（NO, SO, WE, EA, F, C）
+int is_config(char *str)
+{
+	if (ft_strncmp(str, "NO ", 3) == 0 || ft_strncmp(str, "SO ", 3) == 0 ||
+		ft_strncmp(str, "WE ", 3) == 0 || ft_strncmp(str, "EA ", 3) == 0 ||
+		(str[0] == 'F' && ft_isspace(str[1]) == 1) || (str[0] == 'C' && ft_isspace(str[1]) == 1))
+		return (0);
+	else
+		return(FAIL);
 }

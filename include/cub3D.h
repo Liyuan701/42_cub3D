@@ -69,12 +69,13 @@ typedef struct s_tex
 typedef struct s_map
 {
 	int		fd;
-	int		line;
-	char	**text;
+	int		line; //nb de ligne du contenu
+	char	**text; //tous les contenus du .cub
 	char	**map;
 	int		width;
 	int		height;
 	int		end;
+	int		end_config;
 }	t_map;
 
 //* Here I stcok all info of this game.
