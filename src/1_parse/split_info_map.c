@@ -30,7 +30,10 @@ int	ft_split_info_map(t_game *game, t_map *map)
 		if (map.text[i] != '\0' && is_config(str) == FAIL)
 			ft_error_close(game, "Error: Error: Invalid .cub file format");
 		if (is_config(str) == 0)
+		{
 			count++;
+			//get config?
+		}
 		i++;
 	}
 	if (count < 6)
