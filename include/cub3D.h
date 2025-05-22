@@ -6,6 +6,7 @@
 #include <stdlib.h> //exit, EXIT_FAILURE, EXIT_SUCCESS
 #include <fcntl.h> // O_RDONLY
 #include <unistd.h>  // open, read, write
+#include <stdbool.h> //bool
 #include <X11/keysym.h>
 # include <math.h>
 // # include "../libft/libft.h"
@@ -78,6 +79,16 @@ typedef struct s_map
 	int		end_config;
 }	t_map;
 
+typedef struct s_config
+{
+	char	*no;
+	char	*so;
+	char	*we;
+	char	*ea;
+	int	 floor;//0xRRGGBB
+	int	 ceiling;
+}   t_config;
+
 //* Here I stcok all info of this game.
 typedef struct s_game
 {
@@ -90,6 +101,7 @@ typedef struct s_game
 	t_map	*map;
 	t_tex	*tex;
 	t_play	*player;
+	t_config config;
 }	t_game;
 
 ##################### PARSE ######################################
