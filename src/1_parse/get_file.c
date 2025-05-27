@@ -19,54 +19,63 @@
 int	ft_parse(t_game *game, char *file)
 {
 	if (ft_get_text(game, file) == FAIL)
-		return (ft_close(game), 1);
-	if (ft_split_info_map(game, game->map->text) == FAIL)
-		return (ft_close(game), 1);
+		return (ft_error_close(game, "can't get the file."), 1);
+	if (ft_split_info_map(game, game->cub->text) == FAIL)
+		return (ft_error_close(game, "can't get the map."), 1);
 	if (ft_check_other(game, game->config) == FAIL)
-		return (ft_close(game), 1);
-	if (ft_check_map(game, game->map) == FAIL)
-		return (ft_close(game), 1);
+		return (ft_error_close(game, "invalid config."), 1);
+	if (ft_check_map(game, game->cub->map) == FAIL)
+		return (ft_error_close(game, "invalid map"), 1);
 	return (0);
 }
 
+//* malloc a **text tab, and copy all contenus in the .cub
+//! MYLLOC
 int	ft_get_text(t_game *game, char *file)
 {
-	int		line;
+	int		nl;
+	int		fd;
 
-	line = 0;
-	game->map->line = ft_count_lines(file);
-	game->map->text = (char **)\
-	ft_mylloc((game, game->map->line + 1) * sizeof(char *));
-	if (!(game->map->text))
+	nl = 0;
+	game->cub->nl = ft_count_lines(game, file);
+	game->cub->text = (char **)
+		ft_mylloc((game, game->cub->nl + 1) * sizeof(char *));
+	if (!(game->cub->text))
 		return (ft_error("Can't malloc the text tab."), FAIL);
-	ft_fill_text(game, game->map->text, line);
+	fd = open(file, O_RDONLY);
+	game->cub->op_fd = fd;
+	ft_fill_text(game, game->cub->text, fd);
+	close (fd);
+	game->cub->op_fd = -1;
 	return (0);
 }
 
-static void	ft_fill_text(t_game *game, char **text, int row)
+//* malloc each line in the game->map->text tab.
+//! MYLLOC
+static void	ft_fill_text(t_game *game, char **text, int fd)
 {
 	int		i;
-	int		column;
+	int		row;
+	int		col;
 	char	*line;
 
 	i = 0;
-	column = 0;
-	line = get_next_line(game->map->fd);
+	row = 0;
+	col = 0;
+	line = get_next_line(fd);
 	while (line != NULL)
 	{
-		game->map->text[row] = ft_mylloc(ft_strlen(line) + 1, sizeof(char));
-		if (!game->map->text[row])
-		{
-			ft_error("Can't malloc the line in the tab.");
-			ft_close(game);
-		}
+		game->cub->text[row] = \
+			ft_mylloc(game, (ft_strlen(line) + 1) * sizeof(char));
+		if (!game->cub->text[row])
+			ft_error_close(game, "can't malloc a line in the tab");
 		while (line[i] != '\0')
-			game->map->text[row][column++] = line[i++];
-		game->map->text[row++][column] = '\0';
-		column = 0;
+			game->cub->text[row][col++] = line[i++];
+		game->cub->text[row++][col] = '\0';
+		col = 0;
 		i = 0;
-		ft_free_one(game, line);
-		line = get_next_line(game->map->fd);
+		free(line);
+		line = get_next_line(fd);
 	}
-	game->map->text[row] = NULL;
+	game->cub->text[row] = NULL;
 }

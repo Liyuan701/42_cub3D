@@ -12,26 +12,26 @@
 
 #include "../include/cub3D.h"
 
-int	ft_count_lines(char *file)
+int	ft_count_lines(t_game *game, char *file)
 {
 	int		fd;
 	char	*line;
 	int		count;
 
 	count = 0;
-	fd = open(path, O_RDONLY);
+	fd = open(file, O_RDONLY);
 	if (fd < 0)
-		ft_error()
+		ft_error_close(game, "can't open the file.");
 	else
 	{
 		line = get_next_line(fd);
 		while (line != NULL)
 		{
-			line_count++;
+			count++;
 			free(line);
 			line = get_next_line(fd);
 		}
 		close(fd);
 	}
-	return (line_count);
+	return (count);
 }

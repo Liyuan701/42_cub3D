@@ -39,12 +39,12 @@ int	ft_check_onlyc(t_game *game)
 
 	y = 0;
 	count = 0;
-	while (y < game->map->height)
+	while (y < game->cub->height)
 	{
 		x = 0;
-		while (x < game->map->width)
+		while (x < game->cub->width)
 		{
-			c = game->map->tab[x][y];
+			c = game->cub->map[x][y];
 			if (c == 'N' || c == 'W' || c == 'E' || c == 'S')
 				count++;
 			if (ft_find("01NSW", c) == 0 || count > 1)
@@ -56,10 +56,12 @@ int	ft_check_onlyc(t_game *game)
 	return (0);
 }
 
-//* For the given map, check that all walls are closed.
+//* Check that all walls are closed.
 //* Only have valide characters.
 int	ft_check_map(t_game *game)
 {
+	if (ft_check_around(game->cub->copy))
+		return (FAIL);
 	if (ft_check_onlyc(game))
 		return (FAIL);
 	if (ft_check_waLL(game))

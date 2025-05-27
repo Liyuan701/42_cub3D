@@ -35,8 +35,8 @@ UTILS = src/3_utils/util.c \
 #######################     DIRS        ########################################
 SRC_DIR = src
 OBJ_DIR = obj
-MLX_DIR = minilibx-linux
-LIB_DIR = libft
+MLX_DIR = lib/minilibx-linux
+LIB_DIR = lib/libft
 INC_DIR = include
 FILE = src/main.c $(SET) ${RENDER} ${UTILS}
 
@@ -73,9 +73,9 @@ $(OBJ_DIR)/%.o:${SRC_DIR}/%.c
 			@${CC} ${CFLAG} ${INCLUDE} -c $< -o $@
 
 ${NAME}:	${OBJ_DIR} ${OBJS} $(LIBFT) ${MLX}
-			@echo "${BLUE}\n Checking if linking is necessary..."
+			@echo "🔍${BLUE} Checking if linking is necessary..."
 			@$(CC) $(CFLAG) $(OBJS) ${LIBS} ${INCLUDE} -o ${NAME}
-			@echo "${BLUE} Linking completed! \n" && ${WELL}
+			@echo "$✅{BLUE} Linking completed! \n" && ${WELL}
 
 ${LIBFT}:
 			@make all -C ${LIB_DIR} -s
@@ -87,13 +87,13 @@ clean:
 		@rm -rf ${OBJ_DIR}
 		@make clean -C ${LIB_DIR} -s
 		@make clean -C ${MLX_DIR} -s
-		@echo "Clean done, objs cleaned\n"
+		@echo "🧹${BLUE}Clean done, objs cleaned\n"
 
 fclean:	clean
 		@${RM} ${NAME}
 		@make fclean -C ${LIB_DIR} -s
 		@make fclean -C ${MLX_DIR} -s
-		@echo "Fclean done, all cleaned.\n"
+		@echo "🗑️{BLUE}Fclean done, all cleaned.\n"
 
 re:	fclean all
 

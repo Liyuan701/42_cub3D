@@ -63,29 +63,30 @@ typedef struct s_tex
 	int		endian;
 	int		width;
 	int		height;
-	int		f_color;
-	int		c_color;
 }	t_tex;
 
-typedef struct s_map
+//* nl is the nb of lines.
+//* text is a copy of contenus of .cub
+typedef struct s_cub
 {
-	int		fd;
-	int		line; //nb de ligne du contenu
-	char	**text; //tous les contenus du .cub
-	char	**tab;
+	int		nl;
+	int		op_fd;
+	char	**text;
+	char	**map;
+	char	**copy;
 	int		width;
 	int		height;
-	int		end;
 	int		end_config;
-}	t_map;
+}	t_cub;
 
+//*for color :0xRRGGBB
 typedef struct s_config
 {
 	char	*no;
 	char	*so;
 	char	*we;
 	char	*ea;
-	int		floor;//0xRRGGBB
+	int		floor;
 	int		ceiling;
 }   t_config;
 
@@ -98,7 +99,7 @@ typedef struct s_game
 	int			width;
 	int			height;
 	t_track		*head;
-	t_map		*map;
+	t_cub		*cub;
 	t_tex		*tex;
 	t_player	*player;
 	t_config	config;
@@ -107,7 +108,9 @@ typedef struct s_game
 ##################### PARSE ######################################
 
 ##################### RENDER #####################################
+int		ft_key(int keycode, t_game	*game);
+void	ft_refresh(void);
 
 ##################### UTILS ######################################
-
+void	ft_close(t_game *game);
 #endif

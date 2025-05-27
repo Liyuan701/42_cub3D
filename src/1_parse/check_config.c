@@ -2,40 +2,43 @@
 
 void	check_xpm_exit(t_game *game, char *line)
 {
-	int len;
-	char **split;
-	int fd;
+	int		len;
+	char	**split;
+	int		fd;
 
 	split = ft_split(line, ' ');
 	len = ft_strlen(split[1]);
 	if (split[0] == NULL && split[1] == NULL && split[2] != NULL)
-		// ft_free_tab(split);
+	{
+		ft_free_tab(split);
 		ft_error_close(game, "Error: Invalid texture config format");
+	}
 	if (len < 4 || ft_strncmp(split[1] + (len - 4), ".xpm", 4) != 0)
-		// ft_free_tab(split);
+	{	ft_free_tab(split);
 		ft_error_close(game, "Error: Texture must end with .xpm");
+	}
 	fd = open(split[1], O_RDONLY);
 	if (fd < 0)
 	{
-		// ft_free_tab(split);
+		ft_free_tab(split);
 		ft_error_close(game, "Error: Texture path is wrong");
 	}
 	close(fd);
-	//free split
+	ft_free_tab(split);
 }
 
-int is_config_index(char *str)
+int	is_config_index(char *str)
 {
 	while (ft_isspace(*str))
 		str++;
 	if (ft_strlen(str) >= 3 && ft_strncmp(str, "NO", 2) == 0 &&  ft_isspace(str[2]) != 0)
-		return(0);
+		return (0);
 	else if (ft_strlen(str) >= 3 && ft_strncmp(str, "SO", 2) == 0 && ft_isspace(str[2]) != 0)
-		return(1);
+		return (1);
 	else if (ft_strlen(str) >= 3 && ft_strncmp(str, "WE", 2) == 0 && ft_isspace(str[2]) != 0)
-		return(2);
+		return (2);
 	else if (ft_strlen(str) >= 3 && ft_strncmp(str, "EA", 2) == 0 && ft_isspace(str[2]) != 0)
-		return(3);
+		return (3);
 	else if (ft_strlen(str) >= 2 && ft_isspace(str[1]) != 0 && str[0] == 'F')
 		return (4);
 	else if (ft_strlen(str) >= 2 && ft_isspace(str[1]) != 0 && str[0] == 'C')
@@ -79,28 +82,28 @@ int	check_parse_color(t_game *game, char *line)
 //respecter la forme pour le couleur et path
 //arret devant l'info de map
 //avoir 6 config
-void	check_config(t_map *map, t_game *game)
+void	check_config(t_cub *cub, t_game *game)
 {
-	int i;
-	int count;
-	int index;
-	int	last_index;
+	int		i;
+	int		count;
+	int		index;
+	int		last_index;
 	bool	seen[6];
-	
+
 	i = 0;
 	count = 0;
 	last_index = -1;
 	init_seen(seen);
-	while(i < map->line && count < 6)
+	while (i < game->cub->nl && count < 6)
 	{
-		if (map->text[i] == NULL || map->text[i][0] == '\0')
+		if (cub->text[i] == NULL || cub->text[i][0] == '\0')
 		{
 			i++;
-			continue;
+			continue ;
 		}
-		index = is_config_index(map->text[i]);
+		index = is_config_index(cub->text[i]);
 		if (index == -1)
-			ft_error_close(game, "Error: Invalid format configuration");	
+			ft_error_close(game, "Error: Invalid format configuration");
 		if (seen[index] == true)
 			ft_error_close(game, "Error: Duplicate configuration");
 		seen[index] = true;
@@ -108,14 +111,14 @@ void	check_config(t_map *map, t_game *game)
 			ft_error_close(game, "Error: Config entries out of order");
 		last_index = index;
 		if (index < 4)
-			check_xpm_exit(game, map->text[i]);
+			check_xpm_exit(game, cub->text[i]);
 		else
-			check_parse_color(game, map->text[i]);
+			check_parse_color(game, cub->text[i]);
 		count++;
 		i++;
 	}
-	if(count < 6)
+	if (count < 6)
 		ft_error_close(game, "Error: Missing config entries");
-	map.end_config = i;
+	game->cub->end_config = i;
 }
 

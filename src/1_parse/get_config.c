@@ -29,17 +29,17 @@ char	*get_ptr(char *str)
 
 void	get_config(t_game *game)
 {
-	int	i;
+	int		i;
 	int		index;
 	char	*line;
 	char	*line_ptr;
 
 	i = 0;
-	check_config(game->map);
+	check_config(game->cub);
 	init_config(game->config);
-	while (i < map->end_config)
+	while (i < game->cub->end_config)
 	{
-		line = game->map.text[i];
+		line = game->cub->text[i];
 		if (line == NULL || *line == '\0')
 		{
 			i++;

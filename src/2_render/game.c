@@ -11,17 +11,23 @@
 /* ************************************************************************** */
 
 //TODO from here, we begin the game.
+#include "../include/cub3D.h"
 
+
+void	ft_refresh(void)
+{
+	teturn (0);
+}
+
+//TODO if wrong, print error, return (FAIL);
 int	ft_init_game(t_game *game)
 {
 	ft_open_wind(game);
 	ft_render(game);
-
 	return (0);
-	//if wrong, print error, return (FAIL);
 }
 
-void ft_open_window(t_game *game)
+void	ft_open_window(t_game *game)
 {
 	game->mlx_ptr = mlx_init();
 	if (game->mlx_ptr == NULL)
@@ -32,12 +38,11 @@ void ft_open_window(t_game *game)
 	game->status = GAME;
 }
 
-
 int	ft_render(t_game *game)
 {
 	game->tex->img = mlx_new_image(game->mlx_ptr, WIDTH, HEIGHT);
 	game->tex->addr = mlx_get_data_addr(game->tex->img, &game->tex.bpp,
-			&game->tex->line, &game->tex->endian);
+			&game->tex->size_line, &game->tex->endian);
 	ft_draw_ray(game);
 	ft_draw_map(game);
 	ft_draw_player(game);

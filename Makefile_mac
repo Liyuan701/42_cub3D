@@ -15,7 +15,7 @@ MLX_FLAGS   = -L$(MLX_DIR) -lmlx \
 SRC_DIR     = src
 OBJ_DIR     = obj
 INC_DIR     = include
-MLX_DIR     = minilibx-opengl
+MLX_DIR     = lib/minilibx-opengl
 
 SRCS        = $(wildcard $(SRC_DIR)/*.c)
 OBJS        = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRCS))

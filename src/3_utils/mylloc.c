@@ -17,22 +17,22 @@
 //* when need malloc, simply ptr = mylloc(game, size);
 //* Keep the head as the toppest one.
 
-void *ft_mylloc(t_game *game, size_t size)
+void	*ft_mylloc(t_game *game, size_t size)
 {
 	void	*new;
+	t_track	*node;
 
 	new = malloc(size);
-    if (!new)
-        return NULL;
-
-    t_track *node = malloc(sizeof(t_track));
-    if (!node)
-    {
-        free(new);
-        return NULL;
-    }
-    node->ptr = new;
-    node->next = game->head;
-    game->head = node;
-    return new;
+	if (!new)
+		ft_error_close(game, "malloc fail.");
+	node = malloc(sizeof(t_track));
+	if (!node)
+	{
+		free(new);
+		ft_error_close(game, "malloc fail.");
+	}
+	node->ptr = new;
+	node->next = game->head;
+	game->head = node;
+	return (new);
 }
