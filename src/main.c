@@ -1,17 +1,29 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/27 11:41:32 by lifan             #+#    #+#             */
+/*   Updated: 2025/05/27 11:56:29 by lifan            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/cub3D.h"
 
-//TODO inital game and all included stuctures
 void	ft_init_game(t_game *game)
 {
 	game->mlx_ptr = NULL;
 	game->win_ptr = NULL;
-	game->track = NULL;
+	game->head = NULL;
 	game->status = PARSE;
 	game->height = HEIGHT;
 	game->width = WIDTH;
-	init_map(game->map);
-	init_map(game->tex);
-	init_map(game->player);
+	ft_init_config(game);
+	ft_init_map(game->map);
+	ft_init_tex(game->tex);
+	ft_init_player(game->player);
 }
 
 int	ft_not_cub(char *file)
@@ -19,7 +31,7 @@ int	ft_not_cub(char *file)
 	int	i;
 
 	i = ft_strlen(file) - 4;
-	if (ft_memcmp(&str[i], ".cub", 4))
+	if (ft_memcmp(&file[i], ".cub", 4))
 		return (FAIL);
 	retrun (0);
 }
@@ -45,13 +57,11 @@ int	main(int ac, char **av)
 	ft_init_game(&game);
 	if (ft_check_args(ac, av))
 		return (FAIL);
-	if (ft_parse(&game, av))  //TODO begin the parse, parse section.
-		return (FAIL);
-	if (ft_init_game(&game))   //TODO begin the game, render section.
+	if (ft_parse(&game, av))
 		return (FAIL);
 	mlx_hook(game.win_ptr, 17, (1L << 17), ft_close, &game);
 	mlx_hook(game.win_ptr, 2, (1L << 0), ft_key, &game);
 	mlx_loop_hook(game.mlx_ptr, ft_refresh, &game);
 	mlx_loop(game.mlx_ptr);
-	return(0);
+	return (0);
 }

@@ -27,6 +27,7 @@ int	ft_find(char *str, char c)
 	}
 	return (find);
 }
+
 //* Make sure every letter in the map is one of the 5 letters.
 //* And N E S W only appears once.
 int	ft_check_onlyc(t_game *game)
@@ -43,8 +44,8 @@ int	ft_check_onlyc(t_game *game)
 		x = 0;
 		while (x < game->map->width)
 		{
-			c = game->map[y][x];
-			if (c == 'N' || c == 'W' || c == 'E' || C == 'S')
+			c = game->map->tab[x][y];
+			if (c == 'N' || c == 'W' || c == 'E' || c == 'S')
 				count++;
 			if (ft_find("01NSW", c) == 0 || count > 1)
 				return (FAIL);
@@ -57,7 +58,7 @@ int	ft_check_onlyc(t_game *game)
 
 //* For the given map, check that all walls are closed.
 //* Only have valide characters.
-int	ft_check_map()
+int	ft_check_map(t_game *game)
 {
 	if (ft_check_onlyc(game))
 		return (FAIL);

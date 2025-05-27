@@ -20,9 +20,9 @@ int	ft_parse(t_game *game, char *file)
 {
 	if (ft_get_text(game, file) == FAIL)
 		return (ft_close(game), 1);
-	if (ft_split_info_map(game, game-map->text) == FAIL)  // !!! FOR YONGYUE
+	if (ft_split_info_map(game, game->map->text) == FAIL)
 		return (ft_close(game), 1);
-	if (ft_check_other() == FAIL)  //!!! FOR YONGYUE
+	if (ft_check_other(game, game->config) == FAIL)
 		return (ft_close(game), 1);
 	if (ft_check_map(game, game->map) == FAIL)
 		return (ft_close(game), 1);
@@ -34,11 +34,12 @@ int	ft_get_text(t_game *game, char *file)
 	int		line;
 
 	line = 0;
-	game->map->row = ft_count_lines(file);
-	game->map->text = (char **)ft_mylloc((game, game->map->row + 1) * sizeof(char *));
-	if (!(data->map->file))
+	game->map->line = ft_count_lines(file);
+	game->map->text = (char **)\
+	ft_mylloc((game, game->map->line + 1) * sizeof(char *));
+	if (!(game->map->text))
 		return (ft_error("Can't malloc the text tab."), FAIL);
-	ft_fill_text(game, game->map->file, line);
+	ft_fill_text(game, game->map->text, line);
 	return (0);
 }
 
@@ -53,8 +54,8 @@ static void	ft_fill_text(t_game *game, char **text, int row)
 	line = get_next_line(game->map->fd);
 	while (line != NULL)
 	{
-		game->map->game[row] = ft_mylloc(ft_strlen(line) + 1, sizeof(char));
-		if (!data->mapinfo.file[row])
+		game->map->text[row] = ft_mylloc(ft_strlen(line) + 1, sizeof(char));
+		if (!game->map->text[row])
 		{
 			ft_error("Can't malloc the line in the tab.");
 			ft_close(game);

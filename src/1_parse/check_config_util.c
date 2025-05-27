@@ -14,7 +14,7 @@
 
 void	init_seen(bool seen[6])
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < 6)
@@ -24,9 +24,9 @@ void	init_seen(bool seen[6])
 	}
 }
 
-int str_is_digit(char *s)
+int	str_is_digit(char *s)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (s[0] == '\0')

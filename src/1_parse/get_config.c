@@ -1,6 +1,6 @@
 #include "../include/cub3D.h"
 
-void init_config(t_config *c)
+void	init_config(t_config *c)
 {
 	c.no = NULL;
 	c.so = NULL;
@@ -10,9 +10,9 @@ void init_config(t_config *c)
 	c.ceiling = -1;
 }
 
-char *get_ptr(char *str)
+char	*get_ptr(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (ft_isspace(str[i]))
@@ -24,26 +24,26 @@ char *get_ptr(char *str)
 		i += 1;
 	while (ft_isspace(str[i]))
 		i++;
-	return(str + i);
+	return (str + i);
 }
 
-void get_config(t_game *game)
+void	get_config(t_game *game)
 {
-	int i;
-	int index;
-	char *line;
-	char *line_ptr;
+	int	i;
+	int		index;
+	char	*line;
+	char	*line_ptr;
 
 	i = 0;
 	check_config(game->map);
 	init_config(game->config);
-	while(i < map->end_config)
+	while (i < map->end_config)
 	{
 		line = game->map.text[i];
-		if(line == NULL || *line == '\0')
+		if (line == NULL || *line == '\0')
 		{
 			i++;
-			continue;
+			continue ;
 		}
 		index = is_config_index(line);
 		line_ptr = get_ptr(line);
@@ -61,8 +61,7 @@ void get_config(t_game *game)
 			game->config.ceiling = check_parse_color(game, line);
 		i++;
 	}
-
-	if (game->config.no == NULL || game->config.so == NULL 
+	if (game->config.no == NULL || game->config.so == NULL
 		|| game->config.we == NULL || game->config.ea == NULL
 		|| game->config.floor < 0 || game->config.ceiling < 0)
 		ft_error_close(game, "Error: Failed to get all config values");

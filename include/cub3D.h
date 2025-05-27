@@ -9,9 +9,9 @@
 #include <stdbool.h> //bool
 #include <X11/keysym.h>
 # include <math.h>
-// # include "../libft/libft.h"
+# include "../libft/libft.h"
 # include "../minilibx-opengl/mlx.h"
-// # include "../minilibx-linux/mlx.h"
+# include "../minilibx-linux/mlx.h"
 
 ####################  KEYS #####################################
 # define KEY_A 0x0061
@@ -72,7 +72,7 @@ typedef struct s_map
 	int		fd;
 	int		line; //nb de ligne du contenu
 	char	**text; //tous les contenus du .cub
-	char	**map;
+	char	**tab;
 	int		width;
 	int		height;
 	int		end;
@@ -85,23 +85,23 @@ typedef struct s_config
 	char	*so;
 	char	*we;
 	char	*ea;
-	int	 floor;//0xRRGGBB
-	int	 ceiling;
+	int		floor;//0xRRGGBB
+	int		ceiling;
 }   t_config;
 
 //* Here I stcok all info of this game.
 typedef struct s_game
 {
-	void	*mlx_ptr;
-	void	*win_ptr;
-	int		status;
-	int		width;
-	int		height;
-	t_track	*head;
-	t_map	*map;
-	t_tex	*tex;
-	t_play	*player;
-	t_config config;
+	void		*mlx_ptr;
+	void		*win_ptr;
+	int			status;
+	int			width;
+	int			height;
+	t_track		*head;
+	t_map		*map;
+	t_tex		*tex;
+	t_player	*player;
+	t_config	config;
 }	t_game;
 
 ##################### PARSE ######################################
