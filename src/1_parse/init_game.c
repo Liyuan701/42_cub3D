@@ -15,10 +15,15 @@
 
 void	ft_init_player(t_player *player)
 {
-	ft_memset(player, 0, sizeof(player));
+	player->x = -1.0;
+	player->y = -1.0;
+	player->dir	= NULL;
+	player->dir_x = 0;
+	player->dir_y = 0;
 	player->color = -1;
+	player->turn = 0;
+	player->forward = 0;
 }
-
 void	ft_init_config(t_game *game)
 {
 	game->config.no = NULL;

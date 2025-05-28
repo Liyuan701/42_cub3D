@@ -49,6 +49,9 @@ typedef struct s_player
 {
 	double	x;
 	double	y;
+	char	dir;
+	int		dir_x;
+	int		dir_y;
 	int		color;
 	int		forward;
 	int		turn;

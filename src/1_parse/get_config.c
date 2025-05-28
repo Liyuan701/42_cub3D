@@ -1,15 +1,5 @@
 #include "../include/cub3D.h"
 
-void	init_config(t_config *c)
-{
-	c.no = NULL;
-	c.so = NULL;
-	c.we = NULL;
-	c.ea = NULL;
-	c.floor = -1;
-	c.ceiling = -1;
-}
-
 char	*get_ptr(char *str)
 {
 	int	i;
@@ -27,7 +17,7 @@ char	*get_ptr(char *str)
 	return (str + i);
 }
 
-void	get_config(t_game *game)
+void	ft_get_config(t_game *game)
 {
 	int		i;
 	int		index;
@@ -36,7 +26,6 @@ void	get_config(t_game *game)
 
 	i = 0;
 	check_config(game->cub);
-	init_config(game->config);
 	while (i < game->cub->end_config)
 	{
 		line = game->cub->text[i];
