@@ -17,13 +17,13 @@ void	ft_check_wall(t_game *game, char **map, int y, int x)
 	int	reso;
 
 	reso = 0;
-	if (y == 0 || ( y > 0 && map[ y - 1][x] == ' '))
+	if (y == 0 || ( y > 0 && map[ y - 1][x] == -1))
 		reso = FAIL;
-	if (!map[y + 1] || (map[y + 1] && map[y + 1][x] == ' '))
+	if (!map[y + 1] || (map[y + 1] && map[y + 1][x] == -1))
 		reso = FAIL;
-	if (x == 0 || (x > 0 && map[y][x - 1] == ' '))
+	if (x == 0 || (x > 0 && map[y][x - 1] == -1))
 		reso = FAIL;
-	if (map[y][x + 1] == '\0' || map[y][x + 1] == ' ')
+	if (map[y][x + 1] == '\0' || map[y][x + 1] == -1)
 		reso = FAIL;
 	if (reso == FAIL)
 		ft_error_close(game, "Wall of the map is not closed");
@@ -71,7 +71,7 @@ int	ft_check_map(t_game *game, char **map)
 				ft_check_wall(game, map, y, x);
 			else if (c == 'N' || c == 'E' || c == 'W' || c == 'S')
 				ft_set_player(game, c, y, x);
-			else if (c != ' ' && c != '1')
+			else if (c != -1 && c != '1')
 				return(ft_error("There are invalid symbols in the map."), FAIL);
 			x++;
 		}

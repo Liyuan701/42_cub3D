@@ -14,30 +14,6 @@
 //* we will copy the rest and creat map.
 #include "../include/cub3D.h"
 
-//* we creat the map from the text.
-void	ft_get_map(t_game *game)
-{
-	int		start;
-	int		i;
-	size_t	col_w;
-
-	i = 0;
-	start = game-> cub -> end_config;
-	game->cub->height = ft_count(game->cub->text, start);
-	game->cub->map = mylloc(game, (game->cub->height + 1));
-	while (i < game->cub->height)
-	{
-		col_w = ft_strlen(game->cub->text[start]);
-		game->cub->map[i] = mylloc(game, (col_w + 1) * sizeof(char));
-		if (col_w > game->cub->width)
-			game->cub->width = col_w;
-		ft_strlcpy(game->cub->map[i], game->cub->text[start], col_w + 1);
-		i++;
-		start++;
-	}
-	ft_copy_map(game);
-}
-
 
 //* copy a map for the test
 //* this map have the same width, fill with espaces.
@@ -63,4 +39,29 @@ void	ft_copy_map(t_game *game)
 		i++;
 	}
 	game->cub->copy[i] = NULL;
+	ft_flood_map(game, game->cub->copy);
+}
+
+//* we creat the map from the text.
+void	ft_get_map(t_game *game)
+{
+	int		start;
+	int		i;
+	size_t	col_w;
+
+	i = 0;
+	start = game-> cub -> end_config;
+	game->cub->height = ft_count(game->cub->text, start);
+	game->cub->map = mylloc(game, (game->cub->height + 1));
+	while (i < game->cub->height)
+	{
+		col_w = ft_strlen(game->cub->text[start]);
+		game->cub->map[i] = mylloc(game, (col_w + 1) * sizeof(char));
+		if (col_w > game->cub->width)
+			game->cub->width = col_w;
+		ft_strlcpy(game->cub->map[i], game->cub->text[start], col_w + 1);
+		i++;
+		start++;
+	}
+	ft_copy_map(game);
 }
