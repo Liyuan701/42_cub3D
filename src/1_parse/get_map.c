@@ -14,6 +14,28 @@
 //* we will copy the rest and creat map.
 #include "../include/cub3D.h"
 
+void	ft_no_v(t_game *game, char **map)
+{
+	int	y;
+	int	x;
+	int	h;
+	int	w;
+
+	y = 0;
+	h = game->cub->height;
+	w = game->cub->width;
+	while (y < h)
+	{
+		x = 0;
+		while (x< w)
+		{
+			if (map[y][x] == 'V')
+				ft_error_close(game, "There are invalid symbols in the map.");
+			x++;
+		}
+		y++;
+	}
+}
 
 //* copy a map for the test
 //* this map have the same width, fill with espaces.
@@ -39,6 +61,7 @@ void	ft_copy_map(t_game *game)
 		i++;
 	}
 	game->cub->copy[i] = NULL;
+	ft_no_v(game, game->cub->copy);
 	ft_flood_map(game, game->cub->copy);
 }
 

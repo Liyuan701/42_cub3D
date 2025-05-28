@@ -23,7 +23,7 @@ void	ft_fill_space(t_game *game, char **map, int y, int x)
 		return;
 	if (map[y][x] != ' ')
 		return;
-	map[y][x] = -1;
+	map[y][x] = 'V';
 	flood_fill_space(map, y + 1, x, h, w);
 	flood_fill_space(map, y - 1, x, h, w);
 	flood_fill_space(map, y, x + 1, h, w);
