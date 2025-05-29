@@ -1,0 +1,19 @@
+NO ./asset/texture/north.xpm
+
+SO ./asset/texture/south.xpm
+
+WE    ./asset/texture/west.xpm
+
+
+
+
+EA ./asse   t/tex  ture/east.xpm
+
+F 220,100,0
+
+C 2   25,30,0
+
+111111
+1000N1
+100001
+111111

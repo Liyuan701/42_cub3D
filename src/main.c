@@ -55,9 +55,10 @@ int	main(int ac, char **av)
 	ft_init_game(&game);
 	if (ft_parse(&game, av[1]))
 		return (FAIL);
-	mlx_hook(game.win_ptr, 17, (1L << 17), ft_close, &game);
+	/*mlx_hook(game.win_ptr, 17, (1L << 17), ft_close, &game);
 	mlx_hook(game.win_ptr, 2, (1L << 0), ft_key, &game);
 	mlx_loop_hook(game.mlx_ptr, ft_refresh, &game);
-	mlx_loop(game.mlx_ptr);
+	mlx_loop(game.mlx_ptr);*/
+	ft_debug_parse(&game);
 	return (0);
 }

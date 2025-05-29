@@ -53,9 +53,9 @@ void ft_flood_side(t_game *game, char **map, int h, int w)
 		while (y < h)
 	{
 		if (map[y][0] == ' ')
-			ft_fill(game, map, y, 0);
+			ft_fill_space(game, map, y, 0);
 		if (map[y][w - 1] == ' ')
-			ft_fill(game, map, y, w -1);
+			ft_fill_space(game, map, y, w -1);
 		y++;
 	}
 }
