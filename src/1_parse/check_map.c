@@ -12,6 +12,8 @@
 
 #include "../include/cub3D.h"
 
+//* To be sure that the O and NWES are not on the boders
+//* Or they are not connected to an espace.
 void	ft_check_wall(t_game *game, char **map, int y, int x)
 {
 	int	reso;
@@ -29,6 +31,7 @@ void	ft_check_wall(t_game *game, char **map, int y, int x)
 		ft_error_close(game, "Wall of the map is not closed");
 }
 
+//* Must have, and only have one player.
 void	ft_set_player(t_game *game, char c, int y, int x)
 {
 	if (game->player->dir || game->player->x != -1.0 || game->player->y != -1.0)
@@ -51,9 +54,8 @@ void	ft_set_player(t_game *game, char c, int y, int x)
 	}
 }
 
-//* Check that all walls are closed.
+//* Check that all walls are closed (No free '0' or 'NWES')
 //* Only have valide characters.
-//* Must have, and only have one player.
 int	ft_check_map(t_game *game, char **map)
 {
 	 int	y;

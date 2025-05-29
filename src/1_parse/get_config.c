@@ -53,5 +53,5 @@ void	ft_get_config(t_game *game)
 	if (game->config.no == NULL || game->config.so == NULL
 		|| game->config.we == NULL || game->config.ea == NULL
 		|| game->config.floor < 0 || game->config.ceiling < 0)
-		ft_error_close(game, "Error: Failed to get all config values");
+		ft_error_close(game, "Error: Failed to get all config values.");
 }

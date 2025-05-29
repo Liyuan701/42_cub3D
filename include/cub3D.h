@@ -79,7 +79,7 @@ typedef struct s_cub
 	char	**copy;
 	int		width;
 	int		height;
-	int		end_config;
+	int		start;
 }	t_cub;
 
 //*for color :0xRRGGBB

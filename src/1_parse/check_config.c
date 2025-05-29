@@ -82,6 +82,7 @@ int	check_parse_color(t_game *game, char *line)
 //respecter la forme pour le couleur et path
 //arret devant l'info de map
 //avoir 6 config
+//! More than 25 lignes, should split.
 void	check_config(t_cub *cub, t_game *game)
 {
 	int		i;
@@ -119,6 +120,39 @@ void	check_config(t_cub *cub, t_game *game)
 	}
 	if (count < 6)
 		ft_error_close(game, "Error: Missing config entries");
-	game->cub->end_config = i;
+	/*game->cub->end_config = i;*/
+	/*change to ft_find_start(game, cub->text, i);*/
 }
+
+//* I think before the game->cub->end_config, should add another function ft_find_start.
+//* In case there are other blank lines or other things after the i line.
+//* Only if it begins with the " 01NWSE" it can be seen as the start of the map.
+
+
+
+//* skip the  blank line to find the start of the map
+//* if there is no map, return -1.
+void	ft_find_start(t_game *game, char **text, int i)
+{
+	int		j;
+	char	c;
+
+	while (text[i])
+	{
+		j = 0;
+		c = text[i][j];
+		while(c && ft_isspace((unsigned char)c))
+			j++;
+		if(!c)
+		{
+			i++;
+			continue;
+		}
+		if (c == '0' || c == 'N' || c == 'S' || c == 'E' || c == 'W')
+			game->cub->start = i;
+		i++;
+	}
+	ft_error_close("There is no map in the .cub file.");
+}
+
 

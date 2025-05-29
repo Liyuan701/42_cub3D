@@ -73,7 +73,7 @@ void	ft_get_map(t_game *game)
 	size_t	col_w;
 
 	i = 0;
-	start = game-> cub -> end_config;
+	start = game-> cub ->start;
 	game->cub->height = ft_count(game->cub->text, start);
 	game->cub->map = mylloc(game, (game->cub->height + 1));
 	while (i < game->cub->height)
