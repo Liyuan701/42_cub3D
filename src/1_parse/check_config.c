@@ -1,35 +1,70 @@
 #include "../include/cub3D.h"
 
+//format attendu : "identifiant chemin/vers/texture.xpm"
+// séparer la ligne en tokens avec ft_split() puis verifier
+// contrôler que le chemin se termine par .xpm
+// essayer d'ouvrir
 void	check_xpm_exit(t_game *game, char *line)
 {
 	int		len;
 	char	**split;
-	int		fd;
 
 	split = ft_split(line, ' ');
 	len = ft_strlen(split[1]);
 	if (split[0] == NULL && split[1] == NULL && split[2] != NULL)
 	{
 		ft_free_tab(split);
-		ft_error_close(game, "Error: Invalid texture config format");
+		ft_error_close(game, "texture config: invalid format");
 	}
 	if (len < 4 || ft_strncmp(split[1] + (len - 4), ".xpm", 4) != 0)
 	{	ft_free_tab(split);
-		ft_error_close(game, "Error: Texture must end with .xpm");
+		ft_error_close(game, "Texture config: must end with .xpm");
 	}
-	fd = open(split[1], O_RDONLY);
-	if (fd < 0)
+	if (access(split[1], R_OK) != 0)
 	{
 		ft_free_tab(split);
-		ft_error_close(game, "Error: Texture path is wrong");
+		ft_error_close(game, "Texture config: path is wrong");
 	}
-	close(fd);
 	ft_free_tab(split);
 }
 
+// séparer la ligne en tokens avec ft_split()
+// verifier si c'est des nombres et ses domaine
+// rendre un int hexadecimal 0xRRGGBB
+int	check_parse_color(t_game *game, char *line)
+{
+	char	**split_line;
+	char	**rgb;
+	int		r;
+	int		g;
+	int		b;
+	
+	split_line = ft_split(line, ' ');
+	rgb = ft_split(split_line[1], ',');
+	if (split_line[0] == NULL || split_line[1] == NULL || split_line[2] != NULL)
+		free2tab_exit(split_line, rgb, game, "Color config: invalid format");
+	if (rgb[0] == NULL || rgb[1] == NULL || rgb[2] == NULL || rgb[3] != NULL)
+		free2tab_exit(split_line, rgb, game, "Color config: must have exactly 3 components");
+	if (str_is_digit(rgb[0]) != 0 && str_is_digit(rgb[1]) != 0 && str_is_digit(rgb[2]) != 0)
+	{
+		r = ft_atoi(rgb[0]);
+		g = ft_atoi(rgb[1]);
+		b = ft_atoi(rgb[2]);
+	}
+	else
+		free2tab_exit(split_line, rgb, game, "Color config: must be digit");
+	if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0|| b > 255)
+		free2tab_exit(split_line, rgb, game, "Color config: components out of range 0-255");
+	free_split(rgb);
+	free_split(split_line);
+	return ((r << 16) | (g << 8) | b);
+}
+
+//sauter les espcaes puis verifier si c'est un de NO SO WE EA F C
+//si oui return index, sinon -1 
 int	is_config_index(char *str)
 {
-	while (ft_isspace(*str))
+	while (ft_isspace(*str) == 1)
 		str++;
 	if (ft_strlen(str) >= 3 && ft_strncmp(str, "NO", 2) == 0 &&  ft_isspace(str[2]) != 0)
 		return (0);
@@ -47,79 +82,50 @@ int	is_config_index(char *str)
 		return (-1);
 }
 
-int	check_parse_color(t_game *game, char *line)
+//trouver index
+//--> verifier pour la repetition avec seen
+//--> verifier si c'est dans l'ordre
+//respecter la forme pour le couleur et le path
+void check_config_line(t_game *game, t_config *c, char *line)
 {
-	char	**split_line;
-	char	**rgb;
-	int		r;
-	int		g;
-	int		b;
-
-	split_line = ft_split(line, ' ');
-	rgb = ft_split(split_line[1], ',');
-	if (split_line[0] == NULL || split_line[1] == NULL || split_line[2] != NULL)
-		ft_error_close(game, "Error: Invalid color config format");//need to free
-	if (rgb[0] == NULL || rgb[1] == NULL || rgb[2] == NULL || rgb[3] != NULL)
-		ft_error_close(game, "Error: Color must have exactly 3 components");//need to free
-	if (str_is_digit(rgb[0]) != 0 && str_is_digit(rgb[1]) != 0 && str_is_digit(rgb[2]) != 0)
-	{
-		r = ft_atoi(rgb[0]);
-		g = ft_atoi(rgb[1]);
-		b = ft_atoi(rgb[2]);
-	}
+	c->index = is_config_index(line);
+	if (c->index == -1)
+		ft_error_close(game, "Configuration: invalid format");
+	if (c->seen[c->index] == 1)
+		ft_error_close(game, "Configuration: Duplicate");
+	c->seen[c->index] = 1;
+	if (c->index <= c->last_index)
+		ft_error_close(game, "Configuration: entries out of order");
+	c->last_index = c->index;
+	if (c->index < 4)
+		check_xpm_exit(game, line);
 	else
-		ft_error_close(game, "Error: Color config must be digit");//need to free
-	if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0|| b > 255)
-		ft_error_close(game, "Error: Color components out of range 0-255");//need to free
-	// free_split(rgb);
-	// free_split(split_line);
-	return (r << 16) | (g << 8) | b;
+		check_parse_color(game, line);
+	c->count++;
 }
 
-//trouver index
-//verifier pour la repetition
-//verifier si c'est dans l'ordre
-//respecter la forme pour le couleur et path
+//avoir 6 correct config
 //arret devant l'info de map
-//avoir 6 config
-//! More than 25 lignes, should split.
-void	check_config(t_cub *cub, t_game *game)
+void	check_config(t_game *game, t_config *c)
 {
-	int		i;
-	int		count;
-	int		index;
-	int		last_index;
-	bool	seen[6];
+	int	i;
 
 	i = 0;
-	count = 0;
-	last_index = -1;
-	init_seen(seen);
-	while (i < game->cub->nl && count < 6)
+	c->count = 0;
+	c->last_index = -1;
+	init_seen(c->seen);
+	while (i < game->cub->nl && c->count < 6)
 	{
-		if (cub->text[i] == NULL || cub->text[i][0] == '\0')
+		if (ft_str_isspace(game->cub->text[i]) == 1)
 		{
 			i++;
 			continue ;
 		}
-		index = is_config_index(cub->text[i]);
-		if (index == -1)
-			ft_error_close(game, "Error: Invalid format configuration");
-		if (seen[index] == true)
-			ft_error_close(game, "Error: Duplicate configuration");
-		seen[index] = true;
-		if (index <= last_index)
-			ft_error_close(game, "Error: Config entries out of order");
-		last_index = index;
-		if (index < 4)
-			check_xpm_exit(game, cub->text[i]);
-		else
-			check_parse_color(game, cub->text[i]);
-		count++;
+		check_config_line(game, c, game->cub->text[i]);
 		i++;
 	}
-	if (count < 6)
-		ft_error_close(game, "Error: Missing config entries");
+	if (c->count < 6)
+		ft_error_close(game, "Configuration: Missing config entries");
 	/*game->cub->end_config = i;*/
 	/*change to ft_find_start(game, cub->text, i);*/
 }

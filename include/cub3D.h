@@ -5,7 +5,7 @@
 #include <errno.h> //errno(use for perrer)
 #include <stdlib.h> //exit, EXIT_FAILURE, EXIT_SUCCESS
 #include <fcntl.h> // O_RDONLY
-#include <unistd.h>  // open, read, write
+#include <unistd.h>  // open, read, write，access
 #include <stdbool.h> //bool
 #include <X11/keysym.h>
 # include <math.h>
@@ -91,6 +91,10 @@ typedef struct s_config
 	char	*ea;
 	int		floor;
 	int		ceiling;
+	int		seen[6];
+	int 	index;
+	int		last_index;
+	int		count;
 }   t_config;
 
 //* Here I stcok all info of this game.
