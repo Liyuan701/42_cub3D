@@ -6,13 +6,13 @@
 /*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 11:41:32 by lifan             #+#    #+#             */
-/*   Updated: 2025/05/27 15:53:35 by lifan            ###   ########.fr       */
+/*   Updated: 2025/05/30 13:26:48 by lifan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
 
-int	ft_not_cub(char *file)
+static	int	ft_not_cub(char *file)
 {
 	int	i;
 
@@ -24,7 +24,7 @@ int	ft_not_cub(char *file)
 
 //* check if the args are valides.
 //* check if the path is valide.
-int	ft_check_args(int ac, char **av)
+static	int	ft_check_args(int ac, char **av)
 {
 	int	fd;
 

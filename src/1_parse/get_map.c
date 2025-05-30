@@ -14,7 +14,7 @@
 //* we will copy the rest and creat map.
 #include "../include/cub3D.h"
 
-void	ft_no_v(t_game *game, char **map)
+static	void	ft_no_v(t_game *game, char **map)
 {
 	int	y;
 	int	x;
@@ -27,7 +27,7 @@ void	ft_no_v(t_game *game, char **map)
 	while (y < h)
 	{
 		x = 0;
-		while (x< w)
+		while (x < w)
 		{
 			if (map[y][x] == 'V')
 				ft_error_close(game, "There are invalid symbols in the map.");
@@ -39,7 +39,7 @@ void	ft_no_v(t_game *game, char **map)
 
 //* copy a map for the test
 //* this map have the same width, fill with espaces.
-void	ft_copy_map(t_game *game)
+static	void	ft_copy_map(t_game *game)
 {
 	int	i;
 	int	len;
@@ -87,4 +87,27 @@ void	ft_get_map(t_game *game)
 		start++;
 	}
 	ft_copy_map(game);
+}
+
+void	ft_find_start(t_game *game, char **text, int i)
+{
+	int		j;
+	char	c;
+
+	while (text[i])
+	{
+		j = 0;
+		c = text[i][j];
+		while (c && ft_isspace((unsigned char)c))
+			j++;
+		if (!c)
+		{
+			i++;
+			continue ;
+		}
+		if (c == '0' || c == 'N' || c == 'S' || c == 'E' || c == 'W')
+			game->cub->start = i;
+		i++;
+	}
+	ft_error_close("There is no map in the .cub file.");
 }

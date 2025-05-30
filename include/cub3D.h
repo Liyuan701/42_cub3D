@@ -79,6 +79,7 @@ typedef struct s_cub
 	char	**copy;
 	int		width;
 	int		height;
+	int		end_of_confg;
 	int		start;
 }	t_cub;
 
@@ -113,11 +114,47 @@ typedef struct s_game
 }	t_game;
 
 ##################### PARSE ######################################
+void	ft_init_game(t_game *game);
+int		ft_parse(t_game *game, char *file);
+void	ft_get_config(t_game *game);
+void	get_index_value(char *line, t_game *game);
+char	*mylloc_value(t_game *game, char *line);
+int		get_start(char *line);
+void	check_xpm_exit(t_game *game, char *line);
+int		check_parse_color(t_game *game, char *line);
+int		is_config_index(char *str);
+void	check_config_line(t_game *game, t_config *c, char *line);
+void	check_config(t_game *game, t_config *c);
+void	ft_find_start(t_game *game, char **text, int i);
+void	ft_get_map(t_game *game);
+int		ft_check_map(t_game *game, char **map);
+void	ft_flood_map(t_game *game, char **map);
+
 
 ##################### RENDER #####################################
+
 int		ft_key(int keycode, t_game	*game);
 void	ft_refresh(void);
 
+
+
 ##################### UTILS ######################################
 void	ft_close(t_game *game);
+void	*ft_mylloc(t_game *game, size_t size);
+void	ft_error(char *str);
+void	ft_error_close(t_game *game, char *str);
+void	ft_close(t_game *game);
+int		ft_count_lines(t_game *game, char *file);
+void	ft_clean(t_game	*game);
+void	ft_free_tab(char **tab);
+void	free_all(t_game *game);
+int		free_one(t_game *game, void *ptr);
+
+##################### DEBUGS ######################################
+
+int	ft_debug_parse(t_game *game);
+int	print_config(t_config *cfg);
+int	print_cub(t_cub *c);
+int	print_player(t_player *p);
+
 #endif

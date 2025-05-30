@@ -6,23 +6,23 @@
 /*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 13:15:53 by lifan             #+#    #+#             */
-/*   Updated: 2025/05/28 13:15:53 by lifan            ###   ########.fr       */
+/*   Updated: 2025/05/30 13:44:53 by lifan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
 
-void	ft_fill_space(t_game *game, char **map, int y, int x)
+static	void	ft_fill_space(t_game *game, char **map, int y, int x)
 {
 	int	h;
 	int	w;
 
 	h = game->cub->height;
 	w = game->cub->width;
-		if (y < 0 || y >= h || x < 0 || x >= w)
-		return;
+	if (y < 0 || y >= h || x < 0 || x >= w)
+		return ;
 	if (map[y][x] != ' ')
-		return;
+		return ;
 	map[y][x] = 'V';
 	flood_fill_space(map, y + 1, x, h, w);
 	flood_fill_space(map, y - 1, x, h, w);
@@ -30,12 +30,12 @@ void	ft_fill_space(t_game *game, char **map, int y, int x)
 	flood_fill_space(map, y, x - 1, h, w);
 }
 
-void ft_flood_updpwn(t_game *game, char **map, int h, int w)
+static	void	ft_flood_updpwn(t_game *game, char **map, int h, int w)
 {
-	int x;
+	int	x;
 
 	x = 0;
-		while (x < w)
+	while (x < w)
 	{
 		if (map[0][x] == ' ')
 			ft_fill_space(game, map, 0, x);
@@ -45,12 +45,12 @@ void ft_flood_updpwn(t_game *game, char **map, int h, int w)
 	}
 }
 
-void ft_flood_side(t_game *game, char **map, int h, int w)
+static	void	ft_flood_side(t_game *game, char **map, int h, int w)
 {
-	int y;
+	int	y;
 
 	y = 0;
-		while (y < h)
+	while (y < h)
 	{
 		if (map[y][0] == ' ')
 			ft_fill_space(game, map, y, 0);
@@ -63,7 +63,7 @@ void ft_flood_side(t_game *game, char **map, int h, int w)
 //* flood the map to change the ' ' inside the wall as '1'.
 void	ft_flood_map(t_game *game, char **map)
 {
-	int y;
+	int	y;
 	int	x;
 	int	h;
 	int	w;

@@ -6,25 +6,26 @@
 /*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 11:44:28 by lifan             #+#    #+#             */
-/*   Updated: 2025/05/27 16:50:41 by lifan            ###   ########.fr       */
+/*   Updated: 2025/05/30 13:42:52 by lifan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 //* ft_memeset all to NUll and 0, but for color -1.
 #include "../include/cub3D.h"
 
-void	ft_init_player(t_player *player)
+static	void	ft_init_player(t_player *player)
 {
 	player->x = -1.0;
 	player->y = -1.0;
-	player->dir	= NULL;
+	player->dir = NULL;
 	player->dir_x = 0;
 	player->dir_y = 0;
 	player->color = -1;
 	player->turn = 0;
 	player->forward = 0;
 }
-void	ft_init_config(t_game *game)
+
+static	void	ft_init_config(t_game *game)
 {
 	game->config.no = NULL;
 	game->config.so = NULL;

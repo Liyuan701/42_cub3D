@@ -6,11 +6,12 @@
 /*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 15:28:45 by lifan             #+#    #+#             */
-/*   Updated: 2025/05/29 15:28:45 by lifan            ###   ########.fr       */
+/*   Updated: 2025/05/30 13:47:17 by lifan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
+#include <string.h>
 
 int	print_player(t_player *p)
 {
@@ -30,7 +31,7 @@ int	print_cub(t_cub *c)
 	printf("=== CUB ===\n");
 	printf("Number of lines: %d\n", c->nl);
 	printf("Width: %d, Height: %d\n", c->width, c->height);
-	printf("End config index: %d\n", c->end_config);
+	printf("End config index: %d\n", c->start);
 	printf("Text content:\n");
 	for (int i = 0; c->text && c->text[i]; i++)
 		printf("%s\n", c->text[i]);

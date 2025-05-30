@@ -1,9 +1,9 @@
 #include "../include/cub3D.h"
 
-//format attendu : "identifiant chemin/vers/texture.xpm"
-// séparer la ligne en tokens avec ft_split() puis verifier
-// contrôler que le chemin se termine par .xpm
-// essayer d'ouvrir
+//* format attendu : "identifiant chemin/vers/texture.xpm"
+//* séparer la ligne en tokens avec ft_split() puis verifier
+//* contrôler que le chemin se termine par .xpm
+//* essayer d'ouvrir
 void	check_xpm_exit(t_game *game, char *line)
 {
 	int		len;
@@ -17,7 +17,8 @@ void	check_xpm_exit(t_game *game, char *line)
 		ft_error_close(game, "texture config: invalid format");
 	}
 	if (len < 4 || ft_strncmp(split[1] + (len - 4), ".xpm", 4) != 0)
-	{	ft_free_tab(split);
+	{
+		ft_free_tab(split);
 		ft_error_close(game, "Texture config: must end with .xpm");
 	}
 	if (access(split[1], R_OK) != 0)
@@ -28,9 +29,9 @@ void	check_xpm_exit(t_game *game, char *line)
 	ft_free_tab(split);
 }
 
-// séparer la ligne en tokens avec ft_split()
-// verifier si c'est des nombres et ses domaine
-// rendre un int hexadecimal 0xRRGGBB
+//* séparer la ligne en tokens avec ft_split()
+//* verifier si c'est des nombres et ses domaine
+//* rendre un int hexadecimal 0xRRGGBB
 int	check_parse_color(t_game *game, char *line)
 {
 	char	**split_line;
@@ -38,14 +39,16 @@ int	check_parse_color(t_game *game, char *line)
 	int		r;
 	int		g;
 	int		b;
-	
+
 	split_line = ft_split(line, ' ');
 	rgb = ft_split(split_line[1], ',');
 	if (split_line[0] == NULL || split_line[1] == NULL || split_line[2] != NULL)
 		free2tab_exit(split_line, rgb, game, "Color config: invalid format");
 	if (rgb[0] == NULL || rgb[1] == NULL || rgb[2] == NULL || rgb[3] != NULL)
-		free2tab_exit(split_line, rgb, game, "Color config: must have exactly 3 components");
-	if (str_is_digit(rgb[0]) != 0 && str_is_digit(rgb[1]) != 0 && str_is_digit(rgb[2]) != 0)
+		free2tab_exit(split_line, rgb, game, "\
+			Color config: must have exactly 3 components");
+	if (str_is_digit(rgb[0]) != 0 \
+		&& str_is_digit(rgb[1]) != 0 && str_is_digit(rgb[2]) != 0)
 	{
 		r = ft_atoi(rgb[0]);
 		g = ft_atoi(rgb[1]);
@@ -53,26 +56,29 @@ int	check_parse_color(t_game *game, char *line)
 	}
 	else
 		free2tab_exit(split_line, rgb, game, "Color config: must be digit");
-	if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0|| b > 255)
-		free2tab_exit(split_line, rgb, game, "Color config: components out of range 0-255");
+	if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255)
+		free2tab_exit(split_line, rgb, game, "\
+			Color config: components out of range 0-255");
 	free_split(rgb);
 	free_split(split_line);
 	return ((r << 16) | (g << 8) | b);
 }
 
 //sauter les espcaes puis verifier si c'est un de NO SO WE EA F C
-//si oui return index, sinon -1 
+//si oui return index, sinon -1
 int	is_config_index(char *str)
 {
 	while (ft_isspace(*str) == 1)
 		str++;
-	if (ft_strlen(str) >= 3 && ft_strncmp(str, "NO", 2) == 0 &&  ft_isspace(str[2]) != 0)
+	if (ft_strlen(str) >= 3 && ft_strncmp(str, "NO", 2) == 0 && ft_isspace(str[2]) != 0)
 		return (0);
-	else if (ft_strlen(str) >= 3 && ft_strncmp(str, "SO", 2) == 0 && ft_isspace(str[2]) != 0)
+	else if (ft_strlen(str) >= 3 && ft_strncmp\
+	(str, "SO", 2) == 0 && ft_isspace(str[2]) != 0)
 		return (1);
 	else if (ft_strlen(str) >= 3 && ft_strncmp(str, "WE", 2) == 0 && ft_isspace(str[2]) != 0)
 		return (2);
-	else if (ft_strlen(str) >= 3 && ft_strncmp(str, "EA", 2) == 0 && ft_isspace(str[2]) != 0)
+	else if (ft_strlen(str) >= 3 && ft_strncmp\
+	(str, "EA", 2) == 0 && ft_isspace(str[2]) != 0)
 		return (3);
 	else if (ft_strlen(str) >= 2 && ft_isspace(str[1]) != 0 && str[0] == 'F')
 		return (4);
@@ -82,11 +88,11 @@ int	is_config_index(char *str)
 		return (-1);
 }
 
-//trouver index
-//--> verifier pour la repetition avec seen
-//--> verifier si c'est dans l'ordre
-//respecter la forme pour le couleur et le path
-void check_config_line(t_game *game, t_config *c, char *line)
+//* trouver index
+//* --> verifier pour la repetition avec seen
+//* --> verifier si c'est dans l'ordre
+//* respecter la forme pour le couleur et le path
+void	check_config_line(t_game *game, t_config *c, char *line)
 {
 	c->index = is_config_index(line);
 	if (c->index == -1)
@@ -104,8 +110,8 @@ void check_config_line(t_game *game, t_config *c, char *line)
 	c->count++;
 }
 
-//avoir 6 correct config
-//arret devant l'info de map
+//* avoir 6 correct config
+//* arret devant l'info de map
 void	check_config(t_game *game, t_config *c)
 {
 	int	i;
@@ -126,39 +132,6 @@ void	check_config(t_game *game, t_config *c)
 	}
 	if (c->count < 6)
 		ft_error_close(game, "Configuration: Missing config entries");
-	/*game->cub->end_config = i;*/
-	/*change to ft_find_start(game, cub->text, i);*/
+	game->cub->end_of_confg = i;
+	ft_find_start(game, game->cub->text, i);
 }
-
-//* I think before the game->cub->end_config, should add another function ft_find_start.
-//* In case there are other blank lines or other things after the i line.
-//* Only if it begins with the " 01NWSE" it can be seen as the start of the map.
-
-
-
-//* skip the  blank line to find the start of the map
-//* if there is no map, return -1.
-void	ft_find_start(t_game *game, char **text, int i)
-{
-	int		j;
-	char	c;
-
-	while (text[i])
-	{
-		j = 0;
-		c = text[i][j];
-		while(c && ft_isspace((unsigned char)c))
-			j++;
-		if(!c)
-		{
-			i++;
-			continue;
-		}
-		if (c == '0' || c == 'N' || c == 'S' || c == 'E' || c == 'W')
-			game->cub->start = i;
-		i++;
-	}
-	ft_error_close("There is no map in the .cub file.");
-}
-
-
