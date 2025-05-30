@@ -6,7 +6,7 @@
 /*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 11:44:28 by lifan             #+#    #+#             */
-/*   Updated: 2025/05/30 13:42:52 by lifan            ###   ########.fr       */
+/*   Updated: 2025/05/30 14:58:17 by lifan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static	void	ft_init_player(t_player *player)
 {
 	player->x = -1.0;
 	player->y = -1.0;
-	player->dir = NULL;
+	player->dir = '\0';
 	player->dir_x = 0;
 	player->dir_y = 0;
 	player->color = -1;

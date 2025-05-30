@@ -66,7 +66,7 @@ static	void	ft_copy_map(t_game *game)
 }
 
 //* we creat the map from the text.
-void	ft_get_map(t_game *game)
+int	ft_get_map(t_game *game)
 {
 	int		start;
 	int		i;
@@ -87,6 +87,7 @@ void	ft_get_map(t_game *game)
 		start++;
 	}
 	ft_copy_map(game);
+	return (0);
 }
 
 void	ft_find_start(t_game *game, char **text, int i)
@@ -109,5 +110,5 @@ void	ft_find_start(t_game *game, char **text, int i)
 			game->cub->start = i;
 		i++;
 	}
-	ft_error_close("There is no map in the .cub file.");
+	ft_error_close(game, "There is no map in the .cub file.");
 }

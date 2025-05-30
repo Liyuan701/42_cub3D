@@ -6,7 +6,7 @@
 /*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 11:41:32 by lifan             #+#    #+#             */
-/*   Updated: 2025/05/30 13:26:48 by lifan            ###   ########.fr       */
+/*   Updated: 2025/05/30 14:44:52 by lifan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static	int	ft_not_cub(char *file)
 	i = ft_strlen(file) - 4;
 	if (ft_memcmp(&file[i], ".cub", 4))
 		return (FAIL);
-	retrun (0);
+	return (0);
 }
 
 //* check if the args are valides.

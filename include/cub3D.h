@@ -1,19 +1,31 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3D.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/30 14:42:55 by lifan             #+#    #+#             */
+/*   Updated: 2025/05/30 14:56:09 by lifan            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUB3D_H
 # define CUB3D_H
 
-#include <stdio.h> //perrer
-#include <errno.h> //errno(use for perrer)
-#include <stdlib.h> //exit, EXIT_FAILURE, EXIT_SUCCESS
-#include <fcntl.h> // O_RDONLY
-#include <unistd.h>  // open, read, write，access
-#include <stdbool.h> //bool
-#include <X11/keysym.h>
+# include <stdio.h> //perrer
+# include <errno.h> //errno(use for perrer)
+# include <stdlib.h> //exit, EXIT_FAILURE, EXIT_SUCCESS
+# include <fcntl.h> // O_RDONLY
+# include <unistd.h>  // open, read, write，access
+# include <stdbool.h> //bool
+# include <X11/keysym.h>
 # include <math.h>
 # include "../libft/libft.h"
 # include "../minilibx-opengl/mlx.h"
 # include "../minilibx-linux/mlx.h"
 
-####################  KEYS #####################################
+//####################  KEYS #####################################
 # define KEY_A 0x0061
 # define KEY_W 0x0077
 # define KEY_S 0x0073
@@ -22,22 +34,19 @@
 # define LEFT 0x00ff51
 # define RIGHT 0x00ff53
 
-
-#################### SET  ########################################
+//#################### SET  ########################################
 # define WIDTH		640
 # define HEIGHT		480
 
 # define PARSE	101
 # define GAME	102
 
-#define RED "\033[31m"
-#define RESET "\033[0m"
+# define RED "\033[31m"
+# define RESET "\033[0m"
 
-
-##################### PERSO ######################################
+//##################### PERSO ######################################
 
 # define FAIL 1
-
 
 typedef struct s_track
 {
@@ -79,7 +88,7 @@ typedef struct s_cub
 	char	**copy;
 	int		width;
 	int		height;
-	int		end_of_confg;
+	int		end_config;
 	int		start;
 }	t_cub;
 
@@ -93,10 +102,10 @@ typedef struct s_config
 	int		floor;
 	int		ceiling;
 	int		seen[6];
-	int 	index;
+	int		index;
 	int		last_index;
 	int		count;
-}   t_config;
+}	t_config;
 
 //* Here I stcok all info of this game.
 typedef struct s_game
@@ -113,7 +122,8 @@ typedef struct s_game
 	t_config	config;
 }	t_game;
 
-##################### PARSE ######################################
+//##################### PARSE ######################################
+
 void	ft_init_game(t_game *game);
 int		ft_parse(t_game *game, char *file);
 void	ft_get_config(t_game *game);
@@ -126,19 +136,16 @@ int		is_config_index(char *str);
 void	check_config_line(t_game *game, t_config *c, char *line);
 void	check_config(t_game *game, t_config *c);
 void	ft_find_start(t_game *game, char **text, int i);
-void	ft_get_map(t_game *game);
+int		ft_get_map(t_game *game);
 int		ft_check_map(t_game *game, char **map);
 void	ft_flood_map(t_game *game, char **map);
 
-
-##################### RENDER #####################################
+//##################### RENDER #####################################
 
 int		ft_key(int keycode, t_game	*game);
 void	ft_refresh(void);
 
-
-
-##################### UTILS ######################################
+//##################### UTILS ######################################
 void	ft_close(t_game *game);
 void	*ft_mylloc(t_game *game, size_t size);
 void	ft_error(char *str);
@@ -150,11 +157,11 @@ void	ft_free_tab(char **tab);
 void	free_all(t_game *game);
 int		free_one(t_game *game, void *ptr);
 
-##################### DEBUGS ######################################
+//##################### DEBUGS ######################################
 
-int	ft_debug_parse(t_game *game);
-int	print_config(t_config *cfg);
-int	print_cub(t_cub *c);
-int	print_player(t_player *p);
+int		ft_debug_parse(t_game *game);
+int		print_config(t_config *cfg);
+int		print_cub(t_cub *c);
+int		print_player(t_player *p);
 
 #endif

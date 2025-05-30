@@ -13,7 +13,6 @@
 //TODO from here, we begin the game.
 #include "../include/cub3D.h"
 
-
 void	ft_refresh(void)
 {
 	teturn (0);

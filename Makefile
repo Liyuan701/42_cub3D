@@ -23,23 +23,20 @@ VAL = valgrind --leak-check=full --track-origins=yes --show-leak-kinds=all
 
 #######################     FILES       ########################################
 
-PARSE = src/1_parse/parse.c\
-		src/1_parse/init_game.c\
-		src/1_parse/ge_map.c\
-		src/1_parse/get_config.c\
-		src/1_parse/flood_map.c\
-		src/1_parse/check_map.c
-		src/1_parse/check_config.c
+PARSE = 1_parse/parse.c\
+		1_parse/init_game.c\
+		1_parse/get_map.c\
+		1_parse/get_config.c\
+		1_parse/flood_map.c\
+		1_parse/check_map.c\
+		1_parse/check_config.c
 
-RENDER =
-
-UTILS = src/3_utils/clean.c \
-		src/3_utils/count.c \
-		src/3_utils/check_config_util.c \
-		src/3_utils/debug.c \
-		src/3_utils/error.c \
-		src/3_utils/mylloc.c \
-
+UTILS = 3_utils/clean.c \
+		3_utils/count.c \
+		3_utils/check_config_util.c \
+		3_utils/debug.c \
+		3_utils/error.c \
+		3_utils/mylloc.c \
 
 #######################     DIRS        ########################################
 SRC_DIR = src
@@ -47,10 +44,10 @@ OBJ_DIR = obj
 MLX_DIR = lib/minilibx-linux
 LIB_DIR = lib/libft
 INC_DIR = include
-FILE = src/main.c $(PARSE) ${RENDER} ${UTILS}
+FILE = main.c $(PARSE) ${UTILS}
 
 SRCS = ${addprefix $(SRC_DIR)/, $(FILE)}
-OBJS = ${SRCS:.c=.o}
+OBJS = ${SRCS:${SRC_DIR}/%.c= $(OBJ_DIR)/%.o}
 LIBFT = ${LIB_DIR}/libft.a
 MLX = ${MLX_DIR}/libmlx.a
 
@@ -85,6 +82,9 @@ ${NAME}:	${OBJ_DIR} ${OBJS} $(LIBFT) ${MLX}
 			@echo "🔍 ${BLUE} Checking if linking is necessary..."
 			@$(CC) $(CFLAG) $(OBJS) ${LIBS} ${INCLUDE} -o ${NAME}
 			@echo "$✅ {BLUE} Linking completed! \n" && ${WELL}
+
+${OBJ_DIR}:
+			@mkdir -p ${OBJ_DIR}
 
 ${LIBFT}:
 			@make all -C ${LIB_DIR} -s

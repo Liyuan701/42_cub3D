@@ -6,7 +6,7 @@
 /*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 15:37:58 by lifan             #+#    #+#             */
-/*   Updated: 2025/05/30 13:41:46 by lifan            ###   ########.fr       */
+/*   Updated: 2025/05/30 14:52:40 by lifan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 //* malloc each line in the game->map->text tab.
 //! MYLLOC
-static void	ft_fill_text(t_game *game, char **text, int fd)
+static void	ft_fill_text(t_game *game, int fd)
 {
 	int		i;
 	int		row;
@@ -52,12 +52,12 @@ static	int	ft_get_text(t_game *game, char *file)
 	nl = 0;
 	game->cub->nl = ft_count_lines(game, file);
 	game->cub->text = (char **)
-		ft_mylloc((game, game->cub->nl + 1) * sizeof(char *));
+		ft_mylloc(game, (game->cub->nl + 1) * sizeof(char *));
 	if (!(game->cub->text))
 		return (ft_error("Can't malloc the text tab."), FAIL);
 	fd = open(file, O_RDONLY);
 	game->cub->op_fd = fd;
-	ft_fill_text(game, game->cub->text, fd);
+	ft_fill_text(game, fd);
 	close (fd);
 	game->cub->op_fd = -1;
 	return (0);
@@ -71,8 +71,8 @@ int	ft_parse(t_game *game, char *file)
 	if (ft_get_text(game, file) == FAIL)
 		return (ft_error_close(game, "can't get the file."), 1);
 	ft_get_config(game);
-	if (ft_get_map(game, game) == FAIL)
-		return (ft_error_close(game, "can't get the map.", 1));
+	if (ft_get_map(game) == FAIL)
+		return (ft_error_close(game, "can't get the map."), FAIL);
 	if (ft_check_map(game, game->cub->copy) == FAIL)
 		return (ft_error_close(game, "invalid map"), 1);
 	return (0);

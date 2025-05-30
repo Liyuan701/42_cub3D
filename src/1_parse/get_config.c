@@ -76,7 +76,7 @@ void	ft_get_config(t_game *game)
 	char	*line;
 
 	i = 0;
-	check_config(game, game->c); //!!! what do you want, a pointer or ? I think it will be config.
+	check_config(game, &game->config);
 	while (i < game->cub->end_config)
 	{
 		line = game->cub->text[i];
