@@ -6,7 +6,7 @@
 /*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 11:41:32 by lifan             #+#    #+#             */
-/*   Updated: 2025/05/30 14:44:52 by lifan            ###   ########.fr       */
+/*   Updated: 2025/05/30 16:44:38 by lifan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,16 +26,13 @@ static	int	ft_not_cub(char *file)
 //* check if the path is valide.
 static	int	ft_check_args(int ac, char **av)
 {
-	int	fd;
-
 	if (ac <= 1)
 		return (ft_error("There is no argument."), 1);
 	else if (ac > 2)
 		return (ft_error("There are too many arguments."), 1);
 	else if (ft_not_cub(av[1]))
 		return (ft_error("It's not a .cub file."), 1);
-	fd = open(av[1], O_RDONLY);
-	if (fd < 0)
+	if (access(av[1], R_OK) != 0)
 	{
 		ft_error("The file path is invalid.");
 		return (FAIL);
@@ -55,7 +52,9 @@ int	main(int ac, char **av)
 	ft_init_game(&game);
 	if (ft_parse(&game, av[1]))
 		return (FAIL);
+
 	/*mlx_hook(game.win_ptr, 17, (1L << 17), ft_close, &game);
+	/*TODO fermer avec croix rouge
 	mlx_hook(game.win_ptr, 2, (1L << 0), ft_key, &game);
 	mlx_loop_hook(game.mlx_ptr, ft_refresh, &game);
 	mlx_loop(game.mlx_ptr);*/

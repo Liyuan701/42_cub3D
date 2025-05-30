@@ -12,7 +12,38 @@
 
 //* WIth the given map->end_config
 //* we will copy the rest and creat map.
+
 #include "../include/cub3D.h"
+
+//TODO verify if after map a blank line. 
+static int	ft_count_map(t_game *game, char **text, int i)
+{
+	int		count;
+	int		j;
+	int		c;
+
+	count = 0;
+	while (text[i])
+	{
+		j = 0;
+		c = text[i][j];
+		while (c && ft_isspace(c))
+			j++;
+		if (!c)
+		{
+			i++;
+			continue ;
+		}
+		if (c == '0' || c == 'N' || c == 'S' || c == 'E' || c == 'W')
+		{
+			count++;
+			i++;
+		}
+		else
+			ft_error_close(game, "Invalid symbols in/after the map.");
+	}
+	return (count);
+}
 
 static	void	ft_no_v(t_game *game, char **map)
 {
@@ -50,11 +81,11 @@ static	void	ft_copy_map(t_game *game)
 	len = 0;
 	height = game->cub->height;
 	width = game->cub->width;
-	game->cub->copy = mylloc(game, (height + 1) * sizeof(char *));
+	game->cub->copy = ft_mylloc(game, (height + 1) * sizeof(char *));
 	while (i < height)
 	{
-		game->cub->copy[i] = mylloc(game, (width + 1));
-		ft_memeset(game->cub->copy[i], ' ', width);
+		game->cub->copy[i] = ft_mylloc(game, (width + 1));
+		ft_memset(game->cub->copy[i], ' ', width);
 		game->cub->copy[i][width] = '\0';
 		ft_strlcpy(game->cub->copy[i], \
 			game->cub->map[i], ft_strlen(game->cub->map[i]));
@@ -70,16 +101,16 @@ int	ft_get_map(t_game *game)
 {
 	int		start;
 	int		i;
-	size_t	col_w;
+	int		col_w;
 
 	i = 0;
 	start = game-> cub ->start;
-	game->cub->height = ft_count(game->cub->text, start);
-	game->cub->map = mylloc(game, (game->cub->height + 1));
+	game->cub->height = ft_count_map(game, game->cub->text, start);
+	game->cub->map = ft_mylloc(game, (game->cub->height + 1));
 	while (i < game->cub->height)
 	{
 		col_w = ft_strlen(game->cub->text[start]);
-		game->cub->map[i] = mylloc(game, (col_w + 1) * sizeof(char));
+		game->cub->map[i] = ft_mylloc(game, (col_w + 1) * sizeof(char));
 		if (col_w > game->cub->width)
 			game->cub->width = col_w;
 		ft_strlcpy(game->cub->map[i], game->cub->text[start], col_w + 1);
@@ -99,7 +130,7 @@ void	ft_find_start(t_game *game, char **text, int i)
 	{
 		j = 0;
 		c = text[i][j];
-		while (c && ft_isspace((unsigned char)c))
+		while (c && ft_isspace(c))
 			j++;
 		if (!c)
 		{

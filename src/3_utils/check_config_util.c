@@ -65,3 +65,10 @@ void	free2tab_exit(char **tab1, char **tab2, t_game *game, char *error_msg)
 	ft_free_tab(tab2);
 	ft_error_close(game, error_msg);
 }
+
+int	ft_isspace(char c)
+{
+	if (c == ' ' || (c >= '\t' && c <= '\r'))
+		return (1);
+	return (0);
+}

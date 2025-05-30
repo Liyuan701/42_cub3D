@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yy <yy@student.42.fr>                      +#+  +:+       +#+        */
+/*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 13:39:11 by lifan             #+#    #+#             */
-/*   Updated: 2025/05/29 18:25:06 by yy               ###   ########.fr       */
+/*   Updated: 2025/05/30 16:34:14 by lifan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
-/*sujet: whith error\n then error msg*/
+
 void	ft_error(char *str)
 {
-	ft_putstr_fd(RED "ERROR:", 2);
+	ft_putstr_fd(RED "ERROR\n", 2);
 	ft_putstr_fd(str, 2);
 	ft_putstr_fd("\n" RESET, 2);
 }
