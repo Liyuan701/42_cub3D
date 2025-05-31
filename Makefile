@@ -26,9 +26,9 @@ VAL = valgrind --leak-check=full --track-origins=yes --show-leak-kinds=all
 PARSE = 1_parse/parse.c\
 		1_parse/init_game.c\
 		1_parse/get_map.c\
-		1_parse/get_config.c\
-		1_parse/flood_map.c\
 		1_parse/check_map.c\
+		1_parse/flood_map.c\
+		1_parse/get_config.c\
 		1_parse/check_config.c
 
 UTILS = 3_utils/clean.c \

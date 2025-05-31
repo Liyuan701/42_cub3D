@@ -35,3 +35,21 @@ int	ft_count_lines(t_game *game, char *file)
 	}
 	return (count);
 }
+
+//* if can't find, return 0
+//* if find, return 1
+int	ft_find(char c, char *str)
+{
+	int	i;
+	int	find;
+
+	i = 0;
+	find = 0;
+	while (str[i])
+	{
+		if (str[i] == c)
+			find = 1;
+		i++;
+	}
+	return (find);
+}

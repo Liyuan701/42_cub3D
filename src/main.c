@@ -6,7 +6,7 @@
 /*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 11:41:32 by lifan             #+#    #+#             */
-/*   Updated: 2025/05/30 16:44:38 by lifan            ###   ########.fr       */
+/*   Updated: 2025/05/31 17:23:42 by lifan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,8 @@ int	main(int ac, char **av)
 	ft_init_game(&game);
 	if (ft_parse(&game, av[1]))
 		return (FAIL);
-
 	/*mlx_hook(game.win_ptr, 17, (1L << 17), ft_close, &game);
-	/*TODO fermer avec croix rouge
+	TODO fermer avec croix rouge;
 	mlx_hook(game.win_ptr, 2, (1L << 0), ft_key, &game);
 	mlx_loop_hook(game.mlx_ptr, ft_refresh, &game);
 	mlx_loop(game.mlx_ptr);*/

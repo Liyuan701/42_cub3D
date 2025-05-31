@@ -6,7 +6,7 @@
 /*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 14:42:55 by lifan             #+#    #+#             */
-/*   Updated: 2025/05/30 14:56:09 by lifan            ###   ########.fr       */
+/*   Updated: 2025/05/31 17:25:43 by lifan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,7 @@ int		check_parse_color(t_game *game, char *line);
 int		is_config_index(char *str);
 void	check_config_line(t_game *game, t_config *c, char *line);
 void	check_config(t_game *game, t_config *c);
-void	ft_find_start(t_game *game, char **text, int i);
+int		ft_find_start(t_game *game, char **text, int i);
 int		ft_get_map(t_game *game);
 int		ft_check_map(t_game *game, char **map);
 void	ft_flood_map(t_game *game, char **map);
@@ -156,6 +156,8 @@ void	ft_clean(t_game	*game);
 void	ft_free_tab(char **tab);
 void	free_all(t_game *game);
 int		free_one(t_game *game, void *ptr);
+int		ft_find(char c, char *str);
+int		ft_isspace(char c);
 
 //##################### DEBUGS ######################################
 

@@ -15,26 +15,21 @@
 
 #include "../include/cub3D.h"
 
-//TODO verify if after map a blank line. 
+//* If enconter blank line in/after the map, error.
 static int	ft_count_map(t_game *game, char **text, int i)
 {
 	int		count;
 	int		j;
-	int		c;
 
 	count = 0;
 	while (text[i])
 	{
 		j = 0;
-		c = text[i][j];
-		while (c && ft_isspace(c))
+		while (text[i][j] && ft_isspace(text[i][j]))
 			j++;
-		if (!c)
-		{
-			i++;
-			continue ;
-		}
-		if (c == '0' || c == 'N' || c == 'S' || c == 'E' || c == 'W')
+		if (text[i][j] == '\0')
+			ft_error_close(game, "There are blank lines in/after the map.");
+		if (ft_find(text[i][j], " 01NWES") == 1)
 		{
 			count++;
 			i++;
@@ -45,7 +40,7 @@ static int	ft_count_map(t_game *game, char **text, int i)
 	return (count);
 }
 
-static	void	ft_no_v(t_game *game, char **map)
+static	void	ft_no_others(t_game *game, char **map)
 {
 	int	y;
 	int	x;
@@ -60,7 +55,7 @@ static	void	ft_no_v(t_game *game, char **map)
 		x = 0;
 		while (x < w)
 		{
-			if (map[y][x] == 'V')
+			if (ft_find(map[y][x], " 01NEWS") == 0)
 				ft_error_close(game, "There are invalid symbols in the map.");
 			x++;
 		}
@@ -92,7 +87,7 @@ static	void	ft_copy_map(t_game *game)
 		i++;
 	}
 	game->cub->copy[i] = NULL;
-	ft_no_v(game, game->cub->copy);
+	ft_no_others(game, game->cub->copy);
 	ft_flood_map(game, game->cub->copy);
 }
 
@@ -121,25 +116,27 @@ int	ft_get_map(t_game *game)
 	return (0);
 }
 
-void	ft_find_start(t_game *game, char **text, int i)
+int	ft_find_start(t_game *game, char **text, int i)
 {
 	int		j;
-	char	c;
 
 	while (text[i])
 	{
 		j = 0;
-		c = text[i][j];
-		while (c && ft_isspace(c))
+		while (text[i][j] && ft_isspace(text[i][j]))
 			j++;
-		if (!c)
+		if (text[i][j] == '\0')
 		{
 			i++;
 			continue ;
 		}
-		if (c == '0' || c == 'N' || c == 'S' || c == 'E' || c == 'W')
+		if (ft_find(text[i][j], "01NEWS "))
+		{
 			game->cub->start = i;
+			return (0);
+		}
 		i++;
 	}
 	ft_error_close(game, "There is no map in the .cub file.");
+	return (1);
 }

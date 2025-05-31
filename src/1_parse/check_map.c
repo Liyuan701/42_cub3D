@@ -6,7 +6,7 @@
 /*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 17:29:12 by lifan             #+#    #+#             */
-/*   Updated: 2025/05/30 13:29:02 by lifan            ###   ########.fr       */
+/*   Updated: 2025/05/31 16:47:27 by lifan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static	void	ft_check_wall(t_game *game, char **map, int y, int x)
 static	void	ft_set_player(t_game *game, char c, int y, int x)
 {
 	if (game->player->dir || game->player->x != -1.0 || game->player->y != -1.0)
-		ft_error_close("There are more than one player position.");
+		ft_error_close(game, "There are more than one player position.");
 	else
 	{
 		game->player->x = x + 0.5;
@@ -60,27 +60,26 @@ int	ft_check_map(t_game *game, char **map)
 {
 	int		y;
 	int		x;
-	char	c;
 
 	y = 0;
 	while (map[y])
 	{
 		x = 0;
-		c = map[y][x];
-		while (c)
+		while (map[y][x])
 		{
-			if (c == '0')
+			if (map[y][x] == '0')
 				ft_check_wall(game, map, y, x);
-			else if (c == 'N' || c == 'E' || c == 'W' || c == 'S')
-				ft_set_player(game, c, y, x);
-			else if (c != 'V' && c != '1')
+			else if (ft_find(map[y][x], "NEWS") == 1)
+				ft_set_player(game, map[y][x], y, x);
+			else if (map[y][x] != 'V' && map[y][x] != '1')
 				return (ft_error("There \
 					are invalid symbols in the map."), FAIL);
 			x++;
 		}
 		y++;
 	}
-	if (game->player->x == -1 || !game->player->y == -1 || !game->player->dir)
+	if (game->player->x == -1 || game->player->y == -1 \
+		|| game->player->dir == '\0')
 		return (ft_error("Can't set the player's position."), FAIL);
 	return (0);
 }

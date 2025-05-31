@@ -6,7 +6,7 @@
 /*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 13:15:53 by lifan             #+#    #+#             */
-/*   Updated: 2025/05/30 13:44:53 by lifan            ###   ########.fr       */
+/*   Updated: 2025/05/31 17:27:26 by lifan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@ static	void	ft_fill_space(t_game *game, char **map, int y, int x)
 	if (map[y][x] != ' ')
 		return ;
 	map[y][x] = 'V';
-	flood_fill_space(map, y + 1, x, h, w);
-	flood_fill_space(map, y - 1, x, h, w);
-	flood_fill_space(map, y, x + 1, h, w);
-	flood_fill_space(map, y, x - 1, h, w);
+	ft_fill_space(game, map, y + 1, x);
+	ft_fill_space(game, map, y - 1, x);
+	ft_fill_space(game, map, y, x + 1);
+	ft_fill_space(game, map, y, x - 1);
 }
 
-static	void	ft_flood_updpwn(t_game *game, char **map, int h, int w)
+static	void	ft_flood_updown(t_game *game, char **map, int h, int w)
 {
 	int	x;
 
@@ -75,9 +75,13 @@ void	ft_flood_map(t_game *game, char **map)
 	y = 0;
 	while (y < h)
 	{
-		if (map[y][x] == ' ')
-			map[y][x] = '1';
-		x++;
-	}
+		x = 0;
+		while (x < w)
+		{
+			if (map[y][x] == ' ')
+				map[y][x] = '1';
+			x++;
+		}
 	y++;
+	}
 }
