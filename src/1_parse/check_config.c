@@ -100,9 +100,9 @@ void	check_config_line(t_game *game, t_config *c, char *line)
 	if (c->seen[c->index] == 1)
 		ft_error_close(game, "Configuration: Duplicate");
 	c->seen[c->index] = 1;
-	if (c->index <= c->last_index)
-		ft_error_close(game, "Configuration: entries out of order");
-	c->last_index = c->index;
+	// if (c->index <= c->last_index)
+	// 	ft_error_close(game, "Configuration: entries out of order");
+	// c->last_index = c->index;
 	if (c->index < 4)
 		check_xpm_exit(game, line);
 	else
@@ -118,7 +118,7 @@ void	check_config(t_game *game, t_config *c)
 
 	i = 0;
 	c->count = 0;
-	c->last_index = -1;
+	// c->last_index = -1;
 	init_seen(c->seen);
 	while (i < game->cub->nl && c->count < 6)
 	{
@@ -132,6 +132,6 @@ void	check_config(t_game *game, t_config *c)
 	}
 	if (c->count < 6)
 		ft_error_close(game, "Configuration: Missing config entries");
-	game->cub->end_of_confg = i;
+	game->cub->end_config = i;
 	ft_find_start(game, game->cub->text, i);
 }
