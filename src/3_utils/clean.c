@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clean.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yy <yy@student.42.fr>                      +#+  +:+       +#+        */
+/*   By: yren <yren@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 15:30:14 by lifan             #+#    #+#             */
-/*   Updated: 2025/05/29 17:25:55 by yy               ###   ########.fr       */
+/*   Updated: 2025/06/11 16:36:26 by yren             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	free_one(t_game *game, void *ptr)
 }
 
 //* free all malloc thing in the tab
-void	free_all(t_game *game)
+void	ft_free_all(t_game *game)
 {
 	t_track	*tmp;
 

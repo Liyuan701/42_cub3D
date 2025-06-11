@@ -36,9 +36,6 @@ int	check_parse_color(t_game *game, char *line)
 {
 	char	**split_line;
 	char	**rgb;
-	int		r;
-	int		g;
-	int		b;
 
 	split_line = ft_split(line, ' ');
 	rgb = ft_split(split_line[1], ',');
@@ -50,18 +47,18 @@ int	check_parse_color(t_game *game, char *line)
 	if (str_is_digit(rgb[0]) != 0 \
 		&& str_is_digit(rgb[1]) != 0 && str_is_digit(rgb[2]) != 0)
 	{
-		r = ft_atoi(rgb[0]);
-		g = ft_atoi(rgb[1]);
-		b = ft_atoi(rgb[2]);
+		game->config.r = ft_atoi(rgb[0]);
+		game->config.g = ft_atoi(rgb[1]);
+		game->config.b = ft_atoi(rgb[2]);
 	}
 	else
 		free2tab_exit(split_line, rgb, game, "Color config: must be digit");
-	if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255)
+	if (game->config.r < 0 || game->config.r > 255 || game->config.g < 0 || game->config.g > 255 || game->config.b < 0 || game->config.b > 255)
 		free2tab_exit(split_line, rgb, game, "\
 			Color config: components out of range 0-255");
-	free_split(rgb);
-	free_split(split_line);
-	return ((r << 16) | (g << 8) | b);
+	ft_free_tab(rgb);
+	ft_free_tab(split_line);
+	return ((game->config.r << 16) | (game->config.g << 8) | game->config.b);
 }
 
 //sauter les espcaes puis verifier si c'est un de NO SO WE EA F C

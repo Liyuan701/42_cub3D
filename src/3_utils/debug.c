@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   debug.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
+/*   By: yren <yren@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 15:28:45 by lifan             #+#    #+#             */
-/*   Updated: 2025/05/30 13:47:17 by lifan            ###   ########.fr       */
+/*   Updated: 2025/06/11 16:37:43 by yren             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int	print_player(t_player *p)
 	printf("Direction: %c (dir_x: %d, dir_y: %d)\n", p->dir, p->dir_x, p->dir_y);
 	printf("Color: 0x%X\n", p->color);
 	printf("Forward: %d, Turn: %d\n", p->forward, p->turn);
+	return(0);
 }
 
 int	print_cub(t_cub *c)
@@ -38,6 +39,8 @@ int	print_cub(t_cub *c)
 	printf("Map:\n");
 	for (int i = 0; c->map && c->map[i]; i++)
 		printf("%s\n", c->map[i]);
+	return(0);
+	
 }
 
 int	print_config(t_config *cfg)
@@ -51,6 +54,7 @@ int	print_config(t_config *cfg)
 	printf("EA: %s\n", cfg->ea);
 	printf("Floor color: 0x%X\n", cfg->floor);
 	printf("Ceiling color: 0x%X\n", cfg->ceiling);
+	return(0);
 }
 
 int	ft_debug_parse(t_game *game)
@@ -63,4 +67,5 @@ int	ft_debug_parse(t_game *game)
 	print_config(&game->config);
 	print_cub(game->cub);
 	print_player(game->player);
+	return(0);
 }

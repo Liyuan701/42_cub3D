@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
+/*   By: yren <yren@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 11:44:28 by lifan             #+#    #+#             */
-/*   Updated: 2025/05/30 14:58:17 by lifan            ###   ########.fr       */
+/*   Updated: 2025/06/11 16:56:50 by yren             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,9 @@ static	void	ft_init_config(t_game *game)
 	game->config.ea = NULL;
 	game->config.floor = -1;
 	game->config.ceiling = -1;
+	game->config.r = 0;
+	game->config.g = 0;
+	game->config.b = 0;
 }
 
 void	ft_init_game(t_game *game)

@@ -6,7 +6,7 @@
 /*   By: yren <yren@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 14:42:55 by lifan             #+#    #+#             */
-/*   Updated: 2025/06/11 15:58:48 by yren             ###   ########.fr       */
+/*   Updated: 2025/06/11 16:31:19 by yren             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,9 @@ typedef struct s_config
 	int		seen[6];
 	int		index;
 	// int		last_index;
+	int		r;
+	int		g;
+	int		b;
 	int		count;
 }	t_config;
 
@@ -146,19 +149,25 @@ int		ft_key(int keycode, t_game	*game);
 void	ft_refresh(void);
 
 //##################### UTILS ######################################
-void	ft_close(t_game *game);
-void	*ft_mylloc(t_game *game, size_t size);
+void	init_seen(int seen[6]);
+int		str_is_digit(char *s);
+int		ft_str_isspace(char *str);
+void	free2tab_exit(char **tab1, char **tab2, t_game *game, char *error_msg);
+int		ft_isspace(char c);
+
+int		free_one(t_game *game, void *ptr);
+void	free_all(t_game *game);
+void	ft_free_tab(char **tab);
+void	ft_clean(t_game	*game);
+
+int		ft_count_lines(t_game *game, char *file);
+int		ft_find(char c, char *str);
+
 void	ft_error(char *str);
 void	ft_error_close(t_game *game, char *str);
 void	ft_close(t_game *game);
-int		ft_count_lines(t_game *game, char *file);
-void	ft_clean(t_game	*game);
-void	ft_free_tab(char **tab);
-void	free_all(t_game *game);
-int		free_one(t_game *game, void *ptr);
-int		ft_find(char c, char *str);
-int		ft_isspace(char c);
 
+void	*ft_mylloc(t_game *game, size_t size);
 //##################### DEBUGS ######################################
 
 int		ft_debug_parse(t_game *game);
