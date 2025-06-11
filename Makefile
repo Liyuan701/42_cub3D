@@ -68,7 +68,7 @@ WELL = 		echo "${BLUE}|￣￣￣￣￣￣￣|"&&\
  			echo "${BLUE}/ 　 づ"\
 
 BLUE = \033[94m
-YELLOW = = \033[93m
+YELLOW = \033[93m
 
 #######################     RULES       ########################################
 
@@ -81,7 +81,7 @@ $(OBJ_DIR)/%.o:${SRC_DIR}/%.c
 ${NAME}:	${OBJ_DIR} ${OBJS} $(LIBFT) ${MLX}
 			@echo "🔍 ${BLUE} Checking if linking is necessary..."
 			@$(CC) $(CFLAG) $(OBJS) ${LIBS} ${INCLUDE} -o ${NAME}
-			@echo "$✅ {BLUE} Linking completed! \n" && ${WELL}
+			@echo "✅ ${BLUE} Linking completed! \n" && ${WELL}
 
 ${OBJ_DIR}:
 			@mkdir -p ${OBJ_DIR}
@@ -101,8 +101,7 @@ clean:
 fclean:	clean
 		@${RM} ${NAME}
 		@make fclean -C ${LIB_DIR} -s
-		@make fclean -C ${MLX_DIR} -s
-		@echo "🗑️  {BLUE}Fclean done, all cleaned.\n"
+		@echo "🗑️  ${BLUE}Fclean done, all cleaned.\n"
 
 re:	fclean all
 

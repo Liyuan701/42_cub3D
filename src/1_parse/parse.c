@@ -6,7 +6,7 @@
 /*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 15:37:58 by lifan             #+#    #+#             */
-/*   Updated: 2025/05/30 14:52:40 by lifan            ###   ########.fr       */
+/*   Updated: 2025/06/11 19:39:24 by lifan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ static	int	ft_get_text(t_game *game, char *file)
 	int		nl;
 	int		fd;
 
+	if (!game->cub)
+		ft_error("❌ game->cub is NULL before accessing it!");//!debug
 	nl = 0;
 	game->cub->nl = ft_count_lines(game, file);
 	game->cub->text = (char **)

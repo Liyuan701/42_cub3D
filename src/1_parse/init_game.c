@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yren <yren@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 11:44:28 by lifan             #+#    #+#             */
-/*   Updated: 2025/06/11 19:16:13 by yren             ###   ########.fr       */
+/*   Updated: 2025/06/11 19:42:11 by lifan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,16 @@ void	ft_init_game(t_game *game)
 	game->height = HEIGHT;
 	game->width = WIDTH;
 	ft_init_config(game);
-	ft_memset(&game->tex, 0, sizeof(game->tex));
-	ft_memset(&game->cub, 0, sizeof(game->cub));
+	game->cub = ft_mylloc(game, sizeof(t_cub));
+	if (!game->cub)
+		exit(EXIT_FAILURE);
+	game->tex = ft_mylloc(game, sizeof(t_tex));
+	if (!game->tex)
+		exit(EXIT_FAILURE);
+	ft_memset(game->tex, 0, sizeof(t_tex));
+	ft_memset(game->cub, 0, sizeof(t_cub));
+	game->player = ft_mylloc(game, sizeof(t_player));
+	if (!game->player)
+		exit(EXIT_FAILURE);
 	ft_init_player(game->player);
 }
