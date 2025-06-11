@@ -6,7 +6,7 @@
 /*   By: yren <yren@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 11:44:28 by lifan             #+#    #+#             */
-/*   Updated: 2025/06/11 16:56:50 by yren             ###   ########.fr       */
+/*   Updated: 2025/06/11 19:16:13 by yren             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	ft_init_game(t_game *game)
 	game->height = HEIGHT;
 	game->width = WIDTH;
 	ft_init_config(game);
-	ft_memset(game->tex, 0, sizeof(game->tex));
-	ft_memset(game->cub, 0, sizeof(game->cub));
+	ft_memset(&game->tex, 0, sizeof(game->tex));
+	ft_memset(&game->cub, 0, sizeof(game->cub));
 	ft_init_player(game->player);
 }
