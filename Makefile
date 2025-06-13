@@ -33,7 +33,8 @@ PARSE = 1_parse/parse.c\
 
 UTILS = 3_utils/clean.c \
 		3_utils/count.c \
-		3_utils/check_config_util.c \
+		3_utils/config_util.c \
+		3_utils/config_util2.c \
 		3_utils/debug.c \
 		3_utils/error.c \
 		3_utils/mylloc.c \

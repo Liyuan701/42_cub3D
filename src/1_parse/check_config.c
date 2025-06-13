@@ -7,26 +7,27 @@
 void	check_xpm_exit(t_game *game, char *line)
 {
 	int		len;
-	char	**split;
+	char	**tab;
 
-	split = ft_split(line, ' ');
-	len = ft_strlen(split[1]);
-	if (split[0] == NULL && split[1] == NULL && split[2] != NULL)
+	line = replace_space(line);
+	tab = ft_split(line, ' ');
+	len = ft_strlen(tab[1]);
+	if (tab[0] == NULL && tab[1] == NULL && tab[2] != NULL)
 	{
-		ft_free_tab(split);
+		ft_free_tab(tab);
 		ft_error_close(game, "texture config: invalid format");
 	}
-	if (len < 4 || ft_strncmp(split[1] + (len - 4), ".xpm", 4) != 0)
+	if (len < 4 || ft_strncmp(tab[1] + (len - 4), ".xpm", 4) != 0)
 	{
-		ft_free_tab(split);
+		ft_free_tab(tab);
 		ft_error_close(game, "Texture config: must end with .xpm");
 	}
-	if (access(split[1], R_OK) != 0)
+	if (access(tab[1], R_OK) != 0)
 	{
-		ft_free_tab(split);
+		ft_free_tab(tab);
 		ft_error_close(game, "Texture config: path is wrong");
 	}
-	ft_free_tab(split);
+	ft_free_tab(tab);
 }
 
 //* séparer la ligne en tokens avec ft_split()
@@ -34,15 +35,15 @@ void	check_xpm_exit(t_game *game, char *line)
 //* rendre un int hexadecimal 0xRRGGBB
 int	check_parse_color(t_game *game, char *line)
 {
-	char	**split_line;
+	char	**tab;
 	char	**rgb;
 
-	split_line = ft_split(line, ' ');
-	rgb = ft_split(split_line[1], ',');
-	if (split_line[0] == NULL || split_line[1] == NULL || split_line[2] != NULL)
-		free2tab_exit(split_line, rgb, game, "Color config: invalid format");
+	tab = ft_split(replace_space(line), ' ');
+	rgb = ft_split(tab[1], ',');
+	if (tab[0] == NULL || tab[1] == NULL || tab[2] != NULL)
+		free2tab_exit(tab, rgb, game, "Color config: invalid format");
 	if (rgb[0] == NULL || rgb[1] == NULL || rgb[2] == NULL || rgb[3] != NULL)
-		free2tab_exit(split_line, rgb, game, "\
+		free2tab_exit(tab, rgb, game, "\
 			Color config: must have exactly 3 components");
 	if (str_is_digit(rgb[0]) != 0 \
 		&& str_is_digit(rgb[1]) != 0 && str_is_digit(rgb[2]) != 0)
@@ -52,12 +53,12 @@ int	check_parse_color(t_game *game, char *line)
 		game->config.b = ft_atoi(rgb[2]);
 	}
 	else
-		free2tab_exit(split_line, rgb, game, "Color config: must be digit");
+		free2tab_exit(tab, rgb, game, "Color config: must be digit");
 	if (game->config.r < 0 || game->config.r > 255 || game->config.g < 0 || game->config.g > 255 || game->config.b < 0 || game->config.b > 255)
-		free2tab_exit(split_line, rgb, game, "\
+		free2tab_exit(tab, rgb, game, "\
 			Color config: components out of range 0-255");
 	ft_free_tab(rgb);
-	ft_free_tab(split_line);
+	ft_free_tab(tab);
 	return ((game->config.r << 16) | (game->config.g << 8) | game->config.b);
 }
 

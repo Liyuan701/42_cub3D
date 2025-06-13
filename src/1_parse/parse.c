@@ -3,41 +3,42 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
+/*   By: yren <yren@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 15:37:58 by lifan             #+#    #+#             */
-/*   Updated: 2025/06/11 19:39:24 by lifan            ###   ########.fr       */
+/*   Updated: 2025/06/13 17:21:00 by yren             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
 
-//* malloc each line in the game->map->text tab.
 //! MYLLOC
+//* malloc each line in the game->map->text tab.
+//lire ligne par ligne
+//change de \n en \0
 static void	ft_fill_text(t_game *game, int fd)
 {
 	int		i;
 	int		row;
 	int		col;
 	char	*line;
+	char	*new_line;
 
 	i = 0;
 	row = 0;
 	col = 0;
-	line = get_next_line(fd);
-	while (line != NULL)
+	while ((line = get_next_line(fd)) != NULL)
 	{
+		new_line = ft_strchr(line, '\n');
+		if (new_line != NULL)
+			*new_line = '\0';
 		game->cub->text[row] = \
 			ft_mylloc(game, (ft_strlen(line) + 1) * sizeof(char));
 		if (!game->cub->text[row])
 			ft_error_close(game, "can't malloc a line in the tab");
-		while (line[i] != '\0')
-			game->cub->text[row][col++] = line[i++];
-		game->cub->text[row++][col] = '\0';
-		col = 0;
-		i = 0;
+		ft_strlcpy(game->cub->text[row], line, ft_strlen(line) + 1);
+		row++;
 		free(line);
-		line = get_next_line(fd);
 	}
 	game->cub->text[row] = NULL;
 }

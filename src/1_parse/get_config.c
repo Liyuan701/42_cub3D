@@ -85,6 +85,7 @@ void	ft_get_config(t_game *game)
 			i++;
 			continue ;
 		}
+		line = replace_space(line);
 		get_index_value(line, game);
 		i++;
 	}

@@ -6,7 +6,7 @@
 /*   By: yren <yren@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 14:42:55 by lifan             #+#    #+#             */
-/*   Updated: 2025/06/11 16:31:19 by yren             ###   ########.fr       */
+/*   Updated: 2025/06/13 18:28:42 by yren             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,6 +154,8 @@ int		str_is_digit(char *s);
 int		ft_str_isspace(char *str);
 void	free2tab_exit(char **tab1, char **tab2, t_game *game, char *error_msg);
 int		ft_isspace(char c);
+
+char 	*replace_space(char *line);
 
 int		free_one(t_game *game, void *ptr);
 void	free_all(t_game *game);
