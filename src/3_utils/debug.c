@@ -6,7 +6,7 @@
 /*   By: liyu <liyu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 15:28:45 by lifan             #+#    #+#             */
-/*   Updated: 2025/06/13 23:29:08 by liyu             ###   ########.fr       */
+/*   Updated: 2025/06/13 23:58:47 by liyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ int	print_cub(t_cub *c)
 	printf("Text content:\n");
 	for (int i = 0; c->text && c->text[i]; i++)
 		printf("%s\n", c->text[i]);
+	printf("\n");
 	printf("Map:\n");
 	for (int i = 0; c->map && c->map[i]; i++)
 		printf("%s\n", c->map[i]);
@@ -72,4 +73,14 @@ int	ft_debug_parse(t_game *game)
 	print_player(game->player);
 	printf("\n");
 	return(0);
+}
+
+void	print_map(char **map)
+{
+	int	i = 0;
+	while (map[i])
+	{
+		printf("%s\n", map[i]);
+		i++;
+	}
 }

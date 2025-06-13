@@ -6,7 +6,7 @@
 /*   By: liyu <liyu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 14:42:55 by lifan             #+#    #+#             */
-/*   Updated: 2025/06/13 23:19:58 by liyu             ###   ########.fr       */
+/*   Updated: 2025/06/13 23:59:07 by liyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,5 +177,6 @@ int		ft_debug_parse(t_game *game);
 int		print_config(t_config *cfg);
 int		print_cub(t_cub *c);
 int		print_player(t_player *p);
+void	print_map(char **map);
 
 #endif

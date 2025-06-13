@@ -6,7 +6,7 @@
 /*   By: liyu <liyu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 15:37:58 by lifan             #+#    #+#             */
-/*   Updated: 2025/06/13 22:22:45 by liyu             ###   ########.fr       */
+/*   Updated: 2025/06/13 23:56:34 by liyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,6 @@ static	int	ft_get_text(t_game *game, char *file)
 {
 	int		fd;
 
-	if (!game->cub)
-		ft_error("❌ game->cub is NULL before accessing it!");//!debug
 	game->cub->nl = ft_count_lines(game, file);
 	game->cub->text = (char **)
 		ft_mylloc(game, (game->cub->nl + 1) * sizeof(char *));

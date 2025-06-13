@@ -70,6 +70,7 @@ static	void	ft_copy_map(t_game *game)
 	int	i;
 	int	height;
 	int	width;
+	int	len;
 
 	i = 0;
 	height = game->cub->height;
@@ -78,15 +79,18 @@ static	void	ft_copy_map(t_game *game)
 	while (i < height)
 	{
 		game->cub->copy[i] = ft_mylloc(game, (width + 1));
-		ft_memset(game->cub->copy[i], ' ', width);
+		len = ft_strlen(game->cub->map[i]);
+		ft_memcpy(game->cub->copy[i], game->cub->map[i], len);
+		if (len < width)
+			ft_memset(game->cub->copy[i] + len, ' ', width - len);
 		game->cub->copy[i][width] = '\0';
-		ft_strlcpy(game->cub->copy[i], \
-			game->cub->map[i], width + 1);
 		i++;
 	}
 	game->cub->copy[i] = NULL;
 	ft_no_others(game, game->cub->copy);
 	ft_flood_map(game, game->cub->copy);
+	/*printf("====print the copy map=====\n");//!DEBUG
+	print_map(game->cub->copy);//!DEBUG*/
 }
 
 //* we creat the map from the text.
@@ -106,12 +110,15 @@ int	ft_get_map(t_game *game)
 	{
 		col_w = ft_strlen(game->cub->text[start + i]);
 		game->cub->map[i] = ft_mylloc(game, (game->cub->width + 1));
-		ft_memset(game->cub->map[i], ' ', game->cub->width);
+		ft_memcpy(game->cub->map[i], game->cub->text[start + i], col_w);
+		if (col_w < game->cub->width)
+			ft_memset(game->cub->map[i] + col_w, ' ', game->cub->width - col_w);
 		game->cub->map[i][game->cub->width] = '\0';
-		ft_strlcpy(game->cub->map[i], game->cub->text[start + i], col_w + 1);
 		i++;
 	}
 	game->cub->map[i] = NULL;
+	/*printf("====print the first map=====\n");//!DEBUG
+	print_map(game->cub->map);//!DEBUG*/
 	ft_copy_map(game);
 	return (0);
 }

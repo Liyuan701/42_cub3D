@@ -6,7 +6,7 @@
 /*   By: liyu <liyu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 11:41:32 by lifan             #+#    #+#             */
-/*   Updated: 2025/06/13 23:24:09 by liyu             ###   ########.fr       */
+/*   Updated: 2025/06/14 00:08:13 by liyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ int	main(int ac, char **av)
 	TODO fermer avec croix rouge;
 	mlx_hook(game.win_ptr, 2, (1L << 0), ft_key, &game);
 	mlx_loop_hook(game.mlx_ptr, ft_refresh, &game);
-	mlx_loop(game.mlx_ptr);*/
-	ft_debug_parse(&game);
+	mlx_loop(game.mlx_ptr);
+	ft_debug_parse(&game);*/
 	ft_clean(&game);
 	return (0);
 }

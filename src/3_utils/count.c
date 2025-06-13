@@ -52,15 +52,13 @@ void	ft_count_width(t_game *game, int height, int start)
 int	ft_find(char c, char *str)
 {
 	int	i;
-	int	find;
 
 	i = 0;
-	find = 0;
 	while (str[i])
 	{
 		if (str[i] == c)
-			find = 1;
+			return (1);
 		i++;
 	}
-	return (find);
+	return (0);
 }
