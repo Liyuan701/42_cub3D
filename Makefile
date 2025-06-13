@@ -42,7 +42,7 @@ UTILS = 3_utils/clean.c \
 #######################     DIRS        ########################################
 SRC_DIR = src
 OBJ_DIR = obj
-MLX_DIR = lib/minilibx-linux
+##MLX_DIR = lib/minilibx-linux
 LIB_DIR = lib/libft
 INC_DIR = include
 FILE = main.c $(PARSE) ${UTILS}
@@ -50,12 +50,12 @@ FILE = main.c $(PARSE) ${UTILS}
 SRCS = ${addprefix $(SRC_DIR)/, $(FILE)}
 OBJS = ${SRCS:${SRC_DIR}/%.c= $(OBJ_DIR)/%.o}
 LIBFT = ${LIB_DIR}/libft.a
-MLX = ${MLX_DIR}/libmlx.a
+##MLX = ${MLX_DIR}/libmlx.a
 
 #######################  LIBS AND ATHS    #######################################
 
-INCLUDE = -I${INC_DIR} -I${LIB_DIR} -I${MLX_DIR}
-LIBS = -L${MLX_DIR} -lmlx -L${LIB_DIR} -lft -lX11 -lXext
+INCLUDE = -I${INC_DIR} -I${LIB_DIR} ##-I${MLX_DIR}
+LIBS = -L${LIB_DIR} -lft ##-L${MLX_DIR} -lmlx  -lX11 -lXext
 
 #######################     Messages    ########################################
 
@@ -79,7 +79,7 @@ $(OBJ_DIR)/%.o:${SRC_DIR}/%.c
 			@mkdir -p $(@D)
 			@${CC} ${CFLAG} ${INCLUDE} -c $< -o $@
 
-${NAME}:	${OBJ_DIR} ${OBJS} $(LIBFT) ${MLX}
+${NAME}:	${OBJ_DIR} ${OBJS} $(LIBFT) ##${MLX}
 			@echo "🔍 ${BLUE} Checking if linking is necessary..."
 			@$(CC) $(CFLAG) $(OBJS) ${LIBS} ${INCLUDE} -o ${NAME}
 			@echo "✅ ${BLUE} Linking completed! \n" && ${WELL}
@@ -90,13 +90,13 @@ ${OBJ_DIR}:
 ${LIBFT}:
 			@make all -C ${LIB_DIR} -s
 
-${MLX}:
-			@make all -C ${MLX_DIR} -s
+##${MLX}:
+##			@make all -C ${MLX_DIR} -s
 
 clean:
 		@rm -rf ${OBJ_DIR}
 		@make clean -C ${LIB_DIR} -s
-		@make clean -C ${MLX_DIR} -s
+##		@make clean -C ${MLX_DIR} -s
 		@echo "🧹 ${BLUE}Clean done, objs cleaned\n"
 
 fclean:	clean
@@ -104,6 +104,9 @@ fclean:	clean
 		@make fclean -C ${LIB_DIR} -s
 		@echo "🗑️  ${BLUE}Fclean done, all cleaned.\n"
 
+debug:
+		valgrind --leak-check=full --track-origins=yes ./cub3D asset/map/n_not_close.cub
+
 re:	fclean all
 
-.PHONY:	clean fclean all re
+.PHONY:	clean fclean all re debug

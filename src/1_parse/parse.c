@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yren <yren@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: liyu <liyu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 15:37:58 by lifan             #+#    #+#             */
-/*   Updated: 2025/06/13 19:42:18 by yren             ###   ########.fr       */
+/*   Updated: 2025/06/13 22:22:45 by liyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,32 +14,30 @@
 
 //! MYLLOC
 //* malloc each line in the game->map->text tab.
-// lire ligne par ligne
-// change de \n en \0
+//* lire ligne par ligne
+//* change de \n en \0
 static void	ft_fill_text(t_game *game, int fd)
 {
-	int		i;
 	int		row;
-	int		col;
 	char	*line;
-	char	*new_line;
+	char	*pos_n;
 
-	i = 0;
 	row = 0;
-	col = 0;
 	while ((line = get_next_line(fd)) != NULL)
 	{
-		new_line = ft_strchr(line, '\n');
-		if (new_line != NULL)
-			*new_line = '\0';
+		pos_n = ft_strchr(line, '\n');
+		if (pos_n != NULL)
+			*pos_n = '\0';
 		game->cub->text[row] = \
 			ft_mylloc(game, (ft_strlen(line) + 1) * sizeof(char));
 		if (!game->cub->text[row])
 			ft_error_close(game, "can't malloc a line in the tab");
 		ft_strlcpy(game->cub->text[row], line, ft_strlen(line) + 1);
-		row++;
 		free(line);
+		row++;
 	}
+	if (line != NULL)
+		free(line);
 	game->cub->text[row] = NULL;
 }
 
@@ -47,12 +45,10 @@ static void	ft_fill_text(t_game *game, int fd)
 //! MYLLOC
 static	int	ft_get_text(t_game *game, char *file)
 {
-	int		nl;
 	int		fd;
 
 	if (!game->cub)
 		ft_error("❌ game->cub is NULL before accessing it!");//!debug
-	nl = 0;
 	game->cub->nl = ft_count_lines(game, file);
 	game->cub->text = (char **)
 		ft_mylloc(game, (game->cub->nl + 1) * sizeof(char *));

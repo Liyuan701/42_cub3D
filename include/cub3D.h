@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yren <yren@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: liyu <liyu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 14:42:55 by lifan             #+#    #+#             */
-/*   Updated: 2025/06/13 18:28:42 by yren             ###   ########.fr       */
+/*   Updated: 2025/06/13 23:19:58 by liyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@
 # include <fcntl.h> // O_RDONLY
 # include <unistd.h>  // open, read, write，access
 # include <stdbool.h> //bool
-# include <X11/keysym.h>
 # include <math.h>
 # include "../libft/libft.h"
-# include "../minilibx-opengl/mlx.h"
-# include "../minilibx-linux/mlx.h"
+/*# include <X11/keysym.h>*/
+/*# include "../minilibx-opengl/mlx.h"
+# include "../minilibx-linux/mlx.h*/
 
 //####################  KEYS #####################################
 # define KEY_A 0x0061
@@ -163,6 +163,7 @@ void	ft_free_tab(char **tab);
 void	ft_clean(t_game	*game);
 
 int		ft_count_lines(t_game *game, char *file);
+void	ft_count_width(t_game *game, int height, int start);
 int		ft_find(char c, char *str);
 
 void	ft_error(char *str);

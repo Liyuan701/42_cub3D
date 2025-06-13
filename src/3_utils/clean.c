@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clean.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yren <yren@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: liyu <liyu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 15:30:14 by lifan             #+#    #+#             */
-/*   Updated: 2025/06/11 16:36:26 by yren             ###   ########.fr       */
+/*   Updated: 2025/06/13 22:23:59 by liyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,12 +73,12 @@ void	ft_clean(t_game	*game)
 		close(game->cub->op_fd);
 	if (game->status == PARSE)
 		ft_free_all(game);
-	else if (game->status == GAME)
+	/*else if (game->status == GAME)
 	{
 		mlx_destroy_image(game->mlx_ptr, game->tex->img);
 		ft_free_all(game);
 		if (game->win_ptr)
 			mlx_destroy_window(game->mlx_ptr, game->win_ptr);
 		free(game->mlx_ptr);
-	}
+	}*/
 }

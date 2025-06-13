@@ -22,19 +22,30 @@ int	ft_count_lines(t_game *game, char *file)
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
 		ft_error_close(game, "can't open the file.");
-	else
-	{
-		line = get_next_line(fd);
-		while (line != NULL)
+	while ((line = get_next_line(fd)) != NULL)
 		{
 			count++;
 			free(line);
-			line = get_next_line(fd);
 		}
-		close(fd);
-	}
+	close(fd);
 	return (count);
 }
+
+//*calculate the max width of the map.
+void	ft_count_width(t_game *game, int height, int start)
+{
+	int	i;
+	int	col_w;
+
+	i = 0;
+	while (i < height)
+	{
+		col_w = ft_strlen(game->cub->text[start + i]);
+		if (col_w > game->cub->width)
+			game->cub->width = col_w;
+		i++;
+	}
+}	
 
 //* if can't find, return 0
 //* if find, return 1

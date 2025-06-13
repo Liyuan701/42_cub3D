@@ -68,12 +68,10 @@ static	void	ft_no_others(t_game *game, char **map)
 static	void	ft_copy_map(t_game *game)
 {
 	int	i;
-	int	len;
 	int	height;
 	int	width;
 
 	i = 0;
-	len = 0;
 	height = game->cub->height;
 	width = game->cub->width;
 	game->cub->copy = ft_mylloc(game, (height + 1) * sizeof(char *));
@@ -83,7 +81,7 @@ static	void	ft_copy_map(t_game *game)
 		ft_memset(game->cub->copy[i], ' ', width);
 		game->cub->copy[i][width] = '\0';
 		ft_strlcpy(game->cub->copy[i], \
-			game->cub->map[i], ft_strlen(game->cub->map[i]));
+			game->cub->map[i], width + 1);
 		i++;
 	}
 	game->cub->copy[i] = NULL;
@@ -92,6 +90,7 @@ static	void	ft_copy_map(t_game *game)
 }
 
 //* we creat the map from the text.
+//* malloc with the max width.
 int	ft_get_map(t_game *game)
 {
 	int		start;
@@ -101,17 +100,18 @@ int	ft_get_map(t_game *game)
 	i = 0;
 	start = game-> cub ->start;
 	game->cub->height = ft_count_map(game, game->cub->text, start);
-	game->cub->map = ft_mylloc(game, (game->cub->height + 1));
+	ft_count_width(game, game->cub->height, start);
+	game->cub->map = ft_mylloc(game, ((game->cub->height + 1) * sizeof(char *)));
 	while (i < game->cub->height)
 	{
-		col_w = ft_strlen(game->cub->text[start]);
-		game->cub->map[i] = ft_mylloc(game, (col_w + 1) * sizeof(char));
-		if (col_w > game->cub->width)
-			game->cub->width = col_w;
-		ft_strlcpy(game->cub->map[i], game->cub->text[start], col_w + 1);
+		col_w = ft_strlen(game->cub->text[start + i]);
+		game->cub->map[i] = ft_mylloc(game, (game->cub->width + 1));
+		ft_memset(game->cub->map[i], ' ', game->cub->width);
+		game->cub->map[i][game->cub->width] = '\0';
+		ft_strlcpy(game->cub->map[i], game->cub->text[start + i], col_w + 1);
 		i++;
-		start++;
 	}
+	game->cub->map[i] = NULL;
 	ft_copy_map(game);
 	return (0);
 }
