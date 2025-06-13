@@ -6,7 +6,7 @@
 /*   By: yren <yren@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 15:37:58 by lifan             #+#    #+#             */
-/*   Updated: 2025/06/13 17:21:00 by yren             ###   ########.fr       */
+/*   Updated: 2025/06/13 19:42:18 by yren             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 //! MYLLOC
 //* malloc each line in the game->map->text tab.
-//lire ligne par ligne
-//change de \n en \0
+// lire ligne par ligne
+// change de \n en \0
 static void	ft_fill_text(t_game *game, int fd)
 {
 	int		i;
