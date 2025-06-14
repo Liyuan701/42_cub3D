@@ -26,28 +26,53 @@ int	get_start(char *line)
 	else if (ft_strncmp(line + i, "F", 1) == 0 \
 		|| ft_strncmp(line + i, "C", 1) == 0)
 		i += 1;
+	else
+		return (-1);
 	while (ft_isspace(line[i]))
 		i++;
 	return (i);
 }
 
+char	*mylloc_strdup(t_game *game, const char *src)
+{
+	char	*str;
+	int		len;
+	int		i;
+
+	len = 0;
+	i = 0;
+	while (src[len])
+		len++;
+	str = ft_mylloc(game, len + 1);
+	if (!str)
+		return (NULL);
+	while (src[i])
+	{
+		str[i] = src [i];
+		i++;
+	}
+	str[i] = 0;
+	return (str);
+}
+
 char	*mylloc_value(t_game *game, char *line)
 {
 	int		start;
-	int		end;
 	int		len;
 	char	*value;
 
 	start = get_start(line);
-	end = start;
-	while (line[end] != '\0' && ft_isspace(line[end]) == 0)
-		end++;
-	len = end - start;
-	value = ft_mylloc(game, len + 1);
+	if (start == -1)
+		return (NULL);
+	value = mylloc_strdup(game, line + start);
 	if (value == NULL)
 		return (NULL);
-	ft_memcpy(value, line + start, len);
-	value[len] = '\0';
+	len = ft_strlen(value);
+	while(len > 0 && ft_isspace(value[len - 1] == 1))
+	{
+		value[len - 1] = '\0';
+		len--;
+	}
 	return (value);
 }
 
@@ -85,7 +110,6 @@ void	ft_get_config(t_game *game)
 			i++;
 			continue ;
 		}
-		line = replace_space(line);
 		get_index_value(line, game);
 		i++;
 	}
@@ -94,3 +118,50 @@ void	ft_get_config(t_game *game)
 		|| game->config.floor < 0 || game->config.ceiling < 0)
 		ft_error_close(game, "Get config: Failed to get all config values.");
 }
+
+
+// int	len_without_space(char *src)
+// {
+// 	int len;
+// 	int i;
+
+// 	i = 0;
+// 	len = 0;
+// 	while(src[i] != 0)
+// 	{
+// 		if (ft_isspace(src[i]) == 0)
+// 			len++;
+// 		i++;
+// 	}
+// 	return(len);
+// }
+
+//malloc str without space
+// char *mylloc_value(t_game *game, char *line)
+// {
+// 	int		i;
+// 	int		j;
+// 	int		len;
+// 	int		start;
+// 	char	*value;
+// 	char	*tmp;
+
+// 	start = get_start(line);
+// 	if (start = -1)
+// 		return(NULL);
+// 	tmp = line + start;
+// 	len = len_without_space(tmp);
+// 	value = ft_mylloc(game, len + 1);
+// 	if (value == NULL)
+// 		return (NULL);
+// 	i = 0;
+// 	j = 0;
+// 	while(tmp[i] != 0)
+// 	{
+// 		if (ft_isspace(tmp[i]) == 0)
+// 			value[j++] = tmp[i];
+// 		i++;
+// 	}
+// 	value[j] = '\0';
+// 	return (value);
+// }

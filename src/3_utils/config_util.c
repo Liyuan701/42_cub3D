@@ -42,6 +42,13 @@ int	str_is_digit(char *s)
 	return (0);
 }
 
+int	ft_isspace(char c)
+{
+	if (c == ' ' || (c >= '\t' && c <= '\r'))
+		return (1);
+	return (0);
+}
+
 //non --> 0, oui --> 1
 int	ft_str_isspace(char *str)
 {
@@ -57,18 +64,4 @@ int	ft_str_isspace(char *str)
 		i++;
 	}
 	return (1);
-}
-
-void	free2tab_exit(char **tab1, char **tab2, t_game *game, char *error_msg)
-{
-	ft_free_tab(tab1);
-	ft_free_tab(tab2);
-	ft_error_close(game, error_msg);
-}
-
-int	ft_isspace(char c)
-{
-	if (c == ' ' || (c >= '\t' && c <= '\r'))
-		return (1);
-	return (0);
 }

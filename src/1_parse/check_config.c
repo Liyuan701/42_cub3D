@@ -7,27 +7,16 @@
 void	check_xpm_exit(t_game *game, char *line)
 {
 	int		len;
-	char	**tab;
+	char	*path;
 
-	line = replace_space(line);
-	tab = ft_split(line, ' ');
-	len = ft_strlen(tab[1]);
-	if (tab[0] == NULL && tab[1] == NULL && tab[2] != NULL)
-	{
-		ft_free_tab(tab);
-		ft_error_close(game, "texture config: invalid format");
-	}
-	if (len < 4 || ft_strncmp(tab[1] + (len - 4), ".xpm", 4) != 0)
-	{
-		ft_free_tab(tab);
+	path = mylloc_value(game, line);
+	if (path == NULL)
+		ft_error_close(game, "texture config: format path invalid");
+	len = ft_strlen(path);
+	if (len < 4 || ft_strncmp(path + (len - 4), ".xpm", 4) != 0)
 		ft_error_close(game, "Texture config: must end with .xpm");
-	}
-	if (access(tab[1], R_OK) != 0)
-	{
-		ft_free_tab(tab);
+	if (access(path, R_OK) != 0)
 		ft_error_close(game, "Texture config: path is wrong");
-	}
-	ft_free_tab(tab);
 }
 
 //* séparer la ligne en tokens avec ft_split()
@@ -38,12 +27,12 @@ int	check_parse_color(t_game *game, char *line)
 	char	**tab;
 	char	**rgb;
 
-	tab = ft_split(replace_space(line), ' ');
+	tab = ft_split(line, ' ');
 	rgb = ft_split(tab[1], ',');
 	if (tab[0] == NULL || tab[1] == NULL || tab[2] != NULL)
-		free2tab_exit(tab, rgb, game, "Color config: invalid format");
+		free2tab_exit(game, tab, rgb, "Color config: invalid format");
 	if (rgb[0] == NULL || rgb[1] == NULL || rgb[2] == NULL || rgb[3] != NULL)
-		free2tab_exit(tab, rgb, game, "\
+		free2tab_exit(game, tab, rgb, "\
 			Color config: must have exactly 3 components");
 	if (str_is_digit(rgb[0]) != 0 \
 		&& str_is_digit(rgb[1]) != 0 && str_is_digit(rgb[2]) != 0)
@@ -53,9 +42,9 @@ int	check_parse_color(t_game *game, char *line)
 		game->config.b = ft_atoi(rgb[2]);
 	}
 	else
-		free2tab_exit(tab, rgb, game, "Color config: must be digit");
+		free2tab_exit(game, tab, rgb, "Color config: must be digit");
 	if (game->config.r < 0 || game->config.r > 255 || game->config.g < 0 || game->config.g > 255 || game->config.b < 0 || game->config.b > 255)
-		free2tab_exit(tab, rgb, game, "\
+		free2tab_exit(game, tab, rgb, "\
 			Color config: components out of range 0-255");
 	ft_free_tab(rgb);
 	ft_free_tab(tab);

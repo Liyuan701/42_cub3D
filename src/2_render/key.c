@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
+/*   By: yy <yy@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 11:41:09 by lifan             #+#    #+#             */
-/*   Updated: 2025/05/27 11:41:13 by lifan            ###   ########.fr       */
+/*   Updated: 2025/06/14 18:35:12 by yy               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ int	ft_key(int keycode, t_game	*game)
 	else if (keycode == LEFT)
 		game->player->turn = -1;
 	else if (keycode == ESC)
-		return (ft_clean(game));
-	return (ft_move(keycode, game));
+		return(0);
+	return(-1);
+	// 	return (ft_clean(game));
+	// return (ft_move(keycode, game));
 }

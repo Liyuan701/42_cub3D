@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: liyu <liyu@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: yy <yy@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 14:42:55 by lifan             #+#    #+#             */
-/*   Updated: 2025/06/13 23:59:07 by liyu             ###   ########.fr       */
+/*   Updated: 2025/06/15 00:22:51 by yy               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@
 # include <stdbool.h> //bool
 # include <math.h>
 # include "../libft/libft.h"
-/*# include <X11/keysym.h>*/
-/*# include "../minilibx-opengl/mlx.h"
-# include "../minilibx-linux/mlx.h*/
+# include <X11/keysym.h>
+# include "../minilibx-opengl/mlx.h"
+// # include "../minilibx-linux/mlx.h
 
 //####################  KEYS #####################################
 # define KEY_A 0x0061
@@ -126,50 +126,77 @@ typedef struct s_game
 }	t_game;
 
 //##################### PARSE ######################################
-
-void	ft_init_game(t_game *game);
-int		ft_parse(t_game *game, char *file);
-void	ft_get_config(t_game *game);
-void	get_index_value(char *line, t_game *game);
-char	*mylloc_value(t_game *game, char *line);
-int		get_start(char *line);
+//check config
 void	check_xpm_exit(t_game *game, char *line);
 int		check_parse_color(t_game *game, char *line);
 int		is_config_index(char *str);
 void	check_config_line(t_game *game, t_config *c, char *line);
 void	check_config(t_game *game, t_config *c);
-int		ft_find_start(t_game *game, char **text, int i);
-int		ft_get_map(t_game *game);
+
+//check map
 int		ft_check_map(t_game *game, char **map);
+
+//flood map
 void	ft_flood_map(t_game *game, char **map);
+
+//get config
+int		get_start(char *line);
+char	*mylloc_strdup(t_game *game, const char *src);
+char	*mylloc_value(t_game *game, char *line);
+void	get_index_value(char *line, t_game *game);
+void	ft_get_config(t_game *game);
+
+//get map
+int		ft_get_map(t_game *game);
+int		ft_find_start(t_game *game, char **text, int i);
+
+//init game
+void	ft_init_game(t_game *game);
+
+//parse
+int		ft_parse(t_game *game, char *file);
 
 //##################### RENDER #####################################
 
-int		ft_key(int keycode, t_game	*game);
+//game
 void	ft_refresh(void);
+void	ft_open_wind(t_game *game);
+void	ft_render(t_game *game);
+
+//ray
+// void ft_draw_ray(t_game *game);
+
+//kay
+int		ft_key(int keycode, t_game	*game);
 
 //##################### UTILS ######################################
+//config util
 void	init_seen(int seen[6]);
 int		str_is_digit(char *s);
-int		ft_str_isspace(char *str);
-void	free2tab_exit(char **tab1, char **tab2, t_game *game, char *error_msg);
 int		ft_isspace(char c);
+int		ft_str_isspace(char *str);
 
+//config util
 char 	*replace_space(char *line);
+void	free2tab_exit(t_game *game, char **tab1, char **tab2, char *error_msg);
 
+//clean
 int		free_one(t_game *game, void *ptr);
 void	free_all(t_game *game);
 void	ft_free_tab(char **tab);
 void	ft_clean(t_game	*game);
 
+//count
 int		ft_count_lines(t_game *game, char *file);
 void	ft_count_width(t_game *game, int height, int start);
 int		ft_find(char c, char *str);
 
+//error
 void	ft_error(char *str);
 void	ft_error_close(t_game *game, char *str);
 void	ft_close(t_game *game);
 
+//mylloc
 void	*ft_mylloc(t_game *game, size_t size);
 //##################### DEBUGS ######################################
 

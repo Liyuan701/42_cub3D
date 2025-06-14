@@ -27,3 +27,10 @@ char *replace_space(char *line)
 	}
 	return (line);
 }
+
+void	free2tab_exit(t_game *game, char **tab1, char **tab2, char *error_msg)
+{
+	ft_free_tab(tab1);
+	ft_free_tab(tab2);
+	ft_error_close(game, error_msg);
+}
