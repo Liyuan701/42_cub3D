@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yren <yren@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 14:42:55 by lifan             #+#    #+#             */
-/*   Updated: 2025/06/16 19:03:35 by yren             ###   ########.fr       */
+/*   Updated: 2025/06/16 23:42:42 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@
 # include <stdbool.h> //bool
 # include <math.h>
 # include "../libft/libft.h"
-# include <X11/keysym.h>
+// # include <X11/keysym.h>
 // # include "../minilibx-opengl/mlx.h"
-# include "../lib/minilibx-linux/mlx.h"
+// # include "../lib/minilibx-linux/mlx.h"
 
 //####################  KEYS #####################################
 # define KEY_A 0x0061
@@ -38,9 +38,13 @@
 # define WIDTH		640
 # define HEIGHT		480
 
+# define FOV	(PI/3) //60
+# define PI		3.14159265358979323846
+
 # define PARSE	101
 # define GAME	102
 
+# define RAY 0xC8A0FF
 # define RED "\033[31m"
 # define RESET "\033[0m"
 
@@ -58,9 +62,8 @@ typedef struct s_player
 {
 	double	x;
 	double	y;
+	double	angle;
 	char	dir;
-	int		dir_x;
-	int		dir_y;
 	int		color;
 	int		forward;
 	int		turn;
@@ -110,6 +113,17 @@ typedef struct s_config
 	int		count;
 }	t_config;
 
+
+typedef	struct	s_ray
+{
+	double  vector_x;
+    double  vector_y;
+    double  ray_x;
+    double  ray_y;
+    int     map_x;
+    int     map_y;
+}	t_ray;
+
 //* Here I stcok all info of this game.
 typedef struct s_game
 {
@@ -126,6 +140,7 @@ typedef struct s_game
 	t_tex		*tex;
 	t_player	*player;
 	t_config	config;
+	t_ray		ray;
 }	t_game;
 
 //##################### PARSE ######################################
@@ -166,10 +181,10 @@ void	ft_refresh(void);
 void	ft_open_window(t_game *game);
 void	ft_render(t_game *game);
 
-//ray
-// void ft_draw_ray(t_game *game);
+//ray & cast
+void ft_draw_ray(t_game *game);
 
-//kay
+//key
 int		ft_key(int keycode, t_game	*game);
 
 //##################### UTILS ######################################

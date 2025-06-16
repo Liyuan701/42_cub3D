@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: liyu <liyu@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 17:29:12 by lifan             #+#    #+#             */
-/*   Updated: 2025/06/14 00:41:35 by liyu             ###   ########.fr       */
+/*   Updated: 2025/06/16 23:42:37 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ static	void	ft_check_wall(t_game *game, char **map, int y, int x)
 }
 
 //* Must have, and only have one player.
+//* take the east as start of the circle, ESWN, clock.
 static	void	ft_set_player(t_game *game, char c, int y, int x)
 {
 	if (game->player->dir || game->player->x != -1.0 || game->player->y != -1.0)
@@ -42,13 +43,13 @@ static	void	ft_set_player(t_game *game, char c, int y, int x)
 		game->player->y = y + 0.5;
 		game->player->dir = c;
 		if (c == 'E')
-			game->player->dir_x = 1;
+			game->playe->angle = 0; 
 		if (c == 'W')
-			game->player->dir_x = -1;
+			game->player->angle = PI; //180
 		if (c == 'N')
-			game->player->dir_y = 1;
+			game->player->angle = 3 * PI / 2; //270;
 		if (c == 'S')
-			game->player->dir_y = -1;
+			game->player->angle = PI / 2; // 90
 		game->cub->copy[y][x] = '0';
 		ft_check_wall(game, game->cub->copy, y, x);
 	}
