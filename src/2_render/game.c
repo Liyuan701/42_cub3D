@@ -21,7 +21,7 @@ void	ft_refresh(void)
 //TODO if wrong, print error, return (FAIL);
 // int	ft_init_game(t_game *game)
 // {
-// 	ft_open_wind(game);
+// 	ft_open_window(game);
 // 	ft_render(game);
 // 	return (0);
 // }

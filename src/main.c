@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: liyu <liyu@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: yren <yren@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 11:41:32 by lifan             #+#    #+#             */
-/*   Updated: 2025/06/14 00:08:13 by liyu             ###   ########.fr       */
+/*   Updated: 2025/06/16 16:27:26 by yren             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,11 @@ int	main(int ac, char **av)
 	mlx_loop_hook(game.mlx_ptr, ft_refresh, &game);
 	mlx_loop(game.mlx_ptr);
 	ft_debug_parse(&game);*/
+	ft_open_window(&game);
+	ft_render(&game);
+	mlx_loop(game.mlx_ptr);
+
+
 	ft_clean(&game);
 	return (0);
 }

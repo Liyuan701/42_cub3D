@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yy <yy@student.42.fr>                      +#+  +:+       +#+        */
+/*   By: yren <yren@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 14:42:55 by lifan             #+#    #+#             */
-/*   Updated: 2025/06/15 00:22:51 by yy               ###   ########.fr       */
+/*   Updated: 2025/06/16 19:03:35 by yren             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@
 # include <math.h>
 # include "../libft/libft.h"
 # include <X11/keysym.h>
-# include "../minilibx-opengl/mlx.h"
-// # include "../minilibx-linux/mlx.h
+// # include "../minilibx-opengl/mlx.h"
+# include "../lib/minilibx-linux/mlx.h"
 
 //####################  KEYS #####################################
 # define KEY_A 0x0061
@@ -118,6 +118,9 @@ typedef struct s_game
 	int			status;
 	int			width;
 	int			height;
+	char		*data;
+	int			bpp;
+	int			size_line;
 	t_track		*head;
 	t_cub		*cub;
 	t_tex		*tex;
@@ -160,7 +163,7 @@ int		ft_parse(t_game *game, char *file);
 
 //game
 void	ft_refresh(void);
-void	ft_open_wind(t_game *game);
+void	ft_open_window(t_game *game);
 void	ft_render(t_game *game);
 
 //ray
