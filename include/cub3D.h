@@ -6,7 +6,7 @@
 /*   By: liyu <liyu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 14:42:55 by lifan             #+#    #+#             */
-/*   Updated: 2025/06/18 23:26:46 by liyu             ###   ########.fr       */
+/*   Updated: 2025/06/19 00:17:56 by liyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -233,5 +233,8 @@ int		print_config(t_config *cfg);
 int		print_cub(t_cub *c);
 int		print_player(t_player *p);
 void	print_map(char **map);
+void	ft_draw_line(t_game *game, int x0, int y0, int x1, int y1, int color);
+void	ft_draw_ray_line(t_game *game);
+
 
 #endif

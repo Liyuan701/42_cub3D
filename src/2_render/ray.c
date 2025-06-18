@@ -87,7 +87,8 @@ void ft_init_ray(t_game *game, t_player *player)
  }
 
 
- //*correct the fish-eye effect by fixing the ray distance
+ //* correct the fish-eye effect by fixing the ray distance
+ //* cast the long ray with a larger angle to the palyer-angle ray.
  double  ft_cali_fisheye(t_game *game, t_player *player)
  {
     double  angle_ray;
@@ -115,7 +116,8 @@ int	ft_draw_ray(t_game *game, t_player *player, float angle, int column)
     game->ray.map_y = (int)(game->ray.ray_y / BLOCK);
     ft_init_ray(game, game->player);
     if (!ft_if_encounter(game))
-        ft_error_close("Wired, the ray didn't reach the wall.");
+        ft_error_close(game, "Wired, the ray didn't reach the wall.");
+    ft_draw_ray_line(game);//!DEBUG
     distance = ft_cali_fisheye(game, player);
     ft_cast_wall(game, distance, column);
 }

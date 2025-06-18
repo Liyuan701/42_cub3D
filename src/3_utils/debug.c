@@ -6,7 +6,7 @@
 /*   By: liyu <liyu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 15:28:45 by lifan             #+#    #+#             */
-/*   Updated: 2025/06/13 23:58:47 by liyu             ###   ########.fr       */
+/*   Updated: 2025/06/19 00:17:08 by liyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,4 +83,51 @@ void	print_map(char **map)
 		printf("%s\n", map[i]);
 		i++;
 	}
+}
+
+void ft_draw_line(t_game *game, int x0, int y0, int x1, int y1, int color)
+{
+    int dx = abs(x1 - x0);
+    int dy = abs(y1 - y0);
+    int sx = (x0 < x1) ? 1 : -1;
+    int sy = (y0 < y1) ? 1 : -1;
+    int err = dx - dy;
+
+    while (1)
+    {
+        mlx_pixel_put(game->mlx, game->win, x0, y0, color);
+        if (x0 == x1 && y0 == y1)
+            break;
+        int e2 = 2 * err;
+        if (e2 > -dy)
+        {
+            err -= dy;
+            x0 += sx;
+        }
+        if (e2 < dx)
+        {
+            err += dx;
+            y0 += sy;
+        }
+    }
+}
+
+void ft_draw_ray_line(t_game *game)
+{
+    int start_x = (int)game->player->x;
+    int start_y = (int)game->player->y;
+    int end_x;
+    int end_y;
+
+    if (game->ray.hit_side == 0)
+        end_x = game->ray.map_x * BLOCK;
+    else
+        end_x = (int)(game->ray.ray_x + (game->ray.side_x - game->ray.d_x) * game->ray.vector_x);
+
+    if (game->ray.hit_side == 1)
+        end_y = game->ray.map_y * BLOCK;
+    else
+        end_y = (int)(game->ray.ray_y + (game->ray.side_y - game->ray.d_y) * game->ray.vector_y);
+
+    ft_draw_line(game, start_x, start_y, end_x, end_y, RAY);
 }
