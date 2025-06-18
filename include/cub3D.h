@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: liyu <liyu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 14:42:55 by lifan             #+#    #+#             */
-/*   Updated: 2025/06/16 23:42:42 by marvin           ###   ########.fr       */
+/*   Updated: 2025/06/18 23:26:46 by liyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@
 //#################### SET  ########################################
 # define WIDTH		640
 # define HEIGHT		480
+# define BLOCK		64
 
 # define FOV	(PI/3) //60
 # define PI		3.14159265358979323846
@@ -122,6 +123,15 @@ typedef	struct	s_ray
     double  ray_y;
     int     map_x;
     int     map_y;
+	double	d_x;
+	double	d_y;
+	double	side_x;
+	double	side_y;
+	int		step_x;
+	int		step_y;
+	int		hit_side;
+	double	hit_x;
+	double	hit_y;
 }	t_ray;
 
 //* Here I stcok all info of this game.
@@ -182,7 +192,7 @@ void	ft_open_window(t_game *game);
 void	ft_render(t_game *game);
 
 //ray & cast
-void ft_draw_ray(t_game *game);
+int	ft_draw_ray(t_game *game, t_player *player, float angle, int column)
 
 //key
 int		ft_key(int keycode, t_game	*game);
