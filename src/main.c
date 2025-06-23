@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: liyu <liyu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 11:41:32 by lifan             #+#    #+#             */
-/*   Updated: 2025/06/16 23:46:59 by marvin           ###   ########.fr       */
+/*   Updated: 2025/06/23 22:39:20 by liyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,17 @@ static	int	ft_check_args(int ac, char **av)
 	return (0);
 }
 
+void	ft_open_window(t_game *game)
+{
+	game->mlx_ptr = mlx_init();
+	if (game->mlx_ptr == NULL)
+		ft_error_close(game, "init MLX");
+	game->win_ptr = mlx_new_window(game->mlx_ptr, WIDTH, HEIGHT, "The Game");
+	if (game->win_ptr == NULL)
+		ft_error_close(game, "init WIN");
+	game->status = GAME;
+}
+
 //* react to keypress and close
 //* refresh every loop and stay in the loop.
 //* Here is the only exit way.
@@ -52,6 +63,7 @@ int	main(int ac, char **av)
 	ft_init_game(&game);
 	if (ft_parse(&game, av[1]))
 		return (FAIL);
+	ft_open_window(game);
 	mlx_hook(game.win_ptr, 17, (1L << 17), ft_close, &game);
 	//*TODO fermer avec croix rouge;
 	mlx_hook(game.win_ptr, 2, (1L << 0), ft_key, &game);

@@ -12,17 +12,6 @@
 
 #include "../include/cub3D.h"
 
-void	ft_open_window(t_game *game)
-{
-	game->mlx_ptr = mlx_init();
-	if (game->mlx_ptr == NULL)
-		ft_error_close(game, "init MLX");
-	game->win_ptr = mlx_new_window(game->mlx_ptr, WIDTH, HEIGHT, "The Game");
-	if (game->win_ptr == NULL)
-		ft_error_close(game, "init WIN");
-	game->status = GAME;
-}
-
 void	ft_render(t_game *game) 
 {
 	game->tex->img = mlx_new_image(game->mlx_ptr, WIDTH, HEIGHT);
@@ -40,7 +29,7 @@ void	ft_refresh(void	*param)
 	double	dir;
 	int		i;
 
-	ft_open_window(game);
+
 	//TODO: move player with key
 	//TODO: clear image
 	//TODO: draw_2D;

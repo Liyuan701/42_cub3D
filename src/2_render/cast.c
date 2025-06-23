@@ -6,11 +6,14 @@
 /*   By: liyu <liyu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 22:34:42 by liyu              #+#    #+#             */
-/*   Updated: 2025/06/19 00:34:04 by liyu             ###   ########.fr       */
+/*   Updated: 2025/06/19 00:35:19 by liyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
+
+
+//!TODO calculate the tex. 
 
 int load_texture(void *mlx, char *path, t_tex *tex)
 {
