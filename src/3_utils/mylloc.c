@@ -13,7 +13,7 @@
 #include "../include/cub3D.h"
 
 //* From the top, go through all to find the ptr.
-int	free_one(t_game *game, void *ptr)
+int	ft_free_one(t_game *game, void *ptr)
 {
 	t_track	*prev;
 	t_track	*curr;

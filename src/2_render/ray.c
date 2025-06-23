@@ -45,8 +45,8 @@ void ft_init_ray(t_game *game, t_player *player)
 
  //* verify if touch the wall
  //* hit_side == 1 horizontale, == 0 vertical.
- bool   ft_if_encounter(t_game *game)
- {
+bool   ft_if_encounter(t_game *game)
+{
     while (1)
     {
         if (game->ray.side_x < game->ray.side_y)
@@ -68,7 +68,7 @@ void ft_init_ray(t_game *game, t_player *player)
 }
 
 //* calculate the distance from the point to (x,y)
- double  ft_distance(t_game *game)
+double  ft_distance(t_game *game)
  {
     double  hit_x;
     double  hit_y;
@@ -84,13 +84,13 @@ void ft_init_ray(t_game *game, t_player *player)
     double dx = hit_x - game->player->x;
     double dy = hit_y - game->player->y;
     return (sqrt(dx * dx + dy * dy));
- }
+}
 
 
  //* correct the fish-eye effect by fixing the ray distance
  //* cast the long ray with a larger angle to the palyer-angle ray.
- double  ft_cali_fisheye(t_game *game, t_player *player)
- {
+double  ft_cali_fisheye(t_game *game, t_player *player)
+{
     double  angle_ray;
     double  angle_diff;
     double  dist;
@@ -99,13 +99,13 @@ void ft_init_ray(t_game *game, t_player *player)
     angle_diff = angle_ray - player->angle;
     dist = ft_distance(game);
     return (dist * cos(angle_diff)); 
- }
+}
 
 //* from the player, draw ray.
 //* angle = dorection, use radians.
 //* DDA algotithme, by block.
 int	ft_draw_ray(t_game *game, t_player *player, float angle, int column)
- {
+{
     double  distance;
     char    wall;
 

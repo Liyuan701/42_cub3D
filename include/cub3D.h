@@ -6,7 +6,7 @@
 /*   By: liyu <liyu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 14:42:55 by lifan             #+#    #+#             */
-/*   Updated: 2025/06/24 00:42:40 by liyu             ###   ########.fr       */
+/*   Updated: 2025/06/24 01:29:22 by liyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -236,7 +236,11 @@ void	move_player(t_game *game, t_player *player);
 
 //refresh
 void	ft_init_window(t_game *game);
-int		ft_refresh(t_game *game);
+void	ft_refresh(void	*param);
+void	ft_render(t_game *game);
+int		ft_load_tex(t_game	*game);
+int		load_texture(void *mlx_ptr, char *path, t_tex *tex);
+int		ft_load_tex(t_game	*game);
 
 
 //kay
@@ -244,7 +248,16 @@ int	ft_key_release(int keycode, t_game *game);
 int	ft_key_press(int keycode, t_game *game);
 
 //ray & cast
-int	ft_draw_ray(t_game *game, t_player *player, float angle, int column)
+void	ft_cast_wall(t_game *game, double distance, int column, char side);
+int		get_tex_color(t_tex *tex, int x, int y);
+int		calculate_tex_x(t_game *game, t_tex *tex, double dist);
+t_tex   *ft_select_wall(t_game *game, char wall);
+char    hit_wall(t_ray *ray);
+void	ft_init_ray(t_game *game, t_player *player);
+bool	ft_if_encounter(t_game *game);
+double  ft_distance(t_game *game);
+double  ft_cali_fisheye(t_game *game, t_player *player);
+int		ft_draw_ray(t_game *game, t_player *player, float angle, int column);
 
 
 //##################### UTILS ######################################
@@ -259,9 +272,11 @@ char 	*replace_space(char *line);
 void	free2tab_exit(t_game *game, char **tab1, char **tab2, char *error_msg);
 
 //clean
-int		free_one(t_game *game, void *ptr);
-void	free_all(t_game *game);
+int		ft_free_one(t_game *game, void *ptr);
+void	ft_free_all(t_game *game);
 void	ft_free_tab(char **tab);
+void	ft_free_all_tex(t_game *game);
+void	free_texture(void *mlx_ptr, t_tex *tex);
 void	ft_clean(t_game	*game);
 
 //count

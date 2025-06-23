@@ -6,7 +6,7 @@
 /*   By: liyu <liyu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 15:28:45 by lifan             #+#    #+#             */
-/*   Updated: 2025/06/19 00:17:08 by liyu             ###   ########.fr       */
+/*   Updated: 2025/06/24 01:10:31 by liyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ void ft_draw_line(t_game *game, int x0, int y0, int x1, int y1, int color)
 
     while (1)
     {
-        mlx_pixel_put(game->mlx, game->win, x0, y0, color);
+        put_pixel(game, x0, y0, color);  // ✅ 改为写入 buffer
         if (x0 == x1 && y0 == y1)
             break;
         int e2 = 2 * err;
