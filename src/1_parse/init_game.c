@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
+/*   By: liyu <liyu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 11:44:28 by lifan             #+#    #+#             */
-/*   Updated: 2025/06/11 19:42:11 by lifan            ###   ########.fr       */
+/*   Updated: 2025/06/24 00:13:34 by liyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,8 @@ static	void	ft_init_player(t_player *player)
 	player->x = -1.0;
 	player->y = -1.0;
 	player->dir = '\0';
-	player->dir_x = 0;
-	player->dir_y = 0;
 	player->color = -1;
-	player->turn = 0;
-	player->forward = 0;
+	//! init player 
 }
 
 static	void	ft_init_config(t_game *game)

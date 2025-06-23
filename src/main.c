@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yy <yy@student.42.fr>                      +#+  +:+       +#+        */
+/*   By: liyu <liyu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 11:41:32 by lifan             #+#    #+#             */
-/*   Updated: 2025/06/23 22:59:40 by yy               ###   ########.fr       */
+/*   Updated: 2025/06/23 23:24:41 by liyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,17 +40,6 @@ static	int	ft_check_args(int ac, char **av)
 	return (0);
 }
 
-void	ft_open_window(t_game *game)
-{
-	game->mlx_ptr = mlx_init();
-	if (game->mlx_ptr == NULL)
-		ft_error_close(game, "init MLX");
-	game->win_ptr = mlx_new_window(game->mlx_ptr, WIDTH, HEIGHT, "The Game");
-	if (game->win_ptr == NULL)
-		ft_error_close(game, "init WIN");
-	game->status = GAME;
-}
-
 int	main(int ac, char **av)
 {
 	t_game	game;
@@ -60,18 +49,13 @@ int	main(int ac, char **av)
 	ft_init_game(&game);
 	if (ft_parse(&game, av[1]))
 		return (FAIL);
-	
 	game.size_square = WIDTH / PROPORTIONAL / game.cub->width;	
 	ft_init_window(&game);
 	set_player(&game);
-
-
 	mlx_hook(game.win_ptr, 17, (1L << 17), ft_close, &game);
 	mlx_hook(game.win_ptr, 2,(1L << 0),ft_key_press, &game);
 	mlx_hook(game.win_ptr, 3, (1L << 1), ft_key_release, &game);
-	
 	mlx_loop_hook(game.mlx_ptr, ft_refresh, &game);
-
 	mlx_loop(game.mlx_ptr);
 	// ft_debug_parse(&game);
 	ft_clean(&game);

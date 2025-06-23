@@ -107,6 +107,7 @@ void ft_init_ray(t_game *game, t_player *player)
 int	ft_draw_ray(t_game *game, t_player *player, float angle, int column)
  {
     double  distance;
+    char    wall;
 
     game->ray.vector_x = cos(angle);
     game->ray.vector_y = sin(angle);
@@ -119,5 +120,6 @@ int	ft_draw_ray(t_game *game, t_player *player, float angle, int column)
         ft_error_close(game, "Wired, the ray didn't reach the wall.");
     ft_draw_ray_line(game);//!DEBUG
     distance = ft_cali_fisheye(game, player);
-    ft_cast_wall(game, distance, column);
+    wall = ft_hit_wall(&game->ray);
+    ft_cast_wall(game, distance, column, wall);
 }

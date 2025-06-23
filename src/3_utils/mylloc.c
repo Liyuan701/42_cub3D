@@ -12,6 +12,32 @@
 
 #include "../include/cub3D.h"
 
+//* From the top, go through all to find the ptr.
+int	free_one(t_game *game, void *ptr)
+{
+	t_track	*prev;
+	t_track	*curr;
+
+	prev = NULL;
+	curr = game->head;
+	while (curr)
+	{
+		if (curr->ptr == ptr)
+		{
+			if (prev)
+				prev->next = curr->next;
+			else
+				game->head = curr->next;
+			free(curr->ptr);
+			free(curr);
+			return (1);
+		}
+		prev = curr;
+		curr = curr->next;
+	}
+	return (0);
+}
+
 //* It's my malloc tracker
 //* add malloc pointer to the chain, so we hava a record, and can free then all.
 //* when need malloc, simply ptr = mylloc(game, size);

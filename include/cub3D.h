@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yy <yy@student.42.fr>                      +#+  +:+       +#+        */
+/*   By: liyu <liyu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 14:42:55 by lifan             #+#    #+#             */
-/*   Updated: 2025/06/23 23:03:02 by yy               ###   ########.fr       */
+/*   Updated: 2025/06/24 00:42:40 by liyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,11 +69,6 @@ typedef struct s_player
 	double	angle;
 	char	dir;
 	int		color;
-	int		forward;
-	int		turn;
-
-	//!add:
-	double	angle;//朝向
 	bool	key_up;
 	bool	key_down;
 	bool	key_left;
@@ -86,7 +81,7 @@ typedef struct s_player
 typedef struct s_tex
 {
 	void	*img;
-	char	*data;
+	char	*addr;
 	int		bpp;
 	int		size_line;
 	int		endian;
@@ -147,6 +142,18 @@ typedef	struct	s_ray
 	double	hit_y;
 }	t_ray;
 
+typedef struct s_wall
+{
+	t_tex *tex;
+    int wall_height;
+    int start_y;
+    int end_y;
+    int tex_x;
+    int tex_y;
+    int color;
+    int draw_y;
+}	t_wall;
+
 //* Here I stcok all info of this game.
 typedef struct s_game
 {
@@ -160,9 +167,14 @@ typedef struct s_game
 	t_track		*head;
 	t_cub		*cub;
 	t_tex		*tex;
+	t_tex		tex_n;
+	t_tex		tex_s;
+	t_tex		tex_e;
+	t_tex		tex_w;
 	t_player	*player;
 	t_config	config;
 	t_ray		ray;
+	t_wall		wall;
 }	t_game;
 
 typedef struct s_pixel
