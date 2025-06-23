@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: liyu <liyu@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: yy <yy@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 11:41:32 by lifan             #+#    #+#             */
-/*   Updated: 2025/06/23 22:39:20 by liyu             ###   ########.fr       */
+/*   Updated: 2025/06/23 22:59:40 by yy               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,6 @@ void	ft_open_window(t_game *game)
 	game->status = GAME;
 }
 
-//* react to keypress and close
-//* refresh every loop and stay in the loop.
-//* Here is the only exit way.
 int	main(int ac, char **av)
 {
 	t_game	game;
@@ -63,13 +60,20 @@ int	main(int ac, char **av)
 	ft_init_game(&game);
 	if (ft_parse(&game, av[1]))
 		return (FAIL);
-	ft_open_window(game);
+	
+	game.size_square = WIDTH / PROPORTIONAL / game.cub->width;	
+	ft_init_window(&game);
+	set_player(&game);
+
+
 	mlx_hook(game.win_ptr, 17, (1L << 17), ft_close, &game);
-	//*TODO fermer avec croix rouge;
-	mlx_hook(game.win_ptr, 2, (1L << 0), ft_key, &game);
+	mlx_hook(game.win_ptr, 2,(1L << 0),ft_key_press, &game);
+	mlx_hook(game.win_ptr, 3, (1L << 1), ft_key_release, &game);
+	
 	mlx_loop_hook(game.mlx_ptr, ft_refresh, &game);
+
 	mlx_loop(game.mlx_ptr);
-	/*ft_debug_parse(&game);*/
+	// ft_debug_parse(&game);
 	ft_clean(&game);
 	return (0);
 }

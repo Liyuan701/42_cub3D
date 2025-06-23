@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: liyu <liyu@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: yy <yy@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 14:42:55 by lifan             #+#    #+#             */
-/*   Updated: 2025/06/19 00:17:56 by liyu             ###   ########.fr       */
+/*   Updated: 2025/06/23 23:03:02 by yy               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,9 @@
 # define RED "\033[31m"
 # define RESET "\033[0m"
 
+# define PROPORTIONAL 2
+
+
 //##################### PERSO ######################################
 
 # define FAIL 1
@@ -68,12 +71,22 @@ typedef struct s_player
 	int		color;
 	int		forward;
 	int		turn;
+
+	//!add:
+	double	angle;//朝向
+	bool	key_up;
+	bool	key_down;
+	bool	key_left;
+	bool	key_right;
+	// bool	left_rotate;
+	// bool	right_rotate;
+
 }	t_player;
 
 typedef struct s_tex
 {
 	void	*img;
-	char	*addr;
+	char	*data;
 	int		bpp;
 	int		size_line;
 	int		endian;
@@ -142,9 +155,8 @@ typedef struct s_game
 	int			status;
 	int			width;
 	int			height;
-	char		*data;
-	int			bpp;
 	int			size_line;
+	int			size_square;
 	t_track		*head;
 	t_cub		*cub;
 	t_tex		*tex;
@@ -152,6 +164,14 @@ typedef struct s_game
 	t_config	config;
 	t_ray		ray;
 }	t_game;
+
+typedef struct s_pixel
+{
+	t_game *game;
+	int		x;
+	int		y;
+
+}	t_pixel;
 
 //##################### PARSE ######################################
 //check config
@@ -186,16 +206,34 @@ int		ft_parse(t_game *game, char *file);
 
 //##################### RENDER #####################################
 
-//game
-void	ft_refresh(void);
-void	ft_open_window(t_game *game);
-void	ft_render(t_game *game);
+//draw_map
+void	draw_map(t_game *game, int size_square);
+bool	is_wall(t_game *game, int x, int y);
+
+//draw_pixel
+void	put_pixel(t_game *game, int x, int y, int color);
+void	clear_image(t_game *game);
+void	draw_square(t_pixel *p, int size, int color);
+
+//draw player
+void	set_player_angle(t_game *game);
+void	set_player(t_game *game);
+void	draw_player(t_game *game, int size);
+void	move_player(t_game *game, t_player *player);
+
+
+//refresh
+void	ft_init_window(t_game *game);
+int		ft_refresh(t_game *game);
+
+
+//kay
+int	ft_key_release(int keycode, t_game *game);
+int	ft_key_press(int keycode, t_game *game);
 
 //ray & cast
 int	ft_draw_ray(t_game *game, t_player *player, float angle, int column)
 
-//key
-int		ft_key(int keycode, t_game	*game);
 
 //##################### UTILS ######################################
 //config util

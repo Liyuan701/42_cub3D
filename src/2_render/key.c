@@ -6,32 +6,53 @@
 /*   By: yy <yy@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 11:41:09 by lifan             #+#    #+#             */
-/*   Updated: 2025/06/14 18:35:12 by yy               ###   ########.fr       */
+/*   Updated: 2025/06/23 22:58:42 by yy               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
 
-//TODO This page we will control the movement of player
-//TODO Left/right trun, others move.
-
-int	ft_key(int keycode, t_game	*game)
+//A --> 0
+//D --> 2
+//W --> 13
+//S --> 1
+int	ft_key_release(int keycode, t_game *game)
 {
-	if (keycode == KEY_A)
-		game->player->forward = -1;
-	else if (keycode == KEY_S)
-		game->player->forward = -1;
-	else if (keycode == KEY_D)
-		game->player->forward = +1;
-	else if (keycode == KEY_W)
-		game->player->forward = +1;
-	else if (keycode == RIGHT)
-		game->player->turn = +1;
-	else if (keycode == LEFT)
-		game->player->turn = -1;
-	else if (keycode == ESC)
-		return(0);
-	return(-1);
-	// 	return (ft_clean(game));
-	// return (ft_move(keycode, game));
+	if (keycode == 1)
+        game->player->key_down = false;
+    else if (keycode == 13)
+        game->player->key_up = false;
+    else if (keycode == 2)
+        game->player->key_right = false;
+    else if (keycode == 0)
+        game->player->key_left = false;
+    // else if (keycode == KEY_Left)
+    //     game->player->left_rotate = false;
+    // else if (keycode == KEY_Right)
+    //     game->player->right_rotate = false;
+    return (0);
 }
+
+int ft_key_press(int keycode, t_game *game)
+{
+
+	if (keycode == 1)
+        game->player->key_down = true;
+    else if (keycode == 13)
+        game->player->key_up = true;
+    else if (keycode == 2)
+        game->player->key_right = true;
+    else if (keycode == 0)
+        game->player->key_left = true;
+    // else if (keycode == KEY_Left)
+    //     game->player->left_rotate = true;
+    // else if (keycode == KEY_Right)
+    //     game->player->right_rotate = true;
+    else if (keycode == ESC)
+    {
+        ft_clean(game);
+        exit(0);
+    }
+    return (0);
+}
+
