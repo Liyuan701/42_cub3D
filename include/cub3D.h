@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: liyu <liyu@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: yy <yy@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 14:42:55 by lifan             #+#    #+#             */
-/*   Updated: 2025/06/24 01:29:22 by liyu             ###   ########.fr       */
+/*   Updated: 2025/06/24 23:17:24 by yy               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ typedef struct s_player
 typedef struct s_tex
 {
 	void	*img;
-	char	*addr;
+	char	*data;
 	int		bpp;
 	int		size_line;
 	int		endian;
@@ -154,6 +154,12 @@ typedef struct s_wall
     int draw_y;
 }	t_wall;
 
+typedef struct s_map
+{
+	double size_square;
+	double size_square_mini;
+}	t_map;
+
 //* Here I stcok all info of this game.
 typedef struct s_game
 {
@@ -163,7 +169,6 @@ typedef struct s_game
 	int			width;
 	int			height;
 	int			size_line;
-	int			size_square;
 	t_track		*head;
 	t_cub		*cub;
 	t_tex		*tex;
@@ -175,6 +180,7 @@ typedef struct s_game
 	t_config	config;
 	t_ray		ray;
 	t_wall		wall;
+	t_map		map;
 }	t_game;
 
 typedef struct s_pixel
@@ -221,6 +227,7 @@ int		ft_parse(t_game *game, char *file);
 //draw_map
 void	draw_map(t_game *game, int size_square);
 bool	is_wall(t_game *game, int x, int y);
+void	set_map_size(t_game *game);
 
 //draw_pixel
 void	put_pixel(t_game *game, int x, int y, int color);
@@ -228,6 +235,7 @@ void	clear_image(t_game *game);
 void	draw_square(t_pixel *p, int size, int color);
 
 //draw player
+void	set_player_start_pos(t_game *game);
 void	set_player_angle(t_game *game);
 void	set_player(t_game *game);
 void	draw_player(t_game *game, int size);
@@ -243,7 +251,7 @@ int		load_texture(void *mlx_ptr, char *path, t_tex *tex);
 int		ft_load_tex(t_game	*game);
 
 
-//kay
+//key
 int	ft_key_release(int keycode, t_game *game);
 int	ft_key_press(int keycode, t_game *game);
 

@@ -82,8 +82,10 @@ void	ft_refresh(void	*param)
 	game = (t_game *)param;
 	move_player(game, game->player);
 	clear_image(game);
-	draw_map(game, game->size_square);
-	draw_player(game, game->size_square);
+	draw_map(game, game->map.size_square, game->config.ceiling, game->config.floor);
+	draw_player(game, game->map.size_square, game->player->color);
+	draw_map(game, game->map.size_square_mini, 0xFFF0F5, 0xFFC0CB);
+	draw_player_mini(game, game->map.size_square_mini, 0xA9A9A9);
 	i = 0;
 	fraction = PI / 3 / WIDTH;
 	dir = game->player->angle - PI / 6;

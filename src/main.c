@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: liyu <liyu@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: yy <yy@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 11:41:32 by lifan             #+#    #+#             */
-/*   Updated: 2025/06/23 23:24:41 by liyu             ###   ########.fr       */
+/*   Updated: 2025/06/24 23:14:50 by yy               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ int	main(int ac, char **av)
 		return (FAIL);
 	game.size_square = WIDTH / PROPORTIONAL / game.cub->width;	
 	ft_init_window(&game);
+	set_map_size(&game);
 	set_player(&game);
 	mlx_hook(game.win_ptr, 17, (1L << 17), ft_close, &game);
 	mlx_hook(game.win_ptr, 2,(1L << 0),ft_key_press, &game);

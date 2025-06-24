@@ -1,7 +1,39 @@
 #include "../include/cub3D.h"
 
+bool is_wall(t_game *game, int x, int y)
+{
+    x = x / game->map.size_square;
+    y = y / game->map.size_square;
+    
+	if (y < 0 || y >= game->cub->height || x < 0 || x >= game->cub->width)
+        return (true);
+	
+	if (game->cub->copy[y][x] == '0')
+		return (false);
+	return (true);
+}
+
+void    set_map_size(t_game *game)
+{
+    if (game->cub->width <= 0 || game->cub->height <= 0)
+        printf("width:%d, height: %d\n", game->cub->width, game->cub->height);
+
+    if (game->cub->width > game->cub->height)
+    {
+        game->map.size_square = WIDTH / game->cub->width;
+        game->map.size_square_mini = WIDTH / PROPORTIONAL /game->cub->width;
+
+    }
+    else
+    {
+        game->map.size_square = HEIGHT / game->cub->height;
+        game->map.size_square_mini = HEIGHT / PROPORTIONAL /game->cub->height;
+    }
+
+}
+
 //copy map --> 0 or 1 or V
-void draw_map(t_game *game, int size_square)
+void draw_map(t_game *game, int size_square, int color_c , int color_f)
 {
     t_pixel p;
     int x;
@@ -18,34 +50,12 @@ void draw_map(t_game *game, int size_square)
             p.y = y * size_square;
             if (game->cub->copy[y][x] == '0')
             {
-                draw_square(&p, size_square, game->config.floor);
+                draw_square(&p, size_square, color_f);
             }
 			else
-				draw_square(&p, size_square, game->config.ceiling);
+				draw_square(&p, size_square, color_c);
             x++;   
         }
         y++;
     }
 }
-
-bool is_wall(t_game *game, int x, int y)
-{
-	if (y < 0 || y >= game->cub->height 
-		|| x < 0 || x >= (int)ft_strlen(game->cub->copy[y]))
-        return (true);
-	
-	if (game->cub->copy[y][x] == '0')
-		return (false);
-	return (true);
-}
-
-// bool can_move(t_game *game, double x, double y)
-// {
-// 	if (y < 0 || y >= game->cub->height 
-// 		|| x < 0 || x >= (int)ft_strlen(game->cub->copy[y]))
-//         return (true);
-	
-// 	if (game->cub->copy[y][x] == '0')
-// 		return (false);
-// 	return (true);
-// }
