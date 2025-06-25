@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
+/*   By: liyu <liyu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 14:42:55 by lifan             #+#    #+#             */
-/*   Updated: 2025/06/25 17:37:02 by lifan            ###   ########.fr       */
+/*   Updated: 2025/06/25 22:50:56 by liyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,8 +160,8 @@ typedef struct s_game
 	int			width;
 	int			height;
 	int			size_line;
-	double		size_square;
-	double		size_square_mini;
+	double		size_block;
+	double		size_mini;
 	t_track		*head;
 	t_cub		*cub;
 	t_tex		*tex;

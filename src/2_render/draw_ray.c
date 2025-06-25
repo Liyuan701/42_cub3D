@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   draw_ray.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
+/*   By: liyu <liyu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 13:56:56 by lifan             #+#    #+#             */
-/*   Updated: 2025/06/25 17:21:04 by lifan            ###   ########.fr       */
+/*   Updated: 2025/06/25 22:54:12 by liyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
 
+//!DEBUG function
 void	ft_draw_line(t_game *game, int x0, int y0, int x1, int y1, int color)
 {
 	int	dx = abs(x1 - x0);
@@ -40,6 +41,7 @@ void	ft_draw_line(t_game *game, int x0, int y0, int x1, int y1, int color)
 	}
 }
 
+//! DEBUG function 
 void	ft_draw_ray_line(t_game *game)
 {
 	int	start_x;
@@ -50,12 +52,12 @@ void	ft_draw_ray_line(t_game *game)
 	start_x = (int)game->player->x;
 	start_y = (int)game->player->y;
 	if (game->ray.hit_side == 0)
-		end_x = game->ray.map_x * game->size_square;
+		end_x = game->ray.map_x * game->size_mini;
 	else
 		end_x = (int)(game->ray.ray_x \
 			+ (game->ray.side_x - game->ray.d_x) * game->ray.vector_x);
 	if (game->ray.hit_side == 1)
-		end_y = game->ray.map_y * game->size_square;
+		end_y = game->ray.map_y * game->size_mini;
 	else
 		end_y = (int)(game->ray.ray_y \
 			+ (game->ray.side_y - game->ray.d_y) * game->ray.vector_y);
@@ -73,7 +75,7 @@ int	ft_ray(t_game *game, t_player *player, double dir, int column)
 	ft_init_ray(game, dir);
 	if (!ft_if_encounter(game))
 		ft_error_close(game, "Wired, the ray didn't reach the wall.");
-	ft_draw_ray_line(game);//!DEBUG
+	//*ft_draw_ray_line(game);
 	distance = ft_cali_fisheye(game, player);
 	wall = ft_hit_wall(&game->ray);
 	ft_cast_wall(game, distance, column, wall);

@@ -3,15 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   cast.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
+/*   By: liyu <liyu@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 22:34:42 by liyu              #+#    #+#             */
-/*   Updated: 2025/06/25 17:39:52 by lifan            ###   ########.fr       */
+/*   Updated: 2025/06/25 23:31:12 by liyu             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
 
+//* hit_side == 0 means vertical side, W or E.
+//* hit_side == 1 means horizontal side, N or S.
+//* step_x > 0  , ray to the right, E.
+//* step_y > 0, ray downwards, S.
 char	ft_hit_wall(t_ray *ray)
 {
 	if (ray->hit_side == 0)
@@ -41,7 +45,9 @@ t_tex	*ft_select_wall(t_game *game, char wall)
 	else if (wall == 'W')
 		return (&game->tex_w);
 }
-
+//* block = 1 unit, only keep the num after . to know its pos in the block.
+//* when hit E/W, precision is in y (dis * v_y : how much moves in y direction)
+//* when hit S/W, precision is in x (dis * v_x : how much moves in x direction).
 int	calculate_tex_x(t_game *game, t_tex *tex, double dist)
 {
 	double	wall_x;
@@ -53,13 +59,12 @@ int	calculate_tex_x(t_game *game, t_tex *tex, double dist)
 		wall_x = game->player->x + dist * game->ray.vector_x;
 	wall_x -= floor(wall_x);
 	tex_x = (int)(wall_x * (double)tex->width);
-	if (game->ray.hit_side == 0 && game->ray.vector_x > 0)
-		tex_x = tex->width - tex_x - 1;
-	if (game->ray.hit_side == 1 && game->ray.vector_y < 0)
-		tex_x = tex->width - tex_x - 1;
 	return (tex_x);
 }
-
+//* make sur that the x, y don't go out the tex.
+//* get the (x,y) pixel's address.
+//* each pixel bpp bits,and convert to bytes.
+//* move y lines and x bytes. each line size_line bytes.
 int	get_tex_color(t_tex *tex, int x, int y)
 {
 	char	*pixel;
@@ -76,15 +81,23 @@ int	get_tex_color(t_tex *tex, int x, int y)
 	return (*(int *)pixel);
 }
 
+//* start_y the top of the wall, end_y the bottom of the wall.
+//* it's the top of Height or to make the wall in the middle of the Height.
+//* pixel coor need to be int.
+//* chose the column in the tex: calculate_tex_x.
+//* for the chosen column, get each pixel color from top to bottom.
+//* dis_plane is the middle pendicule distance.
 void	ft_cast_wall(t_game *game, double distance, int column, char side)
 {
 	t_wall	*wall;
 	int		y;
+	int		dis_plane;
 
 	wall = &game->wall;
 	ft_memset(wall, 0, sizeof(t_wall));
 	wall->tex = ft_select_wall(game, side);
-	wall->wall_height = (int)((game->size_square / distance) * (WIDTH / 2.0));//! double to int ? WIDTH OR HEIGHT
+	dis_plane = (WIDTH / 2) / tan(PI / 3 / 2);
+	wall->wall_height = (int)((game->size_block / distance) * dis_plane);
 	wall->start_y = (HEIGHT - wall->wall_height) / 2;
 	if (wall->start_y < 0)
 		wall->start_y = 0;
