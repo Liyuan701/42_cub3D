@@ -110,7 +110,7 @@ void move_player(t_game *game, t_player *player)
 	{
         new_x = player->x + cos_angle;
 		new_y = player->y + sin_angle;
-		if (is_wall(game, new_x, new_y) == false)
+		if (is_wall(game, new_x, new_y + game->map.size_square) == false)
         {
             player->x = new_x;
             player->y = new_y;
@@ -130,7 +130,7 @@ void move_player(t_game *game, t_player *player)
 	{
         new_x = player->x + sin_angle;
 		new_y = player->y - cos_angle ;
-		if (is_wall(game, new_x, new_y) == false)
+		if (is_wall(game, new_x + game->map.size_square, new_y) == false)
         {
             player->x = new_x;
             player->y = new_y;
