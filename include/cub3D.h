@@ -6,7 +6,7 @@
 /*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 14:42:55 by lifan             #+#    #+#             */
-/*   Updated: 2025/06/25 14:20:27 by lifan            ###   ########.fr       */
+/*   Updated: 2025/06/25 14:54:08 by lifan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@
 # include <stdbool.h> //bool
 # include <math.h>
 # include "../libft/libft.h"
-// # include <X11/keysym.h>
-// # include "../minilibx-opengl/mlx.h"
-// # include "../lib/minilibx-linux/mlx.h"
+# include <X11/keysym.h>
+# include "../minilibx-opengl/mlx.h"
+# include "../lib/minilibx-linux/mlx.h"
 
 //####################  KEYS #####################################
 # define KEY_A 0x0061
@@ -37,9 +37,7 @@
 //#################### SET  ########################################
 # define WIDTH		640
 # define HEIGHT		480
-# define BLOCK		64
 
-# define FOV	(PI/3)
 # define PI		3.14159265358979323846
 
 # define PARSE	101
@@ -165,6 +163,8 @@ typedef struct s_game
 	int			width;
 	int			height;
 	int			size_line;
+	double		size_square;
+	double		size_square_mini;
 	t_track		*head;
 	t_cub		*cub;
 	t_tex		*tex;
@@ -221,7 +221,7 @@ int		ft_parse(t_game *game, char *file);
 //##################### RENDER #####################################
 
 //draw_map
-void	draw_map(t_game *game, int size_square);
+void	draw_map(t_game *game, int size_square, int color_c, int color_f);
 bool	is_wall(t_game *game, int x, int y);
 void	set_map_size(t_game *game);
 
@@ -234,7 +234,8 @@ void	draw_square(t_pixel *p, int size, int color);
 void	set_player_start_pos(t_game *game);
 void	set_player_angle(t_game *game);
 void	set_player(t_game *game);
-void	draw_player(t_game *game, int size);
+void	draw_player(t_game *game, int size, int color);
+void	draw_player_mini(t_game *game, int size, int color);
 void	move_player(t_game *game, t_player *player);
 
 //refresh
@@ -261,8 +262,8 @@ double	ft_distance(t_game *game);
 double	ft_cali_fisheye(t_game *game, t_player *player);
 
 //ray
-void	ft_init_ray(t_game *game, t_player *player);
-int		ft_draw_ray(t_game *game, t_player *player, float angle, int column);
+void	ft_init_ray(t_game *game);
+int		ft_ray(t_game *game, t_player *player, float angle, int column);
 void	ft_draw_ray_line(t_game *game);
 void	ft_draw_line(t_game *game, int x0, int y0, int x1, int y1, int color);
 

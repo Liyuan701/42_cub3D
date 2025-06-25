@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 17:29:12 by lifan             #+#    #+#             */
-/*   Updated: 2025/06/16 23:42:37 by marvin           ###   ########.fr       */
+/*   Updated: 2025/06/25 14:45:09 by lifan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,13 @@ static	void	ft_set_player(t_game *game, char c, int y, int x)
 		game->player->y = y + 0.5;
 		game->player->dir = c;
 		if (c == 'E')
-			game->playe->angle = 0; 
+			game->player->angle = 0;
 		if (c == 'W')
-			game->player->angle = PI; //180
+			game->player->angle = PI;
 		if (c == 'N')
-			game->player->angle = 3 * PI / 2; //270;
+			game->player->angle = 3 * PI / 2;
 		if (c == 'S')
-			game->player->angle = PI / 2; // 90
+			game->player->angle = PI / 2;
 		game->cub->copy[y][x] = '0';
 		ft_check_wall(game, game->cub->copy, y, x);
 	}

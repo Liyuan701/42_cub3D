@@ -16,13 +16,17 @@
 int	ft_load_tex(t_game	*game)
 {
 	if (!load_texture(game->mlx_ptr, game->config.no, &game->tex_n))
-		return (ft_error_close(game, "Can't load the north wall texture."), FAIL);
+		return (ft_error_close(game, \
+			"Can't load the north wall texture."), FAIL);
 	if (!load_texture(game->mlx_ptr, game->config.so, &game->tex_s))
-		return (ft_error_close(game, "Can't load the south wall texture."), FAIL);
+		return (ft_error_close(game, \
+			"Can't load the south wall texture."), FAIL);
 	if (!load_texture(game->mlx_ptr, game->config.ea, &game->tex_e))
-		return (ft_error_close(game, "Can't load the east wall texture."), FAIL);
+		return (ft_error_close(game, \
+			"Can't load the east wall texture."), FAIL);
 	if (!load_texture(game->mlx_ptr, game->config.we, &game->tex_w))
-		return (ft_error_close(game, "Can't load the west wall texture."), FAIL);
+		return (ft_error_close(game, \
+			"Can't load the west wall texture."), FAIL);
 	return (0);
 }
 
@@ -35,7 +39,8 @@ int	load_texture(void *mlx_ptr, char *path, t_tex *tex)
 	tex->img = mlx_xpm_file_to_image(mlx_ptr, path, &width, &height);
 	if (!tex->img)
 		return (0);
-	tex->addr = mlx_get_data_addr(tex->img, &tex->bpp, &tex->size_line, &tex->endian);
+	tex->addr = mlx_get_data_addr(tex->img, &tex->bpp, \
+		&tex->size_line, &tex->endian);
 	tex->width = width;
 	tex->height = height;
 	if (!tex->addr)
@@ -59,8 +64,8 @@ void	ft_init_window(t_game *game)
 		ft_error_close(game, "init WIN");
 	game->status = GAME;
 	game->tex->img = mlx_new_image(game->mlx_ptr, WIDTH, HEIGHT);
-	game->tex->addr = mlx_get_data_addr(game->tex->img, &game->tex->bpp,
-		&game->tex->size_line, &game->tex->endian);
+	game->tex->addr = mlx_get_data_addr(game->tex->img,
+				&game->tex->bpp, &game->tex->size_line, &game->tex->endian);
 	ft_load_tex(game);
 }
 
@@ -82,7 +87,8 @@ void	ft_refresh(void	*param)
 	game = (t_game *)param;
 	move_player(game, game->player);
 	clear_image(game);
-	draw_map(game, game->map.size_square, game->config.ceiling, game->config.floor);
+	draw_map(game, game->map.size_square,
+		game->config.ceiling, game->config.floor);
 	draw_player(game, game->map.size_square, game->player->color);
 	draw_map(game, game->map.size_square_mini, 0xFFF0F5, 0xFFC0CB);
 	draw_player_mini(game, game->map.size_square_mini, 0xA9A9A9);
@@ -91,7 +97,7 @@ void	ft_refresh(void	*param)
 	dir = game->player->angle - PI / 6;
 	while (i < WIDTH)
 	{
-		ft_draw_ray(game, game->player, dir, i);
+		ft_ray(game, game->player, dir, i);
 		dir += fraction;
 		i++;
 	}

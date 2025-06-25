@@ -68,7 +68,7 @@ char	*mylloc_value(t_game *game, char *line)
 	if (value == NULL)
 		return (NULL);
 	len = ft_strlen(value);
-	while(len > 0 && ft_isspace(value[len - 1] == 1))
+	while (len > 0 && ft_isspace(value[len - 1] == 1))
 	{
 		value[len - 1] = '\0';
 		len--;
@@ -118,50 +118,3 @@ void	ft_get_config(t_game *game)
 		|| game->config.floor < 0 || game->config.ceiling < 0)
 		ft_error_close(game, "Get config: Failed to get all config values.");
 }
-
-
-// int	len_without_space(char *src)
-// {
-// 	int len;
-// 	int i;
-
-// 	i = 0;
-// 	len = 0;
-// 	while(src[i] != 0)
-// 	{
-// 		if (ft_isspace(src[i]) == 0)
-// 			len++;
-// 		i++;
-// 	}
-// 	return(len);
-// }
-
-//malloc str without space
-// char *mylloc_value(t_game *game, char *line)
-// {
-// 	int		i;
-// 	int		j;
-// 	int		len;
-// 	int		start;
-// 	char	*value;
-// 	char	*tmp;
-
-// 	start = get_start(line);
-// 	if (start = -1)
-// 		return(NULL);
-// 	tmp = line + start;
-// 	len = len_without_space(tmp);
-// 	value = ft_mylloc(game, len + 1);
-// 	if (value == NULL)
-// 		return (NULL);
-// 	i = 0;
-// 	j = 0;
-// 	while(tmp[i] != 0)
-// 	{
-// 		if (ft_isspace(tmp[i]) == 0)
-// 			value[j++] = tmp[i];
-// 		i++;
-// 	}
-// 	value[j] = '\0';
-// 	return (value);
-// }

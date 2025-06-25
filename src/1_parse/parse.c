@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: liyu <liyu@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 15:37:58 by lifan             #+#    #+#             */
-/*   Updated: 2025/06/13 23:56:34 by liyu             ###   ########.fr       */
+/*   Updated: 2025/06/25 14:49:07 by lifan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,9 @@ static void	ft_fill_text(t_game *game, int fd)
 	char	*pos_n;
 
 	row = 0;
-	while ((line = get_next_line(fd)) != NULL)
+	while ((get_next_line(fd)) != NULL)
 	{
+		line = get_next_line(fd);//! to verify, before while(line = get_next_line(fd)!= NULl)
 		pos_n = ft_strchr(line, '\n');
 		if (pos_n != NULL)
 			*pos_n = '\0';

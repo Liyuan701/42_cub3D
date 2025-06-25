@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_config.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/25 14:43:04 by lifan             #+#    #+#             */
+/*   Updated: 2025/06/25 14:44:37 by lifan            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/cub3D.h"
 
 //* format attendu : "identifiant chemin/vers/texture.xpm"
@@ -43,7 +55,9 @@ int	check_parse_color(t_game *game, char *line)
 	}
 	else
 		free2tab_exit(game, tab, rgb, "Color config: must be digit");
-	if (game->config.r < 0 || game->config.r > 255 || game->config.g < 0 || game->config.g > 255 || game->config.b < 0 || game->config.b > 255)
+	if (game->config.r < 0 || game->config.r > 255
+		|| game->config.g < 0 || game->config.g > 255
+		|| game->config.b < 0 || game->config.b > 255)
 		free2tab_exit(game, tab, rgb, "\
 			Color config: components out of range 0-255");
 	ft_free_tab(rgb);
@@ -57,15 +71,17 @@ int	is_config_index(char *str)
 {
 	while (ft_isspace(*str) == 1)
 		str++;
-	if (ft_strlen(str) >= 3 && ft_strncmp(str, "NO", 2) == 0 && ft_isspace(str[2]) != 0)
+	if (ft_strlen(str) >= 3 && ft_strncmp(str, "NO", 2) == 0
+		&& ft_isspace(str[2]) != 0)
 		return (0);
-	else if (ft_strlen(str) >= 3 && ft_strncmp\
-	(str, "SO", 2) == 0 && ft_isspace(str[2]) != 0)
+	else if (ft_strlen(str) >= 3 && ft_strncmp(str, "SO", 2) == 0
+		&& ft_isspace(str[2]) != 0)
 		return (1);
-	else if (ft_strlen(str) >= 3 && ft_strncmp(str, "WE", 2) == 0 && ft_isspace(str[2]) != 0)
+	else if (ft_strlen(str) >= 3 && ft_strncmp(str, "WE", 2) == 0
+		&& ft_isspace(str[2]) != 0)
 		return (2);
-	else if (ft_strlen(str) >= 3 && ft_strncmp\
-	(str, "EA", 2) == 0 && ft_isspace(str[2]) != 0)
+	else if (ft_strlen(str) >= 3 && ft_strncmp(str, "EA", 2) == 0
+		&& ft_isspace(str[2]) != 0)
 		return (3);
 	else if (ft_strlen(str) >= 2 && ft_isspace(str[1]) != 0 && str[0] == 'F')
 		return (4);
@@ -87,9 +103,6 @@ void	check_config_line(t_game *game, t_config *c, char *line)
 	if (c->seen[c->index] == 1)
 		ft_error_close(game, "Configuration: Duplicate");
 	c->seen[c->index] = 1;
-	// if (c->index <= c->last_index)
-	// 	ft_error_close(game, "Configuration: entries out of order");
-	// c->last_index = c->index;
 	if (c->index < 4)
 		check_xpm_exit(game, line);
 	else
@@ -105,7 +118,6 @@ void	check_config(t_game *game, t_config *c)
 
 	i = 0;
 	c->count = 0;
-	// c->last_index = -1;
 	init_seen(c->seen);
 	while (i < game->cub->nl && c->count < 6)
 	{

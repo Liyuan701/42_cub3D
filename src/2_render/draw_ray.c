@@ -6,12 +6,13 @@
 /*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 13:56:56 by lifan             #+#    #+#             */
-/*   Updated: 2025/06/25 14:14:10 by lifan            ###   ########.fr       */
+/*   Updated: 2025/06/25 14:26:56 by lifan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
-void ft_draw_line(t_game *game, int x0, int y0, int x1, int y1, int color)
+
+void	ft_draw_line(t_game *game, int x0, int y0, int x1, int y1, int color)
 {
 	int	dx = abs(x1 - x0);
 	int	dy = abs(y1 - y0);
@@ -62,9 +63,9 @@ void	ft_draw_ray_line(t_game *game)
 }
 
 //* from the player, draw ray.
-//* angle = dorection, use radians.
+//* angle = direction, use radians.
 //* DDA algotithme, by block.
-int	ft_draw_ray(t_game *game, t_player *player, float angle, int column)
+int	ft_ray(t_game *game, t_player *player, float angle, int column)
 {
 	double	distance;
 	char	wall;
@@ -75,7 +76,7 @@ int	ft_draw_ray(t_game *game, t_player *player, float angle, int column)
 	game->ray.ray_y = player->y;
 	game->ray.map_x = (int)(game->ray.ray_x / BLOCK);
 	game->ray.map_y = (int)(game->ray.ray_y / BLOCK);
-	ft_init_ray(game, game->player);
+	ft_init_ray(game);
 	if (!ft_if_encounter(game))
 		ft_error_close(game, "Wired, the ray didn't reach the wall.");
 	ft_draw_ray_line(game);
