@@ -105,6 +105,11 @@ void move_player(t_game *game, t_player *player)
             player->x = new_x;
             player->y = new_y;
         }
+		else
+        {
+            int wall_y = new_y / game->map.size_square;
+            player->y = (wall_y + 1) * game->map.size_square;
+        }
 	}
 	if (player->key_down == true)
 	{
@@ -114,6 +119,11 @@ void move_player(t_game *game, t_player *player)
         {
             player->x = new_x;
             player->y = new_y;
+        }
+		else
+        {
+            int wall_y = (new_y + game->map.size_square) / game->map.size_square;
+            player->y = (wall_y - 1) * game->map.size_square;
         }
 	}
 		if (player->key_left == true)
@@ -125,6 +135,11 @@ void move_player(t_game *game, t_player *player)
             player->x = new_x;
             player->y = new_y;
         }
+		else
+        {
+            int wall_x = new_x / game->map.size_square;
+            player->x = (wall_x + 1) * game->map.size_square;
+        }
 	}
 	if (player->key_right == true)
 	{
@@ -134,6 +149,11 @@ void move_player(t_game *game, t_player *player)
         {
             player->x = new_x;
             player->y = new_y;
+        }
+		else
+        {
+            int wall_x = (new_x + game->map.size_square) / game->map.size_square;
+            player->x = (wall_x - 1) * game->map.size_square;
         }
 	}
 }
