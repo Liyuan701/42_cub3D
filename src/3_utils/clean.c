@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clean.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: liyu <liyu@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 15:30:14 by lifan             #+#    #+#             */
-/*   Updated: 2025/06/24 00:08:24 by liyu             ###   ########.fr       */
+/*   Updated: 2025/06/25 15:06:09 by lifan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	ft_clean(t_game	*game)
 	if (game->cub->op_fd > 0)
 		close(game->cub->op_fd);
 	if (game->status == PARSE)
-		ft_free_all(game);	
+		ft_free_all(game);
 	else if (game->status == GAME)
 	{
 		ft_free_all_tex(game);
@@ -74,4 +74,3 @@ void	ft_clean(t_game	*game)
 			free(game->mlx_ptr);
 	}
 }
-

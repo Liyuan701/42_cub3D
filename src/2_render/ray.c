@@ -14,12 +14,16 @@
 
 //* d_x/d_y the distance cost move to next x or y
 //* side_x side_y, current distance to the nearest x or y.
-void	ft_init_ray(t_game *game)
+void	ft_init_ray(t_game *game, double dir)
 {
+	game->ray.vector_x = cos(dir);
+	game->ray.vector_y = sin(dir);
+	game->ray.ray_x = game->player->x;
+	game->ray.ray_y = game->player->y;
 	game->ray.map_x = (int)(game->ray.ray_x / game->size_square);
 	game->ray.map_y = (int)(game->ray.ray_y / game->size_square);
 	game->ray.d_x = fabs(game->size_square / game->ray.vector_x);
-	game->ray.d_y = fabs(game->size_square / game->ray.vector_y);
+	game->ray.d_y = fabs(game->size_square / game->ray.vector_y); //?
 	ft_side_ray(game);
 }
 
@@ -53,7 +57,8 @@ static void	ft_side_ray(t_game *game)
 }
 
 //* verify if touch the wall
-//* hit_side == 1 horizontale, == 0 vertical.
+//* hit_side == 1 horizontale aka x
+//* hit side == 0 vertical aka y.
 bool	ft_if_encounter(t_game *game)
 {
 	while (1)

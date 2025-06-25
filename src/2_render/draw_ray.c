@@ -6,7 +6,7 @@
 /*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 13:56:56 by lifan             #+#    #+#             */
-/*   Updated: 2025/06/25 14:26:56 by lifan            ###   ########.fr       */
+/*   Updated: 2025/06/25 17:21:04 by lifan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,12 @@ void	ft_draw_ray_line(t_game *game)
 	start_x = (int)game->player->x;
 	start_y = (int)game->player->y;
 	if (game->ray.hit_side == 0)
-		end_x = game->ray.map_x * BLOCK;
+		end_x = game->ray.map_x * game->size_square;
 	else
 		end_x = (int)(game->ray.ray_x \
 			+ (game->ray.side_x - game->ray.d_x) * game->ray.vector_x);
 	if (game->ray.hit_side == 1)
-		end_y = game->ray.map_y * BLOCK;
+		end_y = game->ray.map_y * game->size_square;
 	else
 		end_y = (int)(game->ray.ray_y \
 			+ (game->ray.side_y - game->ray.d_y) * game->ray.vector_y);
@@ -65,21 +65,15 @@ void	ft_draw_ray_line(t_game *game)
 //* from the player, draw ray.
 //* angle = direction, use radians.
 //* DDA algotithme, by block.
-int	ft_ray(t_game *game, t_player *player, float angle, int column)
+int	ft_ray(t_game *game, t_player *player, double dir, int column)
 {
 	double	distance;
 	char	wall;
 
-	game->ray.vector_x = cos(angle);
-	game->ray.vector_y = sin(angle);
-	game->ray.ray_x = player->x;
-	game->ray.ray_y = player->y;
-	game->ray.map_x = (int)(game->ray.ray_x / BLOCK);
-	game->ray.map_y = (int)(game->ray.ray_y / BLOCK);
-	ft_init_ray(game);
+	ft_init_ray(game, dir);
 	if (!ft_if_encounter(game))
 		ft_error_close(game, "Wired, the ray didn't reach the wall.");
-	ft_draw_ray_line(game);
+	ft_draw_ray_line(game);//!DEBUG
 	distance = ft_cali_fisheye(game, player);
 	wall = ft_hit_wall(&game->ray);
 	ft_cast_wall(game, distance, column, wall);

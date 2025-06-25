@@ -6,7 +6,7 @@
 /*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 14:36:42 by lifan             #+#    #+#             */
-/*   Updated: 2025/06/25 14:37:23 by lifan            ###   ########.fr       */
+/*   Updated: 2025/06/25 17:04:03 by lifan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,31 +32,9 @@ void	draw_player_mini(t_game *game, int size, int color)
 	draw_square (&p, size, color);
 }
 
-void	set_player_angle(t_game *game)
-{
-	int	x;
-	int	y;
-
-	y = 0;
-	while (game->cub->map[y])
-	{
-		x = 0;
-		while (game->cub->map[y][x])
-		{
-			if (game->cub->map[y][x] == 'N')
-				game->player->angle = PI / 2;
-			else if (game->cub->map[y][x] == 'S')
-				game->player->angle = 3 * PI / 2;
-			else if (game->cub->map[y][x] == 'E')
-				game->player->angle = 0;
-			else if (game->cub->map[y][x] == 'W')
-				game->player->angle = PI;
-			x++;
-		}
-		y++;
-	}
-}
-
+//! si nous avons encore besoin de set_player ?
+//! game->player->dir = c; on a deja l'angle dans player.
+//! on a deja le x, y dans player.
 void	set_player_start_pos(t_game *game)
 {
 	int		x;
@@ -82,19 +60,6 @@ void	set_player_start_pos(t_game *game)
 	}
 }
 
-void set_player(t_game *game)
-{
-	game->player->key_up = false;
-	game->player->key_down = false;
-	game->player->key_right = false;
-	game->player->key_left = false;
-	// player->left_rotate = false;
-	// player->right_rotate = false;
-
-	set_player_start_pos(game);
-	set_player_angle(game);
-}
-
 void	move_player(t_game *game, t_player *player)
 {
 	// double move_speed = 1.0;
@@ -102,6 +67,8 @@ void	move_player(t_game *game, t_player *player)
 	double	sin_angle = sin(player->angle);
 	double	new_x;
 	double	new_y;
+	int		wall_y;
+	int		wall_x;
 
 	// if (player->left_rotate)
 	//     player->angle -= rotate_speed;
@@ -118,7 +85,7 @@ void	move_player(t_game *game, t_player *player)
 		}
 		else
 		{
-			int wall_y = new_y / game->map.size_square;
+			wall_y = new_y / game->map.size_square;
 			player->y = (wall_y + 1) * game->map.size_square;
 		}
 	}
@@ -133,11 +100,11 @@ void	move_player(t_game *game, t_player *player)
 		}
 		else
 		{
-			int wall_y = (new_y + game->map.size_square) / game->map.size_square;
+			wall_y = (new_y + game->map.size_square) / game->map.size_square;
 			player->y = (wall_y - 1) * game->map.size_square;
 		}
 	}
-		if (player->key_left == true)
+	if (player->key_left == true)
 	{
 		new_x = player->x - sin_angle;
 		new_y = player->y + cos_angle;
@@ -148,7 +115,7 @@ void	move_player(t_game *game, t_player *player)
 		}
 		else
 		{
-			int wall_x = new_x / game->map.size_square;
+			wall_x = new_x / game->map.size_square;
 			player->x = (wall_x + 1) * game->map.size_square;
 		}
 	}
@@ -163,7 +130,7 @@ void	move_player(t_game *game, t_player *player)
 		}
 		else
 		{
-			int wall_x = (new_x + game->map.size_square) / game->map.size_square;
+			wall_x = (new_x + game->map.size_square) / game->map.size_square;
 			player->x = (wall_x - 1) * game->map.size_square;
 		}
 	}

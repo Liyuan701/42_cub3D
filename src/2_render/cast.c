@@ -6,13 +6,13 @@
 /*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 22:34:42 by liyu              #+#    #+#             */
-/*   Updated: 2025/06/25 14:17:27 by lifan            ###   ########.fr       */
+/*   Updated: 2025/06/25 17:39:52 by lifan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
 
-char	hit_wall(t_ray *ray)
+char	ft_hit_wall(t_ray *ray)
 {
 	if (ray->hit_side == 0)
 	{
@@ -84,7 +84,7 @@ void	ft_cast_wall(t_game *game, double distance, int column, char side)
 	wall = &game->wall;
 	ft_memset(wall, 0, sizeof(t_wall));
 	wall->tex = ft_select_wall(game, side);
-	wall->wall_height = (int)((BLOCK / distance) * (WIDTH / 2.0));
+	wall->wall_height = (int)((game->size_square / distance) * (WIDTH / 2.0));//! double to int ? WIDTH OR HEIGHT
 	wall->start_y = (HEIGHT - wall->wall_height) / 2;
 	if (wall->start_y < 0)
 		wall->start_y = 0;

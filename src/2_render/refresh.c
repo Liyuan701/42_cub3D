@@ -65,7 +65,7 @@ void	ft_init_window(t_game *game)
 	game->status = GAME;
 	game->tex->img = mlx_new_image(game->mlx_ptr, WIDTH, HEIGHT);
 	game->tex->addr = mlx_get_data_addr(game->tex->img,
-				&game->tex->bpp, &game->tex->size_line, &game->tex->endian);
+			&game->tex->bpp, &game->tex->size_line, &game->tex->endian);
 	ft_load_tex(game);
 }
 
@@ -85,16 +85,13 @@ void	ft_refresh(void	*param)
 	int		i;
 
 	game = (t_game *)param;
-	move_player(game, game->player);
-	clear_image(game);
-	draw_map(game, game->map.size_square,
-		game->config.ceiling, game->config.floor);
-	draw_player(game, game->map.size_square, game->player->color);
-	draw_map(game, game->map.size_square_mini, 0xFFF0F5, 0xFFC0CB);
-	draw_player_mini(game, game->map.size_square_mini, 0xA9A9A9);
 	i = 0;
 	fraction = PI / 3 / WIDTH;
 	dir = game->player->angle - PI / 6;
+	move_player(game, game->player);
+	clear_image(game);
+	draw_map(game, game->map.size_square_mini, WALL, SPACE);
+	draw_player_mini(game, game->map.size_square_mini, PLAYER);
 	while (i < WIDTH)
 	{
 		ft_ray(game, game->player, dir, i);

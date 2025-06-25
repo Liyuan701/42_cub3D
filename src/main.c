@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yy <yy@student.42.fr>                      +#+  +:+       +#+        */
+/*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 11:41:32 by lifan             #+#    #+#             */
-/*   Updated: 2025/06/24 23:14:50 by yy               ###   ########.fr       */
+/*   Updated: 2025/06/25 16:14:42 by lifan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,16 +49,15 @@ int	main(int ac, char **av)
 	ft_init_game(&game);
 	if (ft_parse(&game, av[1]))
 		return (FAIL);
-	game.size_square = WIDTH / PROPORTIONAL / game.cub->width;	
 	ft_init_window(&game);
 	set_map_size(&game);
 	set_player(&game);
 	mlx_hook(game.win_ptr, 17, (1L << 17), ft_close, &game);
-	mlx_hook(game.win_ptr, 2,(1L << 0),ft_key_press, &game);
+	mlx_hook(game.win_ptr, 2, (1L << 0), ft_key_press, &game);
 	mlx_hook(game.win_ptr, 3, (1L << 1), ft_key_release, &game);
 	mlx_loop_hook(game.mlx_ptr, ft_refresh, &game);
 	mlx_loop(game.mlx_ptr);
-	// ft_debug_parse(&game);
+	//ft_debug_parse(&game);
 	ft_clean(&game);
 	return (0);
 }

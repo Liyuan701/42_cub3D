@@ -6,7 +6,7 @@
 /*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 14:42:55 by lifan             #+#    #+#             */
-/*   Updated: 2025/06/25 14:54:08 by lifan            ###   ########.fr       */
+/*   Updated: 2025/06/25 17:37:02 by lifan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,9 @@
 # define GAME	102
 
 # define RAY 0xC8A0FF
+# define WALL 0xFFF0F5
+# define SPACE 0xFFC0CB
+# define PLAYER 0xA9A9A9
 # define RED "\033[31m"
 # define RESET "\033[0m"
 
@@ -148,12 +151,6 @@ typedef struct s_wall
 	int		draw_y;
 }	t_wall;
 
-typedef struct s_map
-{
-	double	size_square;
-	double	size_square_mini;
-}	t_map;
-
 //* Here I stcok all info of this game.
 typedef struct s_game
 {
@@ -231,9 +228,9 @@ void	clear_image(t_game *game);
 void	draw_square(t_pixel *p, int size, int color);
 
 //draw player
-void	set_player_start_pos(t_game *game);
+/*void	set_player_start_pos(t_game *game);
 void	set_player_angle(t_game *game);
-void	set_player(t_game *game);
+void	set_player(t_game *game);*/
 void	draw_player(t_game *game, int size, int color);
 void	draw_player_mini(t_game *game, int size, int color);
 void	move_player(t_game *game, t_player *player);
@@ -255,15 +252,15 @@ void	ft_cast_wall(t_game *game, double distance, int column, char side);
 int		get_tex_color(t_tex *tex, int x, int y);
 int		calculate_tex_x(t_game *game, t_tex *tex, double dist);
 t_tex	*ft_select_wall(t_game *game, char wall);
-char	hit_wall(t_ray *ray);
+char	ft_hit_wall(t_ray *ray);
 
 bool	ft_if_encounter(t_game *game);
 double	ft_distance(t_game *game);
 double	ft_cali_fisheye(t_game *game, t_player *player);
 
 //ray
-void	ft_init_ray(t_game *game);
-int		ft_ray(t_game *game, t_player *player, float angle, int column);
+void	ft_init_ray(t_game *game, double angle);
+int		ft_ray(t_game *game, t_player *player, double dir, int column);
 void	ft_draw_ray_line(t_game *game);
 void	ft_draw_line(t_game *game, int x0, int y0, int x1, int y1, int color);
 
