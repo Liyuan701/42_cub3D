@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yy <yy@student.42.fr>                      +#+  +:+       +#+        */
+/*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 14:42:55 by lifan             #+#    #+#             */
-/*   Updated: 2025/06/24 23:17:24 by yy               ###   ########.fr       */
+/*   Updated: 2025/06/25 14:20:27 by lifan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@
 # define HEIGHT		480
 # define BLOCK		64
 
-# define FOV	(PI/3) //60
+# define FOV	(PI/3)
 # define PI		3.14159265358979323846
 
 # define PARSE	101
@@ -50,7 +50,6 @@
 # define RESET "\033[0m"
 
 # define PROPORTIONAL 2
-
 
 //##################### PERSO ######################################
 
@@ -75,13 +74,12 @@ typedef struct s_player
 	bool	key_right;
 	// bool	left_rotate;
 	// bool	right_rotate;
-
 }	t_player;
 
 typedef struct s_tex
 {
 	void	*img;
-	char	*data;
+	char	*addr;
 	int		bpp;
 	int		size_line;
 	int		endian;
@@ -115,22 +113,20 @@ typedef struct s_config
 	int		ceiling;
 	int		seen[6];
 	int		index;
-	// int		last_index;
 	int		r;
 	int		g;
 	int		b;
 	int		count;
 }	t_config;
 
-
-typedef	struct	s_ray
+typedef struct s_ray
 {
-	double  vector_x;
-    double  vector_y;
-    double  ray_x;
-    double  ray_y;
-    int     map_x;
-    int     map_y;
+	double	vector_x;
+	double	vector_y;
+	double	ray_x;
+	double	ray_y;
+	int		map_x;
+	int		map_y;
 	double	d_x;
 	double	d_y;
 	double	side_x;
@@ -144,20 +140,20 @@ typedef	struct	s_ray
 
 typedef struct s_wall
 {
-	t_tex *tex;
-    int wall_height;
-    int start_y;
-    int end_y;
-    int tex_x;
-    int tex_y;
-    int color;
-    int draw_y;
+	t_tex	*tex;
+	int		wall_height;
+	int		start_y;
+	int		end_y;
+	int		tex_x;
+	int		tex_y;
+	int		color;
+	int		draw_y;
 }	t_wall;
 
 typedef struct s_map
 {
-	double size_square;
-	double size_square_mini;
+	double	size_square;
+	double	size_square_mini;
 }	t_map;
 
 //* Here I stcok all info of this game.
@@ -185,7 +181,7 @@ typedef struct s_game
 
 typedef struct s_pixel
 {
-	t_game *game;
+	t_game	*game;
 	int		x;
 	int		y;
 
@@ -241,7 +237,6 @@ void	set_player(t_game *game);
 void	draw_player(t_game *game, int size);
 void	move_player(t_game *game, t_player *player);
 
-
 //refresh
 void	ft_init_window(t_game *game);
 void	ft_refresh(void	*param);
@@ -250,23 +245,26 @@ int		ft_load_tex(t_game	*game);
 int		load_texture(void *mlx_ptr, char *path, t_tex *tex);
 int		ft_load_tex(t_game	*game);
 
-
 //key
-int	ft_key_release(int keycode, t_game *game);
-int	ft_key_press(int keycode, t_game *game);
+int		ft_key_release(int keycode, t_game *game);
+int		ft_key_press(int keycode, t_game *game);
 
-//ray & cast
+// cast
 void	ft_cast_wall(t_game *game, double distance, int column, char side);
 int		get_tex_color(t_tex *tex, int x, int y);
 int		calculate_tex_x(t_game *game, t_tex *tex, double dist);
-t_tex   *ft_select_wall(t_game *game, char wall);
-char    hit_wall(t_ray *ray);
-void	ft_init_ray(t_game *game, t_player *player);
-bool	ft_if_encounter(t_game *game);
-double  ft_distance(t_game *game);
-double  ft_cali_fisheye(t_game *game, t_player *player);
-int		ft_draw_ray(t_game *game, t_player *player, float angle, int column);
+t_tex	*ft_select_wall(t_game *game, char wall);
+char	hit_wall(t_ray *ray);
 
+bool	ft_if_encounter(t_game *game);
+double	ft_distance(t_game *game);
+double	ft_cali_fisheye(t_game *game, t_player *player);
+
+//ray
+void	ft_init_ray(t_game *game, t_player *player);
+int		ft_draw_ray(t_game *game, t_player *player, float angle, int column);
+void	ft_draw_ray_line(t_game *game);
+void	ft_draw_line(t_game *game, int x0, int y0, int x1, int y1, int color);
 
 //##################### UTILS ######################################
 //config util
@@ -276,7 +274,7 @@ int		ft_isspace(char c);
 int		ft_str_isspace(char *str);
 
 //config util
-char 	*replace_space(char *line);
+char	*replace_space(char *line);
 void	free2tab_exit(t_game *game, char **tab1, char **tab2, char *error_msg);
 
 //clean
@@ -306,8 +304,6 @@ int		print_config(t_config *cfg);
 int		print_cub(t_cub *c);
 int		print_player(t_player *p);
 void	print_map(char **map);
-void	ft_draw_line(t_game *game, int x0, int y0, int x1, int y1, int color);
 void	ft_draw_ray_line(t_game *game);
-
 
 #endif

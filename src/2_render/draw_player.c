@@ -2,12 +2,11 @@
 
 void draw_player(t_game *game, int size, int color)
 {
-    t_pixel p;
-
-    p.game = game;
-    p.x = game->player->x;
-    p.y = game->player->y;
-    draw_square(&p, size, color);
+	t_pixel p;
+	p.game = game;
+	p.x = game->player->x;
+	p.y = game->player->y;
+	draw_square(&p, size, color);
 }
 
 void draw_player_mini(t_game *game, int size, int color)
@@ -90,12 +89,12 @@ void move_player(t_game *game, t_player *player)
     double sin_angle = sin(player->angle);
 	double new_x;
 	double new_y;
-	
+
 	// if (player->left_rotate)
     //     player->angle -= rotate_speed;
     // if (player->right_rotate)
     //     player->angle += rotate_speed;
-    
+
 	if (player->key_up == true)
 	{
         new_x = player->x - cos_angle;

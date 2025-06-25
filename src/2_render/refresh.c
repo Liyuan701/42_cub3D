@@ -70,8 +70,8 @@ void	ft_render(t_game *game)
 	mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, game->tex->img, 0, 0);
 }
 
-//* each column, draw a ray to calculate wall. 
-//* VOF = 60, begin with (player angle - 30 = the left). 
+//* each column, draw a ray to calculate wall.
+//* VOF = 60, begin with (player angle - 30 = the left).
 void	ft_refresh(void	*param)
 {
 	t_game	*game;
@@ -90,10 +90,10 @@ void	ft_refresh(void	*param)
 	fraction = PI / 3 / WIDTH;
 	dir = game->player->angle - PI / 6;
 	while (i < WIDTH)
-    {
-	    ft_draw_ray(game, game->player, dir, i);
-	    dir += fraction;
-	    i++;
+	{
+		ft_draw_ray(game, game->player, dir, i);
+		dir += fraction;
+		i++;
 	}
 	ft_render(game);
 	return ;

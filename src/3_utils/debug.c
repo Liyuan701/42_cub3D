@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   debug.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: liyu <liyu@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 15:28:45 by lifan             #+#    #+#             */
-/*   Updated: 2025/06/24 01:10:31 by liyu             ###   ########.fr       */
+/*   Updated: 2025/06/25 14:19:51 by lifan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	print_player(t_player *p)
 	printf("Color: 0x%X\n", p->color);
 	printf("Forward: %d, Turn: %d\n", p->forward, p->turn);
 	printf("\n");
-	return(0);
+	return (0);
 }
 
 int	print_cub(t_cub *c)
@@ -42,8 +42,7 @@ int	print_cub(t_cub *c)
 	for (int i = 0; c->map && c->map[i]; i++)
 		printf("%s\n", c->map[i]);
 	printf("\n");
-	return(0);
-	
+	return (0);
 }
 
 int	print_config(t_config *cfg)
@@ -58,7 +57,7 @@ int	print_config(t_config *cfg)
 	printf("Floor color: 0x%X\n", cfg->floor);
 	printf("Ceiling color: 0x%X\n", cfg->ceiling);
 	printf("\n");
-	return(0);
+	return (0);
 }
 
 int	ft_debug_parse(t_game *game)
@@ -72,62 +71,17 @@ int	ft_debug_parse(t_game *game)
 	print_cub(game->cub);
 	print_player(game->player);
 	printf("\n");
-	return(0);
+	return (0);
 }
 
 void	print_map(char **map)
 {
-	int	i = 0;
+	int	i;
+
+	i = 0;
 	while (map[i])
 	{
 		printf("%s\n", map[i]);
 		i++;
 	}
-}
-
-void ft_draw_line(t_game *game, int x0, int y0, int x1, int y1, int color)
-{
-    int dx = abs(x1 - x0);
-    int dy = abs(y1 - y0);
-    int sx = (x0 < x1) ? 1 : -1;
-    int sy = (y0 < y1) ? 1 : -1;
-    int err = dx - dy;
-
-    while (1)
-    {
-        put_pixel(game, x0, y0, color);  // ✅ 改为写入 buffer
-        if (x0 == x1 && y0 == y1)
-            break;
-        int e2 = 2 * err;
-        if (e2 > -dy)
-        {
-            err -= dy;
-            x0 += sx;
-        }
-        if (e2 < dx)
-        {
-            err += dx;
-            y0 += sy;
-        }
-    }
-}
-
-void ft_draw_ray_line(t_game *game)
-{
-    int start_x = (int)game->player->x;
-    int start_y = (int)game->player->y;
-    int end_x;
-    int end_y;
-
-    if (game->ray.hit_side == 0)
-        end_x = game->ray.map_x * BLOCK;
-    else
-        end_x = (int)(game->ray.ray_x + (game->ray.side_x - game->ray.d_x) * game->ray.vector_x);
-
-    if (game->ray.hit_side == 1)
-        end_y = game->ray.map_y * BLOCK;
-    else
-        end_y = (int)(game->ray.ray_y + (game->ray.side_y - game->ray.d_y) * game->ray.vector_y);
-
-    ft_draw_line(game, start_x, start_y, end_x, end_y, RAY);
 }

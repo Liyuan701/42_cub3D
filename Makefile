@@ -31,7 +31,13 @@ PARSE = 1_parse/parse.c\
 		1_parse/get_config.c\
 		1_parse/check_config.c
 
-RENDER = 2_render/game.c\
+RENDER = 2_render/refresh.c\
+		2_render/ray.c\
+		2_render/key.c\
+		2_render/cast.c\
+		2_render/draw_map.c\
+		2_render/draw_pixel.c\
+		2_render/draw_player.c\
 
 UTILS = 3_utils/clean.c \
 		3_utils/count.c \
