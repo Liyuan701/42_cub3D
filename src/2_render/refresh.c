@@ -90,8 +90,8 @@ void	ft_refresh(void	*param)
 	dir = game->player->angle - PI / 6;
 	move_player(game, game->player);
 	clear_image(game);
-	draw_map(game, game->map.size_square_mini, WALL, SPACE);
-	draw_player_mini(game, game->map.size_square_mini, PLAYER);
+	draw_map(game, game->map.size_mini, WALL, SPACE);
+	draw_player_mini(game, game->map.size_mini, PLAYER);
 	while (i < WIDTH)
 	{
 		ft_ray(game, game->player, dir, i);
