@@ -30,7 +30,11 @@ int	ft_load_tex(t_game	*game)
 	return (0);
 }
 
-//* load one wall tex.
+//* load one wall tex, and also get the following info.
+//* bpp: bits per pixel.
+//* size_line : nm of bytes in one row pixel.
+//* byte order, how to intepret the color datas. 
+
 int	load_texture(void *mlx_ptr, char *path, t_tex *tex)
 {
 	int	width;
