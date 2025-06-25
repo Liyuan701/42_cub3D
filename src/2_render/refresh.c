@@ -95,7 +95,7 @@ void	ft_refresh(void	*param)
 	move_player(game, game->player);
 	clear_image(game);
 	draw_map(game, game->map.size_mini, WALL, SPACE);
-	draw_player_mini(game, game->map.size_mini, PLAYER);
+	draw_player(game, game->map.size_mini, PLAYER);
 	while (i < WIDTH)
 	{
 		ft_ray(game, game->player, dir, i);
