@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
+/*   By: yren <yren@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 14:42:55 by lifan             #+#    #+#             */
-/*   Updated: 2025/06/27 14:48:04 by lifan            ###   ########.fr       */
+/*   Updated: 2025/06/27 16:41:47 by yren             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,6 +151,17 @@ typedef struct s_wall
 	int		draw_y;
 }	t_wall;
 
+typedef struct s_move
+{
+	double	speed;
+	double	cos_angle;
+	double	sin_angle;
+	double	new_x;
+	double	new_y;
+	double	size_player;
+} t_move;
+
+
 //* Here I stcok all info of this game.
 typedef struct s_game
 {
@@ -173,6 +184,7 @@ typedef struct s_game
 	t_config	config;
 	t_ray		ray;
 	t_wall		wall;
+	t_move		move;
 }	t_game;
 
 typedef struct s_pixel

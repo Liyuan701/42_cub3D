@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
+/*   By: yren <yren@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 14:36:42 by lifan             #+#    #+#             */
-/*   Updated: 2025/06/27 14:50:45 by lifan            ###   ########.fr       */
+/*   Updated: 2025/06/27 16:48:20 by yren             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,106 +22,20 @@ void	draw_player(t_game *game, int size, int color)
 	draw_square(&p, size, color);
 }
 
-//! si nous avons encore besoin de set_player ?
-//! game->player->dir = c; on a deja l'angle dans player.
-//! on a deja le x, y dans player.
-/*void	set_player_start_pos(t_game *game)
+void	draw_player_mini(t_game *game, int size, int color)
 {
-	int		x;
-	int		y;
-	bool	player_set;
+	t_pixel	p;
 
-	y = 0;
-	player_set = false;
-	while (game->cub->copy[y] && player_set == false)
-	{
-		x = 0;
-		while (game->cub->copy[y][x] && player_set == false)
-		{
-			if (game->cub->copy[y][x] == '0')//--> changer au strchr "NSEO"
-			{
-				game->player->x = x * game->size_block;
-				game->player->y = y * game->size_block;
-				player_set = true;
-			}
-			x++;
-		}
-		y++;
-	}
-}*/
+	p.game = game;
+	p.x = game->player->x / game->size_block * game->size_mini;
+	p.y = game->player->y / game->size_block * game->size_mini;
+	draw_square(&p, size, color);
+}
 
-void	move_player(t_game *game, t_player *player)
+void	set_player_start_pos(t_game *game)
 {
-	// double move_speed = 1.0;
-	double	cos_angle = cos(player->angle);
-	double	sin_angle = sin(player->angle);
-	double	new_x;
-	double	new_y;
-	int		wall_y;
-	int		wall_x;
-
-	// if (player->left_rotate)
-	//     player->angle -= rotate_speed;
-	// if (player->right_rotate)
-	//     player->angle += rotate_speed;
-	if (player->key_up == true)
-	{
-		new_x = player->x - cos_angle;
-		new_y = player->y - sin_angle;
-		if (is_wall(game, new_x, new_y) == false)
-		{
-			player->x = new_x;
-			player->y = new_y;
-		}
-		else
-		{
-			wall_y = new_y / game->size_mini;
-			player->y = (wall_y + 1) * game->size_mini;
-		}
-	}
-	if (player->key_down == true)
-	{
-		new_x = player->x + cos_angle;
-		new_y = player->y + sin_angle;
-		if (is_wall(game, new_x, new_y + game->size_mini) == false)
-		{
-			player->x = new_x;
-			player->y = new_y;
-		}
-		else
-		{
-			wall_y = (new_y + game->size_mini) / game->size_mini;
-			player->y = (wall_y - 1) * game->size_mini;
-		}
-	}
-	if (player->key_left == true)
-	{
-		new_x = player->x - sin_angle;
-		new_y = player->y + cos_angle;
-		if (is_wall(game, new_x, new_y) == false)
-		{
-			player->x = new_x;
-			player->y = new_y;
-		}
-		else
-		{
-			wall_x = new_x / game->size_mini;
-			player->x = (wall_x + 1) * game->size_mini;
-		}
-	}
-	if (player->key_right == true)
-	{
-		new_x = player->x + sin_angle;
-		new_y = player->y - cos_angle ;
-		if (is_wall(game, new_x + game->size_mini, new_y) == false)
-		{
-			player->x = new_x;
-			player->y = new_y;
-		}
-		else
-		{
-			wall_x = (new_x + game->size_mini) / game->size_mini;
-			player->x = (wall_x - 1) * game->size_mini;
-		}
-	}
+	if (game->player->x < 0 || game->player->y < 0)
+		ft_error_close(game, "Invalid player start position.");
+	game->player->x = game->player->x * game->size_block;
+	game->player->y = game->player->y * game->size_block;
 }
