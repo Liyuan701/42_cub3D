@@ -106,7 +106,7 @@ int	ft_get_map(t_game *game)
 	game->cub->height = ft_count_map(game, game->cub->text, start);
 	ft_count_width(game, game->cub->height, start);
 	game->cub->map = ft_mylloc(game, ((game->cub->height + 1)
-			* sizeof(char *)));
+				* sizeof(char *)));
 	while (i < game->cub->height)
 	{
 		col_w = ft_strlen(game->cub->text[start + i]);

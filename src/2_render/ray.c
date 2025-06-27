@@ -81,6 +81,17 @@ bool	ft_if_encounter(t_game *game)
 			game->ray.map_y += game->ray.step_y;
 			game->ray.hit_side = 1;
 		}
+		printf("====print the copy map=====\n");//!DEBUG
+		print_map(game->cub->copy);
+		printf("====print the player=====\n");
+		printf("Player starts at x = %f, y = %f (grid x = %d, y = %d)\n",
+			game->player->x, game->player->y,(int)game->player->x, (int)game->player->y);
+		print_map(game->cub->copy);
+		printf("DEBUG: map_y = %d, map_x = %d\n", game->ray.map_y, game->ray.map_x);
+		if (game->ray.map_x < 0 || game->ray.map_x > game->cub->width)
+			ft_error_close(game, "!!! x pass");
+		if (game->ray.map_y < 0 || game->ray.map_y > game->cub->height)
+			ft_error_close(game, "!!! y pass");
 		if (game->cub->copy[game->ray.map_y][game->ray.map_x] == '1')
 			return (true);
 	}
