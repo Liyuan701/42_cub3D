@@ -113,8 +113,17 @@ fclean:	clean
 		@make fclean -C ${LIB_DIR} -s
 		@echo "🗑️  ${BLUE}Fclean done, all cleaned.\n"
 
-debug:
+debug-n1:
 		valgrind --leak-check=full --track-origins=yes ./cub3D asset/map/n_not_close.cub
+
+debug-n2:
+		valgrind --leak-check=full --track-origins=yes ./cub3D asset/map/n_nomap.cub
+
+debug-v1:
+		valgrind --leak-check=full --track-origins=yes ./cub3D asset/map/v_simple.cub
+
+debug-v2:
+		valgrind --leak-check=full --track-origins=yes ./cub3D asset/map/v_irregular.cub
 
 re:	fclean all
 
