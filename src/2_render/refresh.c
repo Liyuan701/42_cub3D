@@ -92,7 +92,7 @@ int	ft_refresh(void	*param)
 	i = 0;
 	fraction = PI / 3 / WIDTH;
 	dir = game->player->angle - PI / 6;
-	move_player(game, game->player);
+	move_player(game, game->size_mini);
 	clear_image(game);
 	draw_map(game, game->size_mini, WALL, SPACE);
 	draw_player(game, game->size_mini, PLAYER);

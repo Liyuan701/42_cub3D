@@ -6,7 +6,7 @@
 /*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 17:29:12 by lifan             #+#    #+#             */
-/*   Updated: 2025/06/25 14:45:09 by lifan            ###   ########.fr       */
+/*   Updated: 2025/06/27 17:24:27 by lifan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,10 @@ static	void	ft_set_player(t_game *game, char c, int y, int x)
 	{
 		game->player->x = x + 0.5;
 		game->player->y = y + 0.5;
+		if (game->player->x < 0 || game->player -> y < 0)
+			ft_error_close(game, "No valide player.");
+		game->player->xp = x * game->size_mini;
+		game->player->yp = y * game->size_mini;
 		game->player->dir = c;
 		if (c == 'E')
 			game->player->angle = 0;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yren <yren@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 14:42:55 by lifan             #+#    #+#             */
-/*   Updated: 2025/06/27 16:41:47 by yren             ###   ########.fr       */
+/*   Updated: 2025/06/27 17:27:21 by lifan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ typedef struct s_player
 {
 	double	x;
 	double	y;
+	double	xp;
+	double	yp;
 	double	angle;
 	char	dir;
 	int		color;
@@ -159,8 +161,7 @@ typedef struct s_move
 	double	new_x;
 	double	new_y;
 	double	size_player;
-} t_move;
-
+}	t_move;
 
 //* Here I stcok all info of this game.
 typedef struct s_game
@@ -244,7 +245,13 @@ void	set_player_angle(t_game *game);
 void	set_player(t_game *game);*/
 void	draw_player(t_game *game, int size, int color);
 void	draw_player_mini(t_game *game, int size, int color);
-void	move_player(t_game *game, t_player *player);
+
+//move player
+void	move_player_up(t_game *game, double new_x, double new_y);
+void	move_player(t_game *game, double size_square);
+void	move_player_right(t_game *game, double new_x, double new_y);
+void	move_player_left(t_game *game, double new_x, double new_y);
+void	move_player_down(t_game *game, double new_x, double new_y);
 
 //refresh
 void	ft_init_window(t_game *game);

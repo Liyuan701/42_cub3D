@@ -39,6 +39,7 @@ RENDER = 2_render/refresh.c\
 		2_render/draw_map.c\
 		2_render/draw_pixel.c\
 		2_render/draw_player.c\
+		2_render/move_player.c\
 
 UTILS = 3_utils/clean.c \
 		3_utils/count.c \

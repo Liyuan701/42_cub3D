@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   move_player.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/27 17:12:08 by lifan             #+#    #+#             */
+/*   Updated: 2025/06/27 17:28:08 by lifan            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/cub3D.h"
 
-void	mov_player_up(t_game *game, double new_x, double new_y)
+void	move_player_up(t_game *game, double new_x, double new_y)
 {
 	if (game->player->key_up == true)
 	{
@@ -15,7 +27,7 @@ void	mov_player_up(t_game *game, double new_x, double new_y)
 	}
 }
 
-void	mov_player_down(t_game *game, double new_x, double new_y)
+void	move_player_down(t_game *game, double new_x, double new_y)
 {
 	if (game->player->key_down == true)
 	{
@@ -31,7 +43,7 @@ void	mov_player_down(t_game *game, double new_x, double new_y)
 	}
 }
 
-void	mov_player_left(t_game *game, double new_x, double new_y)
+void	move_player_left(t_game *game, double new_x, double new_y)
 {
 	if (game->player->key_left == true)
 	{
@@ -46,7 +58,7 @@ void	mov_player_left(t_game *game, double new_x, double new_y)
 	}
 }
 
-void	mov_player_right(t_game *game, double new_x, double new_y)
+void	move_player_right(t_game *game, double new_x, double new_y)
 {
 	if (game->player->key_right == true)
 	{
@@ -68,14 +80,12 @@ void	move_player(t_game *game, double size_square)
 	game->move.cos_angle = cos(game->player->angle);
 	game->move.sin_angle = sin(game->player->angle);
 	game->move.size_player = size_square / 2;
-
 	// if (player->left_rotate)
 	//     player->angle -= rotate_speed;
 	// if (player->right_rotate)
 	//     player->angle += rotate_speed;
-
-	mov_player_up(game, game->move.new_x, game->move.new_y);
-	mov_player_down(game, game->move.new_x, game->move.new_y);
-	mov_player_left(game, game->move.new_x, game->move.new_y);
-	mov_player_right(game, game->move.new_x, game->move.new_y);
+	move_player_up(game, game->move.new_x, game->move.new_y);
+	move_player_down(game, game->move.new_x, game->move.new_y);
+	move_player_left(game, game->move.new_x, game->move.new_y);
+	move_player_right(game, game->move.new_x, game->move.new_y);
 }
