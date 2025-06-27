@@ -6,7 +6,7 @@
 /*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 13:39:11 by lifan             #+#    #+#             */
-/*   Updated: 2025/05/30 16:34:14 by lifan            ###   ########.fr       */
+/*   Updated: 2025/06/27 14:34:16 by lifan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ void	ft_error_close(t_game *game, char *str)
 	exit (FAIL);
 }
 
-//* WIthout error, exit when click the X.
-void	ft_close(t_game *game)
+//* without error, exit when click the X.
+int	ft_close(t_game *game)
 {
 	ft_clean(game);
 	exit (0);

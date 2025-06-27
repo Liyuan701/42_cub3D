@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: liyu <liyu@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 14:42:55 by lifan             #+#    #+#             */
-/*   Updated: 2025/06/25 22:50:56 by liyu             ###   ########.fr       */
+/*   Updated: 2025/06/27 14:48:04 by lifan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,7 +173,6 @@ typedef struct s_game
 	t_config	config;
 	t_ray		ray;
 	t_wall		wall;
-	t_map		map;
 }	t_game;
 
 typedef struct s_pixel
@@ -237,7 +236,7 @@ void	move_player(t_game *game, t_player *player);
 
 //refresh
 void	ft_init_window(t_game *game);
-void	ft_refresh(void	*param);
+int		ft_refresh(void	*param);
 void	ft_render(t_game *game);
 int		ft_load_tex(t_game	*game);
 int		load_texture(void *mlx_ptr, char *path, t_tex *tex);
@@ -251,7 +250,7 @@ int		ft_key_press(int keycode, t_game *game);
 void	ft_cast_wall(t_game *game, double distance, int column, char side);
 int		get_tex_color(t_tex *tex, int x, int y);
 int		calculate_tex_x(t_game *game, t_tex *tex, double dist);
-t_tex	*ft_select_wall(t_game *game, char wall);
+void	ft_select_wall(t_game *game, char side, t_wall *wall);
 char	ft_hit_wall(t_ray *ray);
 
 bool	ft_if_encounter(t_game *game);
@@ -291,7 +290,7 @@ int		ft_find(char c, char *str);
 //error
 void	ft_error(char *str);
 void	ft_error_close(t_game *game, char *str);
-void	ft_close(t_game *game);
+int		ft_close(t_game *game);
 
 //mylloc
 void	*ft_mylloc(t_game *game, size_t size);

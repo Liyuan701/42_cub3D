@@ -12,26 +12,11 @@
 
 #include "../include/cub3D.h"
 
-//* d_x/d_y the distance passed when we move a x or a y.
-//* side_x side_y, current distance to the nearest x or y.
-void	ft_init_ray(t_game *game, double dir)
-{
-	game->ray.vector_x = cos(dir);
-	game->ray.vector_y = sin(dir);
-	game->ray.ray_x = game->player->x;
-	game->ray.ray_y = game->player->y;
-	game->ray.map_x = (int)(game->ray.ray_x / game->size_mini);
-	game->ray.map_y = (int)(game->ray.ray_y / game->size_mini);
-	game->ray.d_x = fabs(game->size_mini / game->ray.vector_x);
-	game->ray.d_y = fabs(game->size_mini / game->ray.vector_y);
-	ft_side_ray(game);
-}
-
 //* the suite of the ft_init_ray.
 //* step means dir. +: towards right (x+)or down(y+); -:towards left (x-)or up(y-).
-//* cause we don't start from an angle of the square, so calculate the left dis side_x, side_y. 
+//* cause we don't start from an angle of the square, so calculate the left dis side_x, side_y.
 //* side_x : the distance to the next vertical line.
-//* side_y : the distance to the next horizontal line. 
+//* side_y : the distance to the next horizontal line.
 static void	ft_side_ray(t_game *game)
 {
 	if (game->ray.vector_x < 0)
@@ -60,8 +45,23 @@ static void	ft_side_ray(t_game *game)
 	}
 }
 
+//* d_x/d_y the distance passed when we move a x or a y.
+//* side_x side_y, current distance to the nearest x or y.
+void	ft_init_ray(t_game *game, double dir)
+{
+	game->ray.vector_x = cos(dir);
+	game->ray.vector_y = sin(dir);
+	game->ray.ray_x = game->player->x;
+	game->ray.ray_y = game->player->y;
+	game->ray.map_x = (int)(game->ray.ray_x / game->size_mini);
+	game->ray.map_y = (int)(game->ray.ray_y / game->size_mini);
+	game->ray.d_x = fabs(game->size_mini / game->ray.vector_x);
+	game->ray.d_y = fabs(game->size_mini / game->ray.vector_y);
+	ft_side_ray(game);
+}
+
 //* chose the longest dis, and move.
-//* dis is game->ray.side_x += game->ray.d_x or y. it's not the coor. 
+//* dis is game->ray.side_x += game->ray.d_x or y. it's not the coor.
 //* verify if touch the wall
 //* hit_side == 1 horizontale aka x
 //* hit side == 0 vertical aka y.

@@ -35,6 +35,7 @@ RENDER = 2_render/refresh.c\
 		2_render/ray.c\
 		2_render/key.c\
 		2_render/cast.c\
+		2_render/draw_ray.c\
 		2_render/draw_map.c\
 		2_render/draw_pixel.c\
 		2_render/draw_player.c\
@@ -63,7 +64,7 @@ MLX = ${MLX_DIR}/libmlx.a
 #######################  LIBS AND ATHS    #######################################
 
 INCLUDE = -I${INC_DIR} -I${LIB_DIR} -I${MLX_DIR}
-LIBS = -L${LIB_DIR} -lft -L${MLX_DIR} -lmlx  -lX11 -lXext
+LIBS = -L${LIB_DIR} -lft -L${MLX_DIR} -lmlx  -lX11 -lXext -lm
 
 #######################     Messages    ########################################
 

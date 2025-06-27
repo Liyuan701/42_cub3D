@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cast.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: liyu <liyu@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 22:34:42 by liyu              #+#    #+#             */
-/*   Updated: 2025/06/25 23:31:12 by liyu             ###   ########.fr       */
+/*   Updated: 2025/06/27 14:48:35 by lifan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,16 +34,16 @@ char	ft_hit_wall(t_ray *ray)
 	}
 }
 
-t_tex	*ft_select_wall(t_game *game, char wall)
+void	ft_select_wall(t_game *game, char side, t_wall *wall)
 {
-	if (wall == 'N')
-		return (&game->tex_n);
-	else if (wall == 'S')
-		return (&game->tex_s);
-	else if (wall == 'E')
-		return (&game->tex_e);
-	else if (wall == 'W')
-		return (&game->tex_w);
+	if (side == 'N')
+		wall->tex = &game->tex_n;
+	else if (side == 'S')
+		wall->tex = &game->tex_s;
+	else if (side == 'E')
+		wall->tex = &game->tex_e;
+	else if (side == 'W')
+		wall->tex = &game->tex_w;
 }
 //* block = 1 unit, only keep the num after . to know its pos in the block.
 //* when hit E/W, precision is in y (dis * v_y : how much moves in y direction)
@@ -95,7 +95,7 @@ void	ft_cast_wall(t_game *game, double distance, int column, char side)
 
 	wall = &game->wall;
 	ft_memset(wall, 0, sizeof(t_wall));
-	wall->tex = ft_select_wall(game, side);
+	ft_select_wall(game, side, wall);
 	dis_plane = (WIDTH / 2) / tan(PI / 3 / 2);
 	wall->wall_height = (int)((game->size_block / distance) * dis_plane);
 	wall->start_y = (HEIGHT - wall->wall_height) / 2;

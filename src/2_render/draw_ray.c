@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_ray.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: liyu <liyu@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 13:56:56 by lifan             #+#    #+#             */
-/*   Updated: 2025/06/25 22:54:12 by liyu             ###   ########.fr       */
+/*   Updated: 2025/06/27 14:56:55 by lifan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	ft_draw_line(t_game *game, int x0, int y0, int x1, int y1, int color)
 	}
 }
 
-//! DEBUG function 
+//! DEBUG function
 void	ft_draw_ray_line(t_game *game)
 {
 	int	start_x;
@@ -79,4 +79,5 @@ int	ft_ray(t_game *game, t_player *player, double dir, int column)
 	distance = ft_cali_fisheye(game, player);
 	wall = ft_hit_wall(&game->ray);
 	ft_cast_wall(game, distance, column, wall);
+	return (0);
 }

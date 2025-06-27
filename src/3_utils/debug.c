@@ -6,7 +6,7 @@
 /*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/29 15:28:45 by lifan             #+#    #+#             */
-/*   Updated: 2025/06/25 14:19:51 by lifan            ###   ########.fr       */
+/*   Updated: 2025/06/27 14:38:00 by lifan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,8 @@ int	print_player(t_player *p)
 		return (printf("Player is NULL\n"), FAIL);
 	printf("=== PLAYER ===\n");
 	printf("Position: (%.2f, %.2f)\n", p->x, p->y);
-	printf("Direction: %c (dir_x: %d, dir_y: %d)\n", p->dir, p->dir_x, p->dir_y);
+	printf("Direction: %c ", p->dir);
 	printf("Color: 0x%X\n", p->color);
-	printf("Forward: %d, Turn: %d\n", p->forward, p->turn);
 	printf("\n");
 	return (0);
 }

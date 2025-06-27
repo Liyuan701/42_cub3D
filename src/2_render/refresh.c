@@ -33,7 +33,7 @@ int	ft_load_tex(t_game	*game)
 //* load one wall tex, and also get the following info.
 //* bpp: bits per pixel.
 //* size_line : nm of bytes in one row pixel.
-//* byte order, how to intepret the color datas. 
+//* byte order, how to intepret the color datas.
 
 int	load_texture(void *mlx_ptr, char *path, t_tex *tex)
 {
@@ -81,7 +81,7 @@ void	ft_render(t_game *game)
 
 //* each column, draw a ray to calculate wall.
 //* VOF = 60, begin with (player angle - 30 = the left).
-void	ft_refresh(void	*param)
+int	ft_refresh(void	*param)
 {
 	t_game	*game;
 	double	fraction;
@@ -94,8 +94,8 @@ void	ft_refresh(void	*param)
 	dir = game->player->angle - PI / 6;
 	move_player(game, game->player);
 	clear_image(game);
-	draw_map(game, game->map.size_mini, WALL, SPACE);
-	draw_player(game, game->map.size_mini, PLAYER);
+	draw_map(game, game->size_mini, WALL, SPACE);
+	draw_player(game, game->size_mini, PLAYER);
 	while (i < WIDTH)
 	{
 		ft_ray(game, game->player, dir, i);
@@ -103,5 +103,5 @@ void	ft_refresh(void	*param)
 		i++;
 	}
 	ft_render(game);
-	return ;
+	return (0);
 }
