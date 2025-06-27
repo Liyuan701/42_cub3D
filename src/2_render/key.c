@@ -6,7 +6,7 @@
 /*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 11:41:09 by lifan             #+#    #+#             */
-/*   Updated: 2025/06/25 14:38:13 by lifan            ###   ########.fr       */
+/*   Updated: 2025/06/27 17:47:10 by lifan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@
 //S --> 1
 int	ft_key_release(int keycode, t_game *game)
 {
-	if (keycode == 1)
+	if (keycode == KEY_S)
 		game->player->key_down = false;
-	else if (keycode == 13)
+	else if (keycode == KEY_W)
 		game->player->key_up = false;
-	else if (keycode == 2)
+	else if (keycode == KEY_D)
 		game->player->key_right = false;
-	else if (keycode == 0)
+	else if (keycode == KEY_A)
 		game->player->key_left = false;
 	// else if (keycode == KEY_Left)
 	//	 game->player->left_rotate = false;
@@ -35,13 +35,13 @@ int	ft_key_release(int keycode, t_game *game)
 
 int	ft_key_press(int keycode, t_game *game)
 {
-	if (keycode == 1)
+	if (keycode == KEY_S)
 		game->player->key_down = true;
-	else if (keycode == 13)
+	else if (keycode == KEY_W)
 		game->player->key_up = true;
-	else if (keycode == 2)
+	else if (keycode == KEY_D)
 		game->player->key_right = true;
-	else if (keycode == 0)
+	else if (keycode == KEY_A)
 		game->player->key_left = true;
 	// else if (keycode == KEY_Left)
 	//	 game->player->left_rotate = true;

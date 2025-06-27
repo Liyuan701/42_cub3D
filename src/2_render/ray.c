@@ -69,35 +69,35 @@ bool	ft_if_encounter(t_game *game)
 {
 	while (1)
 	{
-		printf("Before step update: map_x = %d, map_y = %d, side_x = %f, side_y = %f\n",
-			game->ray.map_x, game->ray.map_y, game->ray.side_x, game->ray.side_y);
+		/*printf("Before step update: map_x = %d, map_y = %d, side_x = %f, side_y = %f\n",
+			game->ray.map_x, game->ray.map_y, game->ray.side_x, game->ray.side_y);*/
 		if (game->ray.side_x < game->ray.side_y)
 		{
 			game->ray.side_x += game->ray.d_x;
 			game->ray.map_x += game->ray.step_x;
 			game->ray.hit_side = 0;
-			printf("Moved on X axis: step_x = %d, new map_x = %d\n",
-				game->ray.step_x, game->ray.map_x);
+			/*printf("Moved on X axis: step_x = %d, new map_x = %d\n",
+				game->ray.step_x, game->ray.map_x);*/
 		}
 		else
 		{
 			game->ray.side_y += game->ray.d_y;
 			game->ray.map_y += game->ray.step_y;
 			game->ray.hit_side = 1;
-			printf("Moved on Y axis: step_y = %d, new map_y = %d\n",
-				game->ray.step_y, game->ray.map_y);
+			/*printf("Moved on Y axis: step_y = %d, new map_y = %d\n",
+				game->ray.step_y, game->ray.map_y);*/
 		}
-		printf("====print the copy map=====\n");//!DEBUG
+		/*printf("====print the copy map=====\n");
 		print_map(game->cub->copy);
 		printf("====print the player=====\n");
 		printf("Player starts at x = %f, y = %f (grid x = %d, y = %d)\n",
 			game->player->x, game->player->y,(int)game->player->x, (int)game->player->y);
 		print_map(game->cub->copy);
-		printf("DEBUG: map_y = %d, map_x = %d\n", game->ray.map_y, game->ray.map_x);
+		printf("DEBUG: map_y = %d, map_x = %d\n", game->ray.map_y, game->ray.map_x);*/
 		if (game->ray.map_x < 0 || game->ray.map_x >= game->cub->width)
-			ft_error_close(game, "!!! x pass");
+			ft_error_close(game, "x depass the map");
 		if (game->ray.map_y < 0 || game->ray.map_y >= game->cub->height)
-			ft_error_close(game, "!!! y pass");
+			ft_error_close(game, "y depass the map");
 		if (game->cub->copy[game->ray.map_y][game->ray.map_x] == '1')
 			return (true);
 	}

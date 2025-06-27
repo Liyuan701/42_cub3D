@@ -6,7 +6,7 @@
 /*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 14:41:01 by lifan             #+#    #+#             */
-/*   Updated: 2025/06/27 14:49:12 by lifan            ###   ########.fr       */
+/*   Updated: 2025/06/27 17:40:00 by lifan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ void	set_map_size(t_game *game)
 		max_dim = game->cub->height;
 	game->size_block = WIDTH / max_dim;
 	game->size_mini = WIDTH / PROPORTIONAL / max_dim;
+	game->player->xp = game->player->x * game->size_mini;
+	game->player->yp = game->player->y * game->size_mini;
 }
 
 //copy map --> 0 or 1 or V
