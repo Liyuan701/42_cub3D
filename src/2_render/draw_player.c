@@ -6,7 +6,7 @@
 /*   By: yren <yren@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 14:36:42 by lifan             #+#    #+#             */
-/*   Updated: 2025/06/27 16:48:20 by yren             ###   ########.fr       */
+/*   Updated: 2025/06/27 17:34:29 by yren             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,8 @@ void	draw_player(t_game *game, int size, int color)
 	t_pixel	p;
 
 	p.game = game;
-	p.x = game->player->x;
-	p.y = game->player->y;
-	draw_square(&p, size, color);
-}
-
-void	draw_player_mini(t_game *game, int size, int color)
-{
-	t_pixel	p;
-
-	p.game = game;
-	p.x = game->player->x / game->size_block * game->size_mini;
-	p.y = game->player->y / game->size_block * game->size_mini;
+	p.x = game->player->xp;
+	p.y = game->player->yp;
 	draw_square(&p, size, color);
 }
 
