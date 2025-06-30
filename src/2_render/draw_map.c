@@ -6,7 +6,7 @@
 /*   By: yy <yy@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 14:41:01 by lifan             #+#    #+#             */
-/*   Updated: 2025/07/01 00:45:13 by yy               ###   ########.fr       */
+/*   Updated: 2025/07/01 00:56:22 by yy               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,6 @@ void	set_map_size(t_game *game)
 	game->size_mini_player = game->size_mini / 1.5;
 	game->player->xp = game->player->x * game->size_mini;
 	game->player->yp = game->player->y * game->size_mini;
-	// game->player->xpp = game->player->x * game->size_mini;
-	// game->player->ypp = game->player->y  * game->size_mini;
 }
 
 //copy map --> 0 or 1 or V

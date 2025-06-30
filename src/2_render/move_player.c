@@ -6,7 +6,7 @@
 /*   By: yy <yy@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 17:12:08 by lifan             #+#    #+#             */
-/*   Updated: 2025/07/01 00:45:22 by yy               ###   ########.fr       */
+/*   Updated: 2025/07/01 00:48:52 by yy               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ void	move_player_up(t_game *game, double new_x, double new_y)
 {
 	if (game->player->key_up == true)
 	{
-		new_x = game->player->xp - game->move.cos_angle;
-		new_y = game->player->yp + game->move.sin_angle;
+		new_x = game->player->xp - game->move.cos_angle * game->move.speed;
+		new_y = game->player->yp + game->move.sin_angle * game->move.speed;
 		// new_x = game->player->xp - game->move.sin_angle;
 		// new_y = game->player->yp - game->move.cos_angle;
 		if (is_wall(game, new_x, new_y) == false
@@ -33,8 +33,8 @@ void	move_player_down(t_game *game, double new_x, double new_y)
 {
 	if (game->player->key_down == true)
 	{
-		new_x = game->player->xp + game->move.cos_angle;
-		new_y = game->player->yp - game->move.sin_angle;
+		new_x = game->player->xp + game->move.cos_angle * game->move.speed;
+		new_y = game->player->yp - game->move.sin_angle * game->move.speed;
 		if (is_wall(game, new_x, new_y) == false
 			&& is_wall(game, new_x + game->move.size_player,
 				new_y + game->move.size_player) == false)
@@ -50,8 +50,8 @@ void	move_player_left(t_game *game, double new_x, double new_y)
 	if (game->player->key_left == true)
 	{
 
-		new_x = game->player->xp + game->move.sin_angle;
-		new_y = game->player->yp + game->move.cos_angle;
+		new_x = game->player->xp + game->move.sin_angle * game->move.speed;
+		new_y = game->player->yp + game->move.cos_angle * game->move.speed;
 		if (is_wall(game, new_x, new_y) == false
 			&& is_wall(game, new_x, new_y + game->move.size_player) == false)
 		{
@@ -65,8 +65,8 @@ void	move_player_right(t_game *game, double new_x, double new_y)
 {
 	if (game->player->key_right == true)
 	{
-		new_x = game->player->xp - game->move.sin_angle;
-		new_y = game->player->yp - game->move.cos_angle;
+		new_x = game->player->xp - game->move.sin_angle * game->move.speed;
+		new_y = game->player->yp - game->move.cos_angle * game->move.speed;
 
 		if (is_wall(game, new_x + game->move.size_player, new_y) == false
 			&& is_wall(game, new_x + game->move.size_player,
@@ -80,7 +80,7 @@ void	move_player_right(t_game *game, double new_x, double new_y)
 
 void	move_player(t_game *game, double size_square)
 {
-	// game->move.speed = 0.5;
+	game->move.speed = 0.5;
 	game->move.cos_angle = cos(game->player->angle);
 	game->move.sin_angle = sin(game->player->angle);
 	game->move.size_player = game->size_mini_player;
