@@ -6,7 +6,7 @@
 /*   By: yy <yy@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 17:12:08 by lifan             #+#    #+#             */
-/*   Updated: 2025/07/01 00:48:52 by yy               ###   ########.fr       */
+/*   Updated: 2025/07/01 01:01:18 by yy               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	move_player_right(t_game *game, double new_x, double new_y)
 
 void	move_player(t_game *game, double size_square)
 {
-	game->move.speed = 0.5;
+	game->move.speed = 0.2;
 	game->move.cos_angle = cos(game->player->angle);
 	game->move.sin_angle = sin(game->player->angle);
 	game->move.size_player = game->size_mini_player;
