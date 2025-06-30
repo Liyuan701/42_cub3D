@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
+/*   By: yy <yy@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 11:41:09 by lifan             #+#    #+#             */
-/*   Updated: 2025/06/27 17:47:10 by lifan            ###   ########.fr       */
+/*   Updated: 2025/06/30 20:56:31 by yy               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,14 @@
 //S --> 1
 int	ft_key_release(int keycode, t_game *game)
 {
-	if (keycode == KEY_S)
+	printf("ft_key_release----------> keycode: %d\n", keycode);
+	if (keycode == 1)
 		game->player->key_down = false;
-	else if (keycode == KEY_W)
+	else if (keycode == 13)
 		game->player->key_up = false;
-	else if (keycode == KEY_D)
+	else if (keycode == 2)
 		game->player->key_right = false;
-	else if (keycode == KEY_A)
+	else if (keycode == 0)
 		game->player->key_left = false;
 	// else if (keycode == KEY_Left)
 	//	 game->player->left_rotate = false;
@@ -35,13 +36,15 @@ int	ft_key_release(int keycode, t_game *game)
 
 int	ft_key_press(int keycode, t_game *game)
 {
-	if (keycode == KEY_S)
+	printf("ft_key_press----------> keycode: %d\n", keycode);
+
+	if (keycode == 1)
 		game->player->key_down = true;
-	else if (keycode == KEY_W)
+	else if (keycode == 13)
 		game->player->key_up = true;
-	else if (keycode == KEY_D)
+	else if (keycode == 2)
 		game->player->key_right = true;
-	else if (keycode == KEY_A)
+	else if (keycode == 0)
 		game->player->key_left = true;
 	// else if (keycode == KEY_Left)
 	//	 game->player->left_rotate = true;

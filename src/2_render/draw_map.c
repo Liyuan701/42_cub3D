@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
+/*   By: yy <yy@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 14:41:01 by lifan             #+#    #+#             */
-/*   Updated: 2025/06/27 17:40:00 by lifan            ###   ########.fr       */
+/*   Updated: 2025/07/01 00:45:13 by yy               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ bool	is_wall(t_game *game, int x, int y)
 	x = x / game->size_mini;
 	y = y / game->size_mini;
 	if (y < 0 || y >= game->cub->height || x < 0 || x >= game->cub->width)
-		return (true);
+		ft_error_close(game, "map index out");
 	if (game->cub->copy[y][x] == '0')
 		return (false);
 	return (true);
@@ -38,8 +38,11 @@ void	set_map_size(t_game *game)
 		max_dim = game->cub->height;
 	game->size_block = WIDTH / max_dim;
 	game->size_mini = WIDTH / PROPORTIONAL / max_dim;
+	game->size_mini_player = game->size_mini / 1.5;
 	game->player->xp = game->player->x * game->size_mini;
 	game->player->yp = game->player->y * game->size_mini;
+	// game->player->xpp = game->player->x * game->size_mini;
+	// game->player->ypp = game->player->y  * game->size_mini;
 }
 
 //copy map --> 0 or 1 or V

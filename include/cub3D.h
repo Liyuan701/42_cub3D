@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
+/*   By: yy <yy@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 14:42:55 by lifan             #+#    #+#             */
-/*   Updated: 2025/06/27 17:27:21 by lifan            ###   ########.fr       */
+/*   Updated: 2025/07/01 00:29:16 by yy               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ typedef struct s_player
 	double	y;
 	double	xp;
 	double	yp;
+	double	xpp;
+	double	ypp;
 	double	angle;
 	char	dir;
 	int		color;
@@ -158,9 +160,9 @@ typedef struct s_move
 	double	speed;
 	double	cos_angle;
 	double	sin_angle;
+	double	size_player;
 	double	new_x;
 	double	new_y;
-	double	size_player;
 }	t_move;
 
 //* Here I stcok all info of this game.
@@ -174,6 +176,7 @@ typedef struct s_game
 	int			size_line;
 	double		size_block;
 	double		size_mini;
+	double		size_mini_player;
 	t_track		*head;
 	t_cub		*cub;
 	t_tex		*tex;
@@ -222,6 +225,7 @@ int		ft_get_map(t_game *game);
 int		ft_find_start(t_game *game, char **text, int i);
 
 //init game
+void	ft_init_player(t_player *player);
 void	ft_init_game(t_game *game);
 
 //parse
@@ -247,7 +251,7 @@ void	draw_player(t_game *game, int size, int color);
 void	draw_player_mini(t_game *game, int size, int color);
 
 //move player
-void	move_player_up(t_game *game, double new_x, double new_y);
+void	move_player_up(t_game *game, double dx, double dy);
 void	move_player(t_game *game, double size_square);
 void	move_player_right(t_game *game, double new_x, double new_y);
 void	move_player_left(t_game *game, double new_x, double new_y);

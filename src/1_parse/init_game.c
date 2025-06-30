@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
+/*   By: yy <yy@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 11:44:28 by lifan             #+#    #+#             */
-/*   Updated: 2025/06/27 17:20:18 by lifan            ###   ########.fr       */
+/*   Updated: 2025/06/30 22:53:24 by yy               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 //* ft_memeset all to NUll and 0, but for color -1.
 #include "../include/cub3D.h"
 
-static	void	ft_init_player(t_player *player)
+void	ft_init_player(t_player *player)
 {
 	player->x = -1.0;
 	player->y = -1.0;

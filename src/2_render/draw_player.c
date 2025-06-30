@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yren <yren@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: yy <yy@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 14:36:42 by lifan             #+#    #+#             */
-/*   Updated: 2025/06/27 17:34:29 by yren             ###   ########.fr       */
+/*   Updated: 2025/07/01 00:16:34 by yy               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ void	draw_player(t_game *game, int size, int color)
 	draw_square(&p, size, color);
 }
 
-void	set_player_start_pos(t_game *game)
-{
-	if (game->player->x < 0 || game->player->y < 0)
-		ft_error_close(game, "Invalid player start position.");
-	game->player->x = game->player->x * game->size_block;
-	game->player->y = game->player->y * game->size_block;
-}
+// void	set_player_start_pos(t_game *game)
+// {
+// 	if (game->player->x < 0 || game->player->y < 0)
+// 		ft_error_close(game, "Invalid player start position.");
+// 	game->player->x = game->player->x * game->size_block;
+// 	game->player->y = game->player->y * game->size_block;
+// }
