@@ -6,7 +6,7 @@
 /*   By: yy <yy@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 14:42:55 by lifan             #+#    #+#             */
-/*   Updated: 2025/07/02 19:16:37 by yy               ###   ########.fr       */
+/*   Updated: 2025/07/02 19:29:35 by yy               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,7 +175,10 @@ typedef struct s_br
 	int dir_y;
 	int error;
 	int error2;
-
+	int x0;
+	int y0;
+	int x1;
+	int y1;
 }	t_br;
 
 //* Here I stcok all info of this game.
@@ -258,11 +261,9 @@ void	clear_image(t_game *game);
 void	draw_square(t_pixel *p, int size, int color);
 
 //draw player
-/*void	set_player_start_pos(t_game *game);
-void	set_player_angle(t_game *game);
-void	set_player(t_game *game);*/
+void	init_draw_line(t_game *game);
+void	draw_line(t_game *game);
 void	draw_player(t_game *game, int size, int color);
-void init_line(t_game *game, int x0, int y0, int x1, int y1);
 
 //move player
 void	move_player_up(t_game *game, double dx, double dy);
