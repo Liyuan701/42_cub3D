@@ -6,7 +6,7 @@
 /*   By: yy <yy@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 14:42:55 by lifan             #+#    #+#             */
-/*   Updated: 2025/07/02 19:29:35 by yy               ###   ########.fr       */
+/*   Updated: 2025/07/02 20:51:04 by yy               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,8 +162,8 @@ typedef struct s_move
 	double	cos_angle;
 	double	sin_angle;
 	double	size_player;
-	double	new_x;
-	double	new_y;
+	double	new_xp;
+	double	new_yp;
 }	t_move;
 
 //algorithm Bresenham
@@ -266,11 +266,10 @@ void	draw_line(t_game *game);
 void	draw_player(t_game *game, int size, int color);
 
 //move player
-void	move_player_up(t_game *game, double dx, double dy);
+void	move_init(t_game *game, double size_square);
+void	move_new_point(t_game *game);
+void	move_check(t_game *game);
 void	move_player(t_game *game, double size_square);
-void	move_player_right(t_game *game, double new_x, double new_y);
-void	move_player_left(t_game *game, double new_x, double new_y);
-void	move_player_down(t_game *game, double new_x, double new_y);
 
 //refresh
 void	ft_init_window(t_game *game);
