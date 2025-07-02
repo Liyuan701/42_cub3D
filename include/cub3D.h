@@ -6,7 +6,7 @@
 /*   By: yy <yy@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 14:42:55 by lifan             #+#    #+#             */
-/*   Updated: 2025/07/01 00:29:16 by yy               ###   ########.fr       */
+/*   Updated: 2025/07/02 19:16:37 by yy               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,8 @@ typedef struct s_player
 	bool	key_down;
 	bool	key_left;
 	bool	key_right;
-	// bool	left_rotate;
-	// bool	right_rotate;
+	bool	left_rotate;
+	bool	right_rotate;
 }	t_player;
 
 typedef struct s_tex
@@ -158,12 +158,25 @@ typedef struct s_wall
 typedef struct s_move
 {
 	double	speed;
+	double	angle_speed;
 	double	cos_angle;
 	double	sin_angle;
 	double	size_player;
 	double	new_x;
 	double	new_y;
 }	t_move;
+
+//algorithm Bresenham
+typedef struct s_br
+{
+	int distance_x;
+	int distance_y;
+	int dir_x;
+	int dir_y;
+	int error;
+	int error2;
+
+}	t_br;
 
 //* Here I stcok all info of this game.
 typedef struct s_game
@@ -189,6 +202,7 @@ typedef struct s_game
 	t_ray		ray;
 	t_wall		wall;
 	t_move		move;
+	t_br		br;
 }	t_game;
 
 typedef struct s_pixel
@@ -248,7 +262,7 @@ void	draw_square(t_pixel *p, int size, int color);
 void	set_player_angle(t_game *game);
 void	set_player(t_game *game);*/
 void	draw_player(t_game *game, int size, int color);
-void	draw_player_mini(t_game *game, int size, int color);
+void init_line(t_game *game, int x0, int y0, int x1, int y1);
 
 //move player
 void	move_player_up(t_game *game, double dx, double dy);

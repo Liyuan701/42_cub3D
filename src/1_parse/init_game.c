@@ -6,7 +6,7 @@
 /*   By: yy <yy@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 11:44:28 by lifan             #+#    #+#             */
-/*   Updated: 2025/06/30 22:53:24 by yy               ###   ########.fr       */
+/*   Updated: 2025/07/02 17:40:10 by yy               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	ft_init_player(t_player *player)
 	player->key_down = false;
 	player->key_right = false;
 	player->key_left = false;
-	// player->left_rotate = false;
-	// player->right_rotate = false;
+	player->left_rotate = false;
+	player->right_rotate = false;
 	//! init player
 }
 
