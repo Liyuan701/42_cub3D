@@ -23,25 +23,25 @@ static void	ft_side_ray(t_game *game)
 	{
 		game->ray.step_x = -1;
 		game->ray.side_x = (game->ray.ray_x \
-			- game->ray.map_x * game->size_mini) * game->ray.d_x;
+			- game->ray.map_x * game->size_block) * game->ray.d_x;
 	}
 	else
 	{
 		game->ray.step_x = 1;
 		game->ray.side_x = ((game->ray.map_x \
-			+ 1) * game->size_mini - game->ray.ray_x) * game->ray.d_x;
+			+ 1) * game->size_block - game->ray.ray_x) * game->ray.d_x;
 	}
 	if (game->ray.vector_y < 0)
 	{
 		game->ray.step_y = -1;
 		game->ray.side_y = (game->ray.ray_y \
-			- game->ray.map_y * game->size_mini) * game->ray.d_y;
+			- game->ray.map_y * game->block) * game->ray.d_y;
 	}
 	else
 	{
 		game->ray.step_y = 1;
 		game->ray.side_y = ((game->ray.map_y \
-		+ 1) * game->size_mini - game->ray.ray_y) * game->ray.d_y;
+		+ 1) * game->block - game->ray.ray_y) * game->ray.d_y;
 	}
 }
 
@@ -53,10 +53,10 @@ void	ft_init_ray(t_game *game, double dir)
 	game->ray.vector_y = sin(dir);
 	game->ray.ray_x = game->player->xp;
 	game->ray.ray_y = game->player->yp;
-	game->ray.map_x = (int)(game->ray.ray_x / game->size_mini);
-	game->ray.map_y = (int)(game->ray.ray_y / game->size_mini);
-	game->ray.d_x = fabs(game->size_mini / game->ray.vector_x);
-	game->ray.d_y = fabs(game->size_mini / game->ray.vector_y);
+	game->ray.map_x = (int)(game->ray.ray_x / game->size_block);
+	game->ray.map_y = (int)(game->ray.ray_y / game->size_block;
+	game->ray.d_x = fabs(game->size_block / game->ray.vector_x);
+	game->ray.d_y = fabs(game->size_block / game->ray.vector_y);
 	ft_side_ray(game);
 }
 
@@ -113,12 +113,12 @@ double	ft_distance(t_game *game)
 	double	dy;
 
 	if (game->ray.hit_side == 0)
-		hit_x = game->ray.map_x * game->size_mini;
+		hit_x = game->ray.map_x * game->size_block;
 	else
 		hit_x = game->ray.ray_x \
 		+ (game->ray.side_x - game->ray.d_x) * game->ray.vector_x;
 	if (game->ray.hit_side == 1)
-		hit_y = game->ray.map_y * game->size_mini;
+		hit_y = game->ray.map_y * game->size_block;
 	else
 		hit_y = game->ray.ray_y \
 		+ (game->ray.side_y - game->ray.d_y) * game->ray.vector_y;

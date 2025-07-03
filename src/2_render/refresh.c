@@ -72,7 +72,6 @@ void	ft_init_window(t_game *game)
 			&game->tex->bpp, &game->tex->size_line, &game->tex->endian);
 	ft_load_tex(game);
 }
-
 //* put buffer in windows.
 void	ft_render(t_game *game)
 {

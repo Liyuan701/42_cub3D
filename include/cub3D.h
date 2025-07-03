@@ -37,6 +37,7 @@
 //#################### SET  ########################################
 # define WIDTH		640
 # define HEIGHT		480
+# define BLOCK		64
 
 # define PI		3.14159265358979323846
 
@@ -275,6 +276,10 @@ int		get_tex_color(t_tex *tex, int x, int y);
 int		calculate_tex_x(t_game *game, t_tex *tex, double dist);
 void	ft_select_wall(t_game *game, char side, t_wall *wall);
 char	ft_hit_wall(t_ray *ray);
+void	ft_draw_floor(t_game *game, int	y, int column);
+void	ft_def_wall(t_wall *wall,t_game *game, double distance, int dis_plane);
+
+//distance
 
 bool	ft_if_encounter(t_game *game);
 double	ft_distance(t_game *game);

@@ -26,7 +26,8 @@ PARSE_SRC   = \
 RENDER_SRC  = 2_render/refresh.c\
 		2_render/ray.c\
 		2_render/key.c\
-		2_render/cast.c\
+		2_render/cast_wall.c\
+		2_render/def_wall.c\
 		2_render/draw_ray.c\
 		2_render/draw_map.c\
 		2_render/draw_pixel.c\

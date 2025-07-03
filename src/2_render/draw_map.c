@@ -36,7 +36,10 @@ void	set_map_size(t_game *game)
 		max_dim = game->cub->width;
 	else
 		max_dim = game->cub->height;
-	game->size_block = WIDTH / max_dim;
+	if (WIDTH / game->cub->width < 64)
+		game->size_block = WIDTH / game->cub->width;
+	else 
+		game->size_block = 64;
 	game->size_mini = WIDTH / PROPORTIONAL / max_dim;
 	game->size_mini_player = game->size_mini / 1.5;
 	game->player->xp = game->player->x * game->size_mini;

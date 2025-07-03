@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cast.c                                             :+:      :+:    :+:   */
+/*   def_wall.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/16 22:34:42 by liyu              #+#    #+#             */
-/*   Updated: 2025/06/27 14:48:35 by lifan            ###   ########.fr       */
+/*   Created: 2025/07/03 07:08:48 by marvin            #+#    #+#             */
+/*   Updated: 2025/07/03 07:08:48 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,23 @@
 
 //* hit_side == 0 means vertical side, W or E.
 //* hit_side == 1 means horizontal side, N or S.
-//* step_x > 0  , ray to the right, E.
-//* step_y > 0, ray downwards, S.
+//* step_x > 0  , ray to the right, E， the seen block, W.
+//* step_y > 0, ray downwards, S, the seen block N.
 char	ft_hit_wall(t_ray *ray)
 {
 	if (ray->hit_side == 0)
 	{
 		if (ray->step_x > 0)
-			return ('E');
-		else
 			return ('W');
+		else
+			return ('E');
 	}
 	else
 	{
 		if (ray->step_y > 0)
-			return ('S');
-		else
 			return ('N');
+		else
+			return ('S');
 	}
 }
 
@@ -85,19 +85,9 @@ int	get_tex_color(t_tex *tex, int x, int y)
 //* it's the top of Height or to make the wall in the middle of the Height.
 //* pixel coor need to be int.
 //* chose the column in the tex: calculate_tex_x.
-//* for the chosen column, get each pixel color from top to bottom.
-//* dis_plane is the middle pendicule distance.
-void	ft_cast_wall(t_game *game, double distance, int column, char side)
+void	ft_def_wall(t_wall *wall,t_game *game, double distance, int dis_plane)
 {
-	t_wall	*wall;
-	int		y;
-	int		dis_plane;
-
-	wall = &game->wall;
-	ft_memset(wall, 0, sizeof(t_wall));
-	ft_select_wall(game, side, wall);
-	dis_plane = (WIDTH / 2) / tan(PI / 3 / 2);
-	wall->wall_height = (int)((game->size_block / distance) * dis_plane);
+	wall->wall_height = (int)(game->size_block / distance) * dis_plane);
 	wall->start_y = (HEIGHT - wall->wall_height) / 2;
 	if (wall->start_y < 0)
 		wall->start_y = 0;
@@ -105,13 +95,4 @@ void	ft_cast_wall(t_game *game, double distance, int column, char side)
 	if (wall->end_y > HEIGHT)
 		wall->end_y = HEIGHT;
 	wall->tex_x = calculate_tex_x(game, wall->tex, distance);
-	y = wall->start_y;
-	while (y < wall->end_y)
-	{
-		wall->tex_y = (y - wall->start_y) \
-		* wall->tex->height / wall->wall_height;
-		wall->color = get_tex_color(wall->tex, wall->tex_x, wall->tex_y);
-		put_pixel(game, column, y, wall->color);
-		y++;
-	}
 }
