@@ -88,7 +88,7 @@ int	get_tex_color(t_tex *tex, int x, int y)
 void	ft_def_wall(t_wall *wall,t_game *game, double distance, int dis_plane)
 {
 	wall->wall_height = (int)(game->size_block / distance) * dis_plane);
-	wall->start_y = (HEIGHT - wall->wall_height) / 2;
+	wall->start_y = HEIGHT - wall->wall_height;
 	if (wall->start_y < 0)
 		wall->start_y = 0;
 	wall->end_y = wall->start_y + wall->wall_height;
