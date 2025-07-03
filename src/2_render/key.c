@@ -6,7 +6,7 @@
 /*   By: yy <yy@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 11:41:09 by lifan             #+#    #+#             */
-/*   Updated: 2025/06/30 20:56:31 by yy               ###   ########.fr       */
+/*   Updated: 2025/07/02 17:43:03 by yy               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,11 @@
 //D --> 2
 //W --> 13
 //S --> 1
+//left --> 123
+//right --> 124
+//esc --> 53
 int	ft_key_release(int keycode, t_game *game)
 {
-	printf("ft_key_release----------> keycode: %d\n", keycode);
 	if (keycode == 1)
 		game->player->key_down = false;
 	else if (keycode == 13)
@@ -27,17 +29,15 @@ int	ft_key_release(int keycode, t_game *game)
 		game->player->key_right = false;
 	else if (keycode == 0)
 		game->player->key_left = false;
-	// else if (keycode == KEY_Left)
-	//	 game->player->left_rotate = false;
-	// else if (keycode == KEY_Right)
-	//	 game->player->right_rotate = false;
+	else if (keycode == 123)
+		 game->player->left_rotate = false;
+	else if (keycode == 124)
+		 game->player->right_rotate = false;
 	return (0);
 }
 
 int	ft_key_press(int keycode, t_game *game)
 {
-	printf("ft_key_press----------> keycode: %d\n", keycode);
-
 	if (keycode == 1)
 		game->player->key_down = true;
 	else if (keycode == 13)
@@ -46,11 +46,11 @@ int	ft_key_press(int keycode, t_game *game)
 		game->player->key_right = true;
 	else if (keycode == 0)
 		game->player->key_left = true;
-	// else if (keycode == KEY_Left)
-	//	 game->player->left_rotate = true;
-	// else if (keycode == KEY_Right)
-	//	 game->player->right_rotate = true;
-	else if (keycode == ESC)
+	else if (keycode == 123)
+		 game->player->left_rotate = true;
+	else if (keycode == 124)
+		 game->player->right_rotate = true;
+	else if (keycode == 53)
 	{
 		ft_clean(game);
 		exit(0);
