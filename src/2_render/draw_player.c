@@ -25,7 +25,7 @@ void	draw_player(t_game *game, int size, int color)
     game->br.x1 = game->br.x0 - cos(game->player->angle) * size;
     game->br.y1 = game->br.y0 + sin(game->player->angle) * size;
     init_draw_line(game);
-	draw_line(game);
+	draw_line(game, 0xF08080);
 }
 
 void init_draw_line(t_game *game)
@@ -45,11 +45,11 @@ void init_draw_line(t_game *game)
 		game->br.dir_y = -1;
 }
 
-void draw_line(t_game *game)
+void draw_line(t_game *game, unsigned int color)
 {
 	while(1)
 	{
-		put_pixel(game, game->br.x0, game->br.y0, 0xF08080);
+		put_pixel(game, game->br.x0, game->br.y0, color);
 		if (game->br.x0 == game->br.x1 && game->br.y0 == game->br.y1)
 			break;
 		game->br.error2 = 2 * game->br.error;

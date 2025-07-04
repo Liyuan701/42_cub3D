@@ -263,7 +263,7 @@ void	draw_square(t_pixel *p, int size, int color);
 
 //draw player
 void	init_draw_line(t_game *game);
-void	draw_line(t_game *game);
+void	draw_line(t_game *game, unsigned int color);
 void	draw_player(t_game *game, int size, int color);
 
 //move player
@@ -303,7 +303,6 @@ double	ft_cali_fisheye(t_game *game, t_player *player);
 void	ft_init_ray(t_game *game, double angle);
 int		ft_ray(t_game *game, t_player *player, double dir, int column);
 void	ft_draw_ray_line(t_game *game);
-void	ft_draw_line(t_game *game, int x0, int y0, int x1, int y1, int color);
 
 //##################### UTILS ######################################
 //config util

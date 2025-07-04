@@ -21,16 +21,16 @@ char	ft_hit_wall(t_ray *ray)
 	if (ray->hit_side == 0)
 	{
 		if (ray->step_x > 0)
-			return ('W');
-		else
 			return ('E');
+		else
+			return ('W');
 	}
 	else
 	{
 		if (ray->step_y > 0)
-			return ('N');
-		else
 			return ('S');
+		else
+			return ('N');
 	}
 }
 
@@ -87,8 +87,8 @@ int	get_tex_color(t_tex *tex, int x, int y)
 //* chose the column in the tex: calculate_tex_x.
 void	ft_def_wall(t_wall *wall,t_game *game, double distance, int dis_plane)
 {
-	wall->wall_height = (int)(game->size_block / distance) * dis_plane);
-	wall->start_y = HEIGHT - wall->wall_height;
+	wall->wall_height = (int)((game->size_block / distance) * dis_plane);
+	wall->start_y = (HEIGHT / 2) - (wall->wall_height / 2);
 	if (wall->start_y < 0)
 		wall->start_y = 0;
 	wall->end_y = wall->start_y + wall->wall_height;
