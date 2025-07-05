@@ -35,13 +35,13 @@ static void	ft_side_ray(t_game *game)
 	{
 		game->ray.step_y = -1;
 		game->ray.side_y = (game->ray.ray_y \
-			- game->ray.map_y * game->block) * game->ray.d_y;
+			- game->ray.map_y * game->size_block) * game->ray.d_y;
 	}
 	else
 	{
 		game->ray.step_y = 1;
 		game->ray.side_y = ((game->ray.map_y \
-		+ 1) * game->block - game->ray.ray_y) * game->ray.d_y;
+		+ 1) * game->size_block - game->ray.ray_y) * game->ray.d_y;
 	}
 }
 
@@ -54,7 +54,7 @@ void	ft_init_ray(t_game *game, double dir)
 	game->ray.ray_x = game->player->xp;
 	game->ray.ray_y = game->player->yp;
 	game->ray.map_x = (int)(game->ray.ray_x / game->size_block);
-	game->ray.map_y = (int)(game->ray.ray_y / game->size_block;
+	game->ray.map_y = (int)(game->ray.ray_y / game->size_block);
 	game->ray.d_x = fabs(game->size_block / game->ray.vector_x);
 	game->ray.d_y = fabs(game->size_block / game->ray.vector_y);
 	ft_side_ray(game);
