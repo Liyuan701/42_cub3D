@@ -6,7 +6,7 @@
 /*   By: yy <yy@student.42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 14:36:42 by lifan             #+#    #+#             */
-/*   Updated: 2025/07/02 19:31:46 by yy               ###   ########.fr       */
+/*   Updated: 2025/07/06 00:01:00 by yy               ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	draw_player(t_game *game, int size, int color)
 	p.y = game->player->yp;
 	draw_square(&p, size, color);
 	game->br.x0 = p.x + size/2;
-    game->br.y0 = p.y;
+    game->br.y0 = p.y + size/2;
     game->br.x1 = game->br.x0 - cos(game->player->angle) * size;
     game->br.y1 = game->br.y0 + sin(game->player->angle) * size;
     init_draw_line(game);
