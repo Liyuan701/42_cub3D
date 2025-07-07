@@ -6,7 +6,7 @@
 /*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 17:12:08 by lifan             #+#    #+#             */
-/*   Updated: 2025/07/07 15:08:44 by lifan            ###   ########.fr       */
+/*   Updated: 2025/07/07 17:01:43 by lifan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,23 +29,23 @@ void	move_new_point(t_game *game)
 {
 	if (game->player->key_up == true)
 	{
-		game->move.new_xp = game->player->xp - game->move.cos_angle * game->move.speed;
-		game->move.new_yp = game->player->yp + game->move.sin_angle * game->move.speed;
+		game->move.new_xp = game->player->m_xp - game->move.cos_angle * game->move.speed;
+		game->move.new_yp = game->player->m_yp + game->move.sin_angle * game->move.speed;
 	}
 	if (game->player->key_down == true)
 	{
-		game->move.new_xp = game->player->xp + game->move.cos_angle * game->move.speed;
-		game->move.new_yp = game->player->yp - game->move.sin_angle * game->move.speed;
+		game->move.new_xp = game->player->m_xp + game->move.cos_angle * game->move.speed;
+		game->move.new_yp = game->player->m_yp - game->move.sin_angle * game->move.speed;
 	}
 	if (game->player->key_left == true)
 	{
-		game->move.new_xp = game->player->xp + game->move.sin_angle * game->move.speed;
-		game->move.new_yp = game->player->yp + game->move.cos_angle * game->move.speed;
+		game->move.new_xp = game->player->m_xp + game->move.sin_angle * game->move.speed;
+		game->move.new_yp = game->player->m_yp + game->move.cos_angle * game->move.speed;
 	}
 	if (game->player->key_right == true)
 	{
-		game->move.new_xp = game->player->xp - game->move.sin_angle * game->move.speed;
-		game->move.new_yp = game->player->yp - game->move.cos_angle * game->move.speed;
+		game->move.new_xp = game->player->m_xp - game->move.sin_angle * game->move.speed;
+		game->move.new_yp = game->player->m_yp - game->move.cos_angle * game->move.speed;
 	}
 }
 
@@ -59,8 +59,8 @@ void	move_check(t_game *game)
 	double	new_xp;
 	double	new_yp;
 
-	old_xp = game->player->xp;
-	old_yp = game->player->yp;
+	old_xp = game->player->m_xp;
+	old_yp = game->player->m_yp;
 	new_xp = game->move.new_xp;
 	new_yp = game->move.new_yp;
 	if (is_wall(game, new_xp, old_yp) == false
@@ -68,14 +68,14 @@ void	move_check(t_game *game)
 		&& is_wall(game, new_xp, old_yp + game->move.size_player) == false
 		&& is_wall(game, new_xp + game->move.size_player, old_yp + game->move.size_player) == false)
 	{
-		game->player->xp = new_xp;
+		game->player->m_xp = new_xp;
 	}
 	if (is_wall(game, old_xp, new_yp) == false
 		&& is_wall(game, old_xp + game->move.size_player, new_yp) == false
 		&& is_wall(game, old_xp, new_yp + game->move.size_player) == false
 		&& is_wall(game, old_xp + game->move.size_player, new_yp + game->move.size_player) == false)
 	{
-		game->player->yp = new_yp;
+		game->player->m_yp = new_yp;
 	}
 }
 

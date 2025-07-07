@@ -125,7 +125,7 @@ debug-v1:
 		valgrind --leak-check=full --track-origins=yes ./cub3D asset/map/v_simple.cub
 
 debug-v2:
-		valgrind --leak-check=full --track-origins=yes ./cub3D asset/map/v_irregular.cub
+		./cub3D asset/map/v_irregular.cub
 
 re:	fclean all
 

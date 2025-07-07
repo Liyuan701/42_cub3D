@@ -53,14 +53,12 @@ void	ft_init_ray(t_game *game, double dir)
 {
 	game->ray.vector_x = cos(dir);
 	game->ray.vector_y = sin(dir);
-	game->ray.pl_x = -1;
-	game->ray.pl_y = -1;
 	game->ray.hit_x = -1;
 	game->ray.hit_y = -1;
-	game->ray.ray_x = game->player->xp;
-	game->ray.ray_y = game->player->yp;
-	game->ray.map_x = (int)(game->ray.ray_x / game->size_block);
-	game->ray.map_y = (int)(game->ray.ray_y / game->size_block);
+	game->ray.ray_x = game->player->m_xp;
+	game->ray.ray_y = game->player->m_yp;
+	game->player->b_xp = game->player->m_xp * game->size_block / game->size_mini;
+	game->player->b_yp = game->player->m_yp * game->size_block / game->size_mini;
 	game->ray.d_x = fabs(game->size_block / game->ray.vector_x);
 	game->ray.d_y = fabs(game->size_block / game->ray.vector_y);
 	ft_side_ray(game);
@@ -75,31 +73,21 @@ bool	ft_if_encounter(t_game *game)
 {
 	while (1)
 	{
-		/*printf("Before step update: map_x = %d, map_y = %d, side_x = %f, side_y = %f\n",
-			game->ray.map_x, game->ray.map_y, game->ray.side_x, game->ray.side_y);*/
+		printf("The start point: x = %d, y = %d\n", game->player->init_x, game->player->init_y);
+		printf("The start point: map_x = %d, map_y = %d, side_x = %f, side_y = %f\n",
+			game->ray.map_x, game->ray.map_y, game->ray.side_x, game->ray.side_y);
 		if (game->ray.side_x < game->ray.side_y)
 		{
 			game->ray.side_x += game->ray.d_x;
 			game->ray.map_x += game->ray.step_x;
 			game->ray.hit_side = 0;
-			/*printf("Moved on X axis: step_x = %d, new map_x = %d\n",
-				game->ray.step_x, game->ray.map_x);*/
 		}
 		else
 		{
 			game->ray.side_y += game->ray.d_y;
 			game->ray.map_y += game->ray.step_y;
 			game->ray.hit_side = 1;
-			/*printf("Moved on Y axis: step_y = %d, new map_y = %d\n",
-				game->ray.step_y, game->ray.map_y);*/
 		}
-		/*printf("====print the copy map=====\n");
-		print_map(game->cub->copy);
-		printf("====print the player=====\n");
-		printf("Player starts at x = %f, y = %f (grid x = %d, y = %d)\n",
-			game->player->x, game->player->y,(int)game->player->x, (int)game->player->y);
-		print_map(game->cub->copy);
-		printf("DEBUG: map_y = %d, map_x = %d\n", game->ray.map_y, game->ray.map_x);*/
 		if (game->ray.map_x < 0 || game->ray.map_x >= game->cub->width)
 			ft_error_close(game, "x depass the map");
 		if (game->ray.map_y < 0 || game->ray.map_y >= game->cub->height)
@@ -128,8 +116,8 @@ double	ft_distance(t_game *game)
 		+ (game->ray.side_y - game->ray.d_y) * game->ray.vector_y;
 	if (game->ray.hit_x != -1 && game->ray.hit_y != -1)
 	{
-		dx = game->ray.hit_x - game->player->x;
-		dy = game->ray.hit_y - game->player->y;
+		dx = game->ray.hit_x - game->player->b_xp;
+		dy = game->ray.hit_y - game->player->b_yp;
 		return (sqrt(dx * dx + dy * dy));
 	}
 	return (ft_error_close(game, "error in hit wall"), 0.0);

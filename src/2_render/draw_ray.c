@@ -6,7 +6,7 @@
 /*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 13:56:56 by lifan             #+#    #+#             */
-/*   Updated: 2025/07/07 15:13:02 by lifan            ###   ########.fr       */
+/*   Updated: 2025/07/07 15:58:17 by lifan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,8 @@
 //* draw the line from (x0, y0) to (x1, y1)
 void	ft_draw_ray_line(t_game *game)
 {
-	game->br.x0 = game->ray.pl_x + game->size_mini_player / 2;
-	game->br.y0 = game->ray.pl_x + game->size_mini_player / 2;
 	game->br.x1 = (int)(game->ray.hit_x * game->size_mini / game->size_block);
 	game->br.y1 = (int)(game->ray.hit_y * game->size_mini / game->size_block);
-	printf("x0: %d, y0: %d, x1: %d, y1: %d\n", game->br.x0, game->br.y0, game->br.x1, game->br.y1); //! DEBUG
 	init_draw_line(game);
 	draw_line(game, RAY);
 }
@@ -38,6 +35,8 @@ int	ft_ray(t_game *game, t_player *player, double dir, int column)
 	distance = ft_cali_fisheye(game, player);
 	wall = ft_hit_wall(&game->ray);
 	ft_cast_wall(game, distance, column, wall);
+	draw_map(game, game->size_mini, WALL, SPACE);
+	draw_player(game, game->size_mini_player, PLAYER);
 	ft_draw_ray_line(game);
 	return (0);
 }

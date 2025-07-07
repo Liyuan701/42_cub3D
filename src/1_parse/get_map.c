@@ -89,8 +89,6 @@ static	void	ft_copy_map(t_game *game)
 	game->cub->copy[i] = NULL;
 	ft_no_others(game, game->cub->copy);
 	ft_flood_map(game, game->cub->copy);
-	/*printf("====print the copy map=====\n");//!DEBUG
-	print_map(game->cub->copy);//!DEBUG*/
 }
 
 //* we creat the map from the text.
@@ -118,8 +116,6 @@ int	ft_get_map(t_game *game)
 		i++;
 	}
 	game->cub->map[i] = NULL;
-	/*printf("====print the first map=====\n");//!DEBUG
-	print_map(game->cub->map);//!DEBUG*/
 	ft_copy_map(game);
 	return (0);
 }

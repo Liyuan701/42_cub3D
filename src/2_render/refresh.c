@@ -99,9 +99,8 @@ int	ft_refresh(void	*param)
 		ft_ray(game, game->player, dir, i);
 		dir += fraction;
 		i++;
+		printf("the fraction dir is %f\n", dir);
 	}
-	draw_map(game, game->size_mini, WALL, SPACE);
-	draw_player(game, game->size_mini_player, PLAYER);
 	ft_render(game);
 	return (0);
 }

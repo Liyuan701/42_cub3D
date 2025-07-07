@@ -6,7 +6,7 @@
 /*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 17:29:12 by lifan             #+#    #+#             */
-/*   Updated: 2025/06/27 17:48:24 by lifan            ###   ########.fr       */
+/*   Updated: 2025/07/07 16:38:00 by lifan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,14 @@ static	void	ft_check_wall(t_game *game, char **map, int y, int x)
 //* take the east as start of the circle, ESWN, clock.
 static	void	ft_set_player(t_game *game, char c, int y, int x)
 {
-	if (game->player->dir || game->player->x != -1.0 || game->player->y != -1.0)
+	if (game->player->dir || game->player->init_x != -1 \
+		|| game->player->init_y != -1)
 		ft_error_close(game, "There are more than one player position.");
 	else
 	{
-		game->player->x = x;
-		game->player->y = y;
-		if (game->player->x < 0 || game->player -> y < 0)
+		game->player->init_x = x;
+		game->player->init_y = y;
+		if (game->player->init_x < 0 || game->player ->init_y < 0)
 			ft_error_close(game, "No valide player.");
 		game->player->dir = c;
 		if (c == 'E')
@@ -81,7 +82,7 @@ int	ft_check_map(t_game *game, char **map)
 		}
 		y++;
 	}
-	if (game->player->x == -1 || game->player->y == -1 \
+	if (game->player->init_x == -1 || game->player->init_y == -1 \
 		|| game->player->dir == '\0')
 		return (ft_error("Can't set the player's position."), FAIL);
 	return (0);

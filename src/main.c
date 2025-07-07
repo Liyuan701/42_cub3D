@@ -6,7 +6,7 @@
 /*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 11:41:32 by lifan             #+#    #+#             */
-/*   Updated: 2025/07/07 14:20:06 by lifan            ###   ########.fr       */
+/*   Updated: 2025/07/07 15:41:22 by lifan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ int	main(int ac, char **av)
 	mlx_hook(game.win_ptr, 3, (1L << 1), ft_key_release, &game);
 	mlx_loop_hook(game.mlx_ptr, ft_refresh, &game);
 	mlx_loop(game.mlx_ptr);
-	//ft_debug_parse(&game);
 	ft_clean(&game);
 	return (0);
 }

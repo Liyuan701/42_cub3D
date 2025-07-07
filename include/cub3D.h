@@ -6,7 +6,7 @@
 /*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 14:42:55 by lifan             #+#    #+#             */
-/*   Updated: 2025/07/07 14:59:41 by lifan            ###   ########.fr       */
+/*   Updated: 2025/07/07 17:07:52 by lifan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,14 +63,16 @@ typedef struct s_track
 	struct s_track	*next;
 }	t_track;
 
+//* the init_x / init_y is the x, y we get from the map.
+//* the xp and yp is the pixel with x,y * size_mini.
 typedef struct s_player
 {
-	double	x;
-	double	y;
-	double	xp;
-	double	yp;
-	double	xpp;
-	double	ypp;
+	int		init_x;
+	int		init_y;
+	double	m_xp;
+	double	m_yp;
+	double	b_xp;
+	double	b_yp;
 	double	angle;
 	char	dir;
 	int		color;
@@ -129,8 +131,6 @@ typedef struct s_ray
 {
 	double	hit_x;
 	double	hit_y;
-	double	pl_x;
-	double	pl_y;
 	double	vector_x;
 	double	vector_y;
 	double	ray_x;
@@ -193,6 +193,7 @@ typedef struct s_game
 	int			width;
 	int			height;
 	int			size_line;
+	double		ratio;
 	double		size_block;
 	double		size_mini;
 	double		size_mini_player;

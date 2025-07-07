@@ -6,7 +6,7 @@
 /*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 14:41:01 by lifan             #+#    #+#             */
-/*   Updated: 2025/07/07 14:32:47 by lifan            ###   ########.fr       */
+/*   Updated: 2025/07/07 17:07:31 by lifan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	set_map_size(t_game *game)
 	int	max_dim;
 
 	if (game->cub->width <= 0 || game->cub->height <= 0)
-		printf("width:%d, height: %d\n", game->cub->width, game->cub->height);
+		ft_error_close(game, "error: map is not correct, the width/heigh <= 0");
 	if (game->cub->width > game->cub->height)
 		max_dim = game->cub->width;
 	else
@@ -42,8 +42,11 @@ void	set_map_size(t_game *game)
 		game->size_block = 64;
 	game->size_mini = WIDTH / PROPORTIONAL / max_dim;
 	game->size_mini_player = game->size_mini / 1.5;
-	game->player->xp = game->player->x * game->size_mini;
-	game->player->yp = game->player->y * game->size_mini;
+	game->player->m_xp = game->player->init_x * game->size_mini;
+	game->player->m_yp = game->player->init_y * game->size_mini;
+	game->player->b_xp = game->player->init_x * game->size_block;
+	game->player->b_xp = game->player->init_x * game->size_block;
+	game->ratio = game->size_block / game->size_mini;
 }
 
 //copy map --> 0 or 1 or V

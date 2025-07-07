@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yren <yren@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 11:44:28 by lifan             #+#    #+#             */
-/*   Updated: 2025/07/07 14:07:32 by yren             ###   ########.fr       */
+/*   Updated: 2025/07/07 17:16:06 by lifan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,12 @@
 
 void	ft_init_player(t_player *player)
 {
-	player->x = -1.0;
-	player->y = -1.0;
-	player->xp = 0;
-	player->yp = 0;
+	player->init_x = -1;
+	player->init_y = -1;
+	player->m_xp = 0;
+	player->m_yp = 0;
+	player->b_xp = 0;
+	player->b_yp = 0;
 	player->dir = '\0';
 	player->color = -1;
 	player->key_up = false;
@@ -61,6 +63,11 @@ void	ft_init_game(t_game *game)
 	game->status = PARSE;
 	game->height = HEIGHT;
 	game->width = WIDTH;
+	game->size_line = 0;
+	game->ratio = -1.0;
+	game->size_block = 0.0;
+	game->size_mini = 0.0;
+	game->size_mini_player = 0.0;
 	ft_init_config(game);
 	game->cub = ft_mylloc(game, sizeof(t_cub));
 	if (!game->cub)
