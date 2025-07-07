@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yren <yren@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 14:42:55 by lifan             #+#    #+#             */
-/*   Updated: 2025/07/07 14:06:11 by yren             ###   ########.fr       */
+/*   Updated: 2025/07/07 14:59:41 by lifan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@
 # include "../lib/minilibx-linux/mlx.h"
 
 //####################  KEYS #####################################
-# define KEY_A 0x0061
-# define KEY_W 0x0077
-# define KEY_S 0x0073
-# define KEY_D 0x0064
+# define KEY_A 97
+# define KEY_W 119
+# define KEY_S 115
+# define KEY_D 100
 # define ESC 0x00ff1b
-# define LEFT 0x00ff51
-# define RIGHT 0x00ff53
+# define LEFT 65361
+# define RIGHT 65363
 
 //#################### SET  ########################################
 # define WIDTH		640
@@ -44,7 +44,7 @@
 # define PARSE	101
 # define GAME	102
 
-# define RAY 0xC8A0FF
+# define RAY 0x0000FF
 # define WALL 0xFFF0F5
 # define SPACE 0xFFC0CB
 # define PLAYER 0xA9A9A9
@@ -127,6 +127,10 @@ typedef struct s_config
 
 typedef struct s_ray
 {
+	double	hit_x;
+	double	hit_y;
+	double	pl_x;
+	double	pl_y;
 	double	vector_x;
 	double	vector_y;
 	double	ray_x;
@@ -140,8 +144,6 @@ typedef struct s_ray
 	int		step_x;
 	int		step_y;
 	int		hit_side;
-	double	hit_x;
-	double	hit_y;
 }	t_ray;
 
 typedef struct s_wall

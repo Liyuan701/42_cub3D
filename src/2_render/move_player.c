@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yren <yren@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 17:12:08 by lifan             #+#    #+#             */
-/*   Updated: 2025/07/07 14:05:34 by yren             ###   ########.fr       */
+/*   Updated: 2025/07/07 15:08:44 by lifan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	move_set(t_game *game)
 {
-	game->move.speed = 0.2;
-	game->move.angle_speed = 0.03;
+	game->move.speed = 1;
+	game->move.angle_speed = 0.3;
 	game->move.cos_angle = cos(game->player->angle);
 	game->move.sin_angle = sin(game->player->angle);
 	game->move.size_player = game->size_mini_player;

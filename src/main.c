@@ -6,7 +6,7 @@
 /*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 11:41:32 by lifan             #+#    #+#             */
-/*   Updated: 2025/06/27 14:27:57 by lifan            ###   ########.fr       */
+/*   Updated: 2025/07/07 14:20:06 by lifan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ int	main(int ac, char **av)
 		return (FAIL);
 	ft_init_window(&game);
 	set_map_size(&game);
-	//set_player(&game);
 	mlx_hook(game.win_ptr, 17, (1L << 17), ft_close, &game);
 	mlx_hook(game.win_ptr, 2, (1L << 0), ft_key_press, &game);
 	mlx_hook(game.win_ptr, 3, (1L << 1), ft_key_release, &game);

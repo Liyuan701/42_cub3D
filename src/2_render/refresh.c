@@ -92,6 +92,8 @@ int	ft_refresh(void	*param)
 	i = 0;
 	fraction = PI / 3 / WIDTH;
 	dir = game->player->angle - PI / 6;
+	move_player(game);
+	clear_image(game);
 	while (i < WIDTH)
 	{
 		ft_ray(game, game->player, dir, i);
@@ -101,7 +103,5 @@ int	ft_refresh(void	*param)
 	draw_map(game, game->size_mini, WALL, SPACE);
 	draw_player(game, game->size_mini_player, PLAYER);
 	ft_render(game);
-	move_player(game);
-	clear_image(game);
 	return (0);
 }

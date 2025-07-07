@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yren <yren@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 11:41:09 by lifan             #+#    #+#             */
-/*   Updated: 2025/07/07 14:10:46 by yren             ###   ########.fr       */
+/*   Updated: 2025/07/07 14:37:33 by lifan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ int	ft_key_release(int keycode, t_game *game)
 	else if (keycode == KEY_A)
 		game->player->key_left = false;
 	else if (keycode == LEFT)
-		 game->player->left_rotate = false;
+		game->player->left_rotate = false;
 	else if (keycode == RIGHT)
-		 game->player->right_rotate = false;
+		game->player->right_rotate = false;
 	return (0);
 }
 
@@ -47,9 +47,9 @@ int	ft_key_press(int keycode, t_game *game)
 	else if (keycode == KEY_A)
 		game->player->key_left = true;
 	else if (keycode == LEFT)
-		 game->player->left_rotate = true;
+		game->player->left_rotate = true;
 	else if (keycode == RIGHT)
-		 game->player->right_rotate = true;
+		game->player->right_rotate = true;
 	else if (keycode == ESC)
 	{
 		ft_clean(game);

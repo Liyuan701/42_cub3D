@@ -53,6 +53,10 @@ void	ft_init_ray(t_game *game, double dir)
 {
 	game->ray.vector_x = cos(dir);
 	game->ray.vector_y = sin(dir);
+	game->ray.pl_x = -1;
+	game->ray.pl_y = -1;
+	game->ray.hit_x = -1;
+	game->ray.hit_y = -1;
 	game->ray.ray_x = game->player->xp;
 	game->ray.ray_y = game->player->yp;
 	game->ray.map_x = (int)(game->ray.ray_x / game->size_block);
@@ -109,24 +113,26 @@ bool	ft_if_encounter(t_game *game)
 //* calculate the distance from the point to (x,y)
 double	ft_distance(t_game *game)
 {
-	double	hit_x;
-	double	hit_y;
 	double	dx;
 	double	dy;
 
 	if (game->ray.hit_side == 0)
-		hit_x = game->ray.map_x * game->size_block;
+		game->ray.hit_x = game->ray.map_x * game->size_block;
 	else
-		hit_x = game->ray.ray_x \
+		game->ray.hit_x = game->ray.ray_x \
 		+ (game->ray.side_x - game->ray.d_x) * game->ray.vector_x;
 	if (game->ray.hit_side == 1)
-		hit_y = game->ray.map_y * game->size_block;
+		game->ray.hit_y = game->ray.map_y * game->size_block;
 	else
-		hit_y = game->ray.ray_y \
+		game->ray.hit_y = game->ray.ray_y \
 		+ (game->ray.side_y - game->ray.d_y) * game->ray.vector_y;
-	dx = hit_x - game->player->x;
-	dy = hit_y - game->player->y;
-	return (sqrt(dx * dx + dy * dy));
+	if (game->ray.hit_x != -1 && game->ray.hit_y != -1)
+	{
+		dx = game->ray.hit_x - game->player->x;
+		dy = game->ray.hit_y - game->player->y;
+		return (sqrt(dx * dx + dy * dy));
+	}
+	return (ft_error_close(game, "error in hit wall"), 0.0);
 }
 
 //* correct the fish-eye effect by fixing the ray distance
