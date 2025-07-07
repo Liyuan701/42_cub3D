@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
+/*   By: yren <yren@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 14:42:55 by lifan             #+#    #+#             */
-/*   Updated: 2025/07/07 13:02:02 by lifan            ###   ########.fr       */
+/*   Updated: 2025/07/07 14:06:11 by yren             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -244,6 +244,7 @@ int		ft_find_start(t_game *game, char **text, int i);
 
 //init game
 void	ft_init_player(t_player *player);
+void	ft_init_move(t_game *game);
 void	ft_init_game(t_game *game);
 
 //parse
@@ -267,7 +268,7 @@ void	draw_line(t_game *game, unsigned int color);
 void	draw_player(t_game *game, int size, int color);
 
 //move player
-void	move_init(t_game *game);
+void	move_set(t_game *game);
 void	move_new_point(t_game *game);
 void	move_check(t_game *game);
 void	move_player(t_game *game);

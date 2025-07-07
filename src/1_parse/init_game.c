@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
+/*   By: yren <yren@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 11:44:28 by lifan             #+#    #+#             */
-/*   Updated: 2025/07/07 13:44:19 by lifan            ###   ########.fr       */
+/*   Updated: 2025/07/07 14:07:32 by yren             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,17 @@ static	void	ft_init_config(t_game *game)
 	game->config.b = 0;
 }
 
+void	ft_init_move(t_game *game)
+{
+	game->move.speed = 0;
+	game->move.angle_speed = 0;
+	game->move.cos_angle = 0;
+	game->move.sin_angle = 0;
+	game->move.size_player = 0;
+	game->move.new_xp = 0;
+	game->move.new_yp = 0;
+}
+
 void	ft_init_game(t_game *game)
 {
 	game->mlx_ptr = NULL;
@@ -63,4 +74,5 @@ void	ft_init_game(t_game *game)
 	if (!game->player)
 		exit(EXIT_FAILURE);
 	ft_init_player(game->player);
+	ft_init_move(game);
 }

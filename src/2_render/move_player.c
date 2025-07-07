@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   move_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
+/*   By: yren <yren@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 17:12:08 by lifan             #+#    #+#             */
-/*   Updated: 2025/07/07 13:01:45 by lifan            ###   ########.fr       */
+/*   Updated: 2025/07/07 14:05:34 by yren             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
 
-void	move_init(t_game *game)
+void	move_set(t_game *game)
 {
 	game->move.speed = 0.2;
 	game->move.angle_speed = 0.03;
@@ -81,7 +81,7 @@ void	move_check(t_game *game)
 
 void	move_player(t_game *game)
 {
-	move_init(game);
+	move_set(game);
 	move_new_point(game);
 	move_check(game);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
+/*   By: yren <yren@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 14:41:01 by lifan             #+#    #+#             */
-/*   Updated: 2025/07/07 13:48:20 by lifan            ###   ########.fr       */
+/*   Updated: 2025/07/07 14:00:13 by yren             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 bool	is_wall(t_game *game, int x, int y)
 {
 	printf("is_wall called with x=%d, y=%d\n", x, y);//! debug
-	x = x / game->size_mini;
-	y = y / game->size_mini;
+	x = x / game->size_mini_player;
+	y = y / game->size_mini_player;
 	if (y < 0 || y >= game->cub->height || x < 0 || x >= game->cub->width)
 		ft_error_close(game, "map index out");
 	if (game->cub->copy[y][x] == '0')
