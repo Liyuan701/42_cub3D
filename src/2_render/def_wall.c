@@ -6,7 +6,7 @@
 /*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 07:08:48 by marvin            #+#    #+#             */
-/*   Updated: 2025/07/07 17:58:55 by lifan            ###   ########.fr       */
+/*   Updated: 2025/07/07 18:39:40 by lifan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,11 @@ int	calculate_tex_x(t_game *game, t_tex *tex, double dist)
 	int		tex_x;
 
 	if (game->ray.hit_side == 0)
-		wall_x = game->player->b_yp + dist * game->ray.vector_y;
+		wall_x = game->player->m_yp + dist * game->ray.vector_y;
 	else
-		wall_x = game->player->b_xp + dist * game->ray.vector_x;
-	wall_x -= floor(wall_x / game->size_block) * game->size_block;
-	wall_x /= game->size_block;
+		wall_x = game->player->m_xp + dist * game->ray.vector_x;
+	wall_x -= floor(wall_x / game->size_mini) * game->size_mini;
+	wall_x /= game->size_mini;
 	tex_x = (int)(wall_x * (double)tex->width);
 	return (tex_x);
 }
@@ -90,7 +90,12 @@ int	get_tex_color(t_tex *tex, int x, int y)
 //* chose the column in the tex: calculate_tex_x.
 void	ft_def_wall(t_wall *wall, t_game *game, double distance, int dis_plane)
 {
-	wall->wall_height = (int)((game->size_block / distance) * dis_plane);
+	double	d_dis;
+
+	d_dis = distance * game->ratio;
+	if (d_dis < 0.0001)
+		d_dis = 0.0001;
+	wall->wall_height = (int)((game->size_block / d_dis) * dis_plane);
 	wall->start_y = (HEIGHT / 2) - (wall->wall_height / 2);
 	if (wall->start_y < 0)
 		wall->start_y = 0;

@@ -122,7 +122,7 @@ debug-n2:
 		valgrind --leak-check=full --track-origins=yes ./cub3D asset/map/n_nomap.cub
 
 debug-v1:
-		valgrind --leak-check=full --track-origins=yes ./cub3D asset/map/v_simple.cub
+		./cub3D asset/map/v_simple.cub
 
 debug-v2:
 		./cub3D asset/map/v_irregular.cub

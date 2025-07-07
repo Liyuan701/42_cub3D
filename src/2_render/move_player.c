@@ -6,7 +6,7 @@
 /*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 17:12:08 by lifan             #+#    #+#             */
-/*   Updated: 2025/07/07 18:10:00 by lifan            ###   ########.fr       */
+/*   Updated: 2025/07/07 18:21:19 by lifan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ void	move_check(t_game *game)
 	double	old_yp;
 	double	new_xp;
 	double	new_yp;
-
 	old_xp = game->player->m_xp;
 	old_yp = game->player->m_yp;
 	new_xp = game->move.new_xp;

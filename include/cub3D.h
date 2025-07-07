@@ -6,7 +6,7 @@
 /*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 14:42:55 by lifan             #+#    #+#             */
-/*   Updated: 2025/07/07 17:27:29 by lifan            ###   ########.fr       */
+/*   Updated: 2025/07/07 19:13:20 by lifan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,6 +127,12 @@ typedef struct s_config
 	int		count;
 }	t_config;
 
+typedef struct s_end
+{
+	double	x;
+	double	y;
+}t_end;
+
 typedef struct s_ray
 {
 	double	hit_x;
@@ -142,6 +148,7 @@ typedef struct s_ray
 	int		step_x;
 	int		step_y;
 	int		hit_side;
+	t_end	hit[WIDTH];
 }	t_ray;
 
 typedef struct s_wall
@@ -302,9 +309,11 @@ double	ft_distance(t_game *game);
 double	ft_cali_fisheye(t_game *game, t_player *player);
 
 //ray
-void	ft_init_ray(t_game *game, double angle);
+void	ft_init_ray(t_game *game, double dir, int column);
 int		ft_ray(t_game *game, t_player *player, double dir, int column);
-void	ft_draw_ray_line(t_game *game);
+void	ft_save_end_ray(t_game *game, int column);
+void	ft_draw_all_ray(t_game *game);
+void	ft_draw_one_ray(t_game *game, double x1, double y1);
 
 //##################### UTILS ######################################
 //config util
