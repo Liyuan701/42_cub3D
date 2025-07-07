@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cast.c                                             :+:      :+:    :+:   */
+/*   cast_wall.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 22:34:42 by liyu              #+#    #+#             */
-/*   Updated: 2025/06/27 14:48:35 by lifan            ###   ########.fr       */
+/*   Updated: 2025/07/07 18:02:04 by lifan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
 
 //* Put the celling and ground colors in imgae
-void	ft_draw_floor(t_game *game, int	y, int column)
+void	ft_draw_floor(t_game *game, int y, int column)
 {
 	while (y < HEIGHT)
 	{
@@ -51,4 +51,3 @@ void	ft_cast_wall(t_game *game, double distance, int column, char side)
 	}
 	ft_draw_floor(game, y, column);
 }
-

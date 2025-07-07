@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   def_wall.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 07:08:48 by marvin            #+#    #+#             */
-/*   Updated: 2025/07/03 07:08:48 by marvin           ###   ########.fr       */
+/*   Updated: 2025/07/07 17:58:55 by lifan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void	ft_select_wall(t_game *game, char side, t_wall *wall)
 	else if (side == 'W')
 		wall->tex = &game->tex_w;
 }
+
 //* block = 1 unit, only keep the num after . to know its pos in the block.
 //* when hit E/W, precision is in y (dis * v_y : how much moves in y direction)
 //* when hit S/W, precision is in x (dis * v_x : how much moves in x direction).
@@ -54,13 +55,15 @@ int	calculate_tex_x(t_game *game, t_tex *tex, double dist)
 	int		tex_x;
 
 	if (game->ray.hit_side == 0)
-		wall_x = game->player->y + dist * game->ray.vector_y;
+		wall_x = game->player->b_yp + dist * game->ray.vector_y;
 	else
-		wall_x = game->player->x + dist * game->ray.vector_x;
-	wall_x -= floor(wall_x);
+		wall_x = game->player->b_xp + dist * game->ray.vector_x;
+	wall_x -= floor(wall_x / game->size_block) * game->size_block;
+	wall_x /= game->size_block;
 	tex_x = (int)(wall_x * (double)tex->width);
 	return (tex_x);
 }
+
 //* make sur that the x, y don't go out the tex.
 //* get the (x,y) pixel's address.
 //* each pixel bpp bits,and convert to bytes.
@@ -85,7 +88,7 @@ int	get_tex_color(t_tex *tex, int x, int y)
 //* it's the top of Height or to make the wall in the middle of the Height.
 //* pixel coor need to be int.
 //* chose the column in the tex: calculate_tex_x.
-void	ft_def_wall(t_wall *wall,t_game *game, double distance, int dis_plane)
+void	ft_def_wall(t_wall *wall, t_game *game, double distance, int dis_plane)
 {
 	wall->wall_height = (int)((game->size_block / distance) * dis_plane);
 	wall->start_y = (HEIGHT / 2) - (wall->wall_height / 2);

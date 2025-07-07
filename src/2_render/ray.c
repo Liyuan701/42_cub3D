@@ -24,26 +24,26 @@ static void	ft_side_ray(t_game *game)
 	if (game->ray.vector_x < 0)
 	{
 		game->ray.step_x = -1;
-		game->ray.side_x = (game->ray.ray_x \
+		game->ray.side_x = (game->player->b_xp \
 			- game->ray.map_x * game->size_block) * game->ray.d_x;
 	}
 	else
 	{
 		game->ray.step_x = 1;
 		game->ray.side_x = ((game->ray.map_x \
-			+ 1) * game->size_block - game->ray.ray_x) * game->ray.d_x;
+			+ 1) * game->size_block - game->player->b_xp) * game->ray.d_x;
 	}
 	if (game->ray.vector_y < 0)
 	{
 		game->ray.step_y = -1;
-		game->ray.side_y = (game->ray.ray_y \
+		game->ray.side_y = (game->player->b_yp \
 			- game->ray.map_y * game->size_block) * game->ray.d_y;
 	}
 	else
 	{
 		game->ray.step_y = 1;
 		game->ray.side_y = ((game->ray.map_y \
-		+ 1) * game->size_block - game->ray.ray_y) * game->ray.d_y;
+		+ 1) * game->size_block - game->player->b_yp) * game->ray.d_y;
 	}
 }
 
@@ -55,10 +55,10 @@ void	ft_init_ray(t_game *game, double dir)
 	game->ray.vector_y = sin(dir);
 	game->ray.hit_x = -1;
 	game->ray.hit_y = -1;
-	game->ray.ray_x = game->player->m_xp;
-	game->ray.ray_y = game->player->m_yp;
-	game->player->b_xp = game->player->m_xp * game->size_block / game->size_mini;
-	game->player->b_yp = game->player->m_yp * game->size_block / game->size_mini;
+	game->player->b_xp = game->player->m_xp * game->ratio;
+	game->player->b_yp = game->player->m_yp * game->ratio;
+	game->ray.map_x = game->player->m_xp / game->size_mini;
+	game->ray.map_y = game->player->m_yp / game->size_mini;
 	game->ray.d_x = fabs(game->size_block / game->ray.vector_x);
 	game->ray.d_y = fabs(game->size_block / game->ray.vector_y);
 	ft_side_ray(game);
@@ -73,9 +73,6 @@ bool	ft_if_encounter(t_game *game)
 {
 	while (1)
 	{
-		printf("The start point: x = %d, y = %d\n", game->player->init_x, game->player->init_y);
-		printf("The start point: map_x = %d, map_y = %d, side_x = %f, side_y = %f\n",
-			game->ray.map_x, game->ray.map_y, game->ray.side_x, game->ray.side_y);
 		if (game->ray.side_x < game->ray.side_y)
 		{
 			game->ray.side_x += game->ray.d_x;
@@ -105,15 +102,19 @@ double	ft_distance(t_game *game)
 	double	dy;
 
 	if (game->ray.hit_side == 0)
+	{
 		game->ray.hit_x = game->ray.map_x * game->size_block;
-	else
-		game->ray.hit_x = game->ray.ray_x \
-		+ (game->ray.side_x - game->ray.d_x) * game->ray.vector_x;
-	if (game->ray.hit_side == 1)
+		game->ray.hit_y = game->player->b_yp + \
+			(game->ray.hit_x - game->player->b_xp) \
+			* (game->ray.vector_y / game->ray.vector_x);
+	}
+	else if (game->ray.hit_side == 1)
+	{
 		game->ray.hit_y = game->ray.map_y * game->size_block;
-	else
-		game->ray.hit_y = game->ray.ray_y \
-		+ (game->ray.side_y - game->ray.d_y) * game->ray.vector_y;
+		game->ray.hit_x = game->player->b_xp + (game->ray.hit_y - \
+			game->player->b_yp) * (game->ray.vector_x \
+				/ game->ray.vector_y);
+	}
 	if (game->ray.hit_x != -1 && game->ray.hit_y != -1)
 	{
 		dx = game->ray.hit_x - game->player->b_xp;

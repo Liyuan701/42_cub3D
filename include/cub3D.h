@@ -6,7 +6,7 @@
 /*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 14:42:55 by lifan             #+#    #+#             */
-/*   Updated: 2025/07/07 17:07:52 by lifan            ###   ########.fr       */
+/*   Updated: 2025/07/07 17:27:29 by lifan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,8 +133,6 @@ typedef struct s_ray
 	double	hit_y;
 	double	vector_x;
 	double	vector_y;
-	double	ray_x;
-	double	ray_y;
 	int		map_x;
 	int		map_y;
 	double	d_x;

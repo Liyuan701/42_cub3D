@@ -6,7 +6,7 @@
 /*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 17:12:08 by lifan             #+#    #+#             */
-/*   Updated: 2025/07/07 17:01:43 by lifan            ###   ########.fr       */
+/*   Updated: 2025/07/07 18:10:00 by lifan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,14 +66,16 @@ void	move_check(t_game *game)
 	if (is_wall(game, new_xp, old_yp) == false
 		&& is_wall(game, new_xp + game->move.size_player, old_yp) == false
 		&& is_wall(game, new_xp, old_yp + game->move.size_player) == false
-		&& is_wall(game, new_xp + game->move.size_player, old_yp + game->move.size_player) == false)
+		&& is_wall(game, new_xp + game->move.size_player
+			, old_yp + game->move.size_player) == false)
 	{
 		game->player->m_xp = new_xp;
 	}
 	if (is_wall(game, old_xp, new_yp) == false
 		&& is_wall(game, old_xp + game->move.size_player, new_yp) == false
 		&& is_wall(game, old_xp, new_yp + game->move.size_player) == false
-		&& is_wall(game, old_xp + game->move.size_player, new_yp + game->move.size_player) == false)
+		&& is_wall(game, old_xp + game->move.size_player
+			, new_yp + game->move.size_player) == false)
 	{
 		game->player->m_yp = new_yp;
 	}
