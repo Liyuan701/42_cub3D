@@ -6,7 +6,7 @@
 /*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 13:56:56 by lifan             #+#    #+#             */
-/*   Updated: 2025/06/27 14:56:55 by lifan            ###   ########.fr       */
+/*   Updated: 2025/07/07 13:10:31 by lifan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_draw_ray_line(t_game *game)
 	game->br.y0 = (int)(game->player->y * game->size_mini + game->size_mini / 2);
 	game->br.x1 = (int)(game->ray.ray_x * game->size_mini);
 	game->br.y1 = (int)(game->ray.ray_y * game->size_mini);
-
+	printf("x0: %d, y0: %d, x1: %d, y1: %d\n", game->br.x0, game->br.y0, game->br.x1, game->br.y1); //! DEBUG
 	init_draw_line(game);
 	draw_line(game, RAY);
 }

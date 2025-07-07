@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yy <yy@student.42.fr>                      +#+  +:+       +#+        */
+/*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 14:41:01 by lifan             #+#    #+#             */
-/*   Updated: 2025/07/01 00:56:22 by yy               ###   ########.fr       */
+/*   Updated: 2025/07/07 13:48:20 by lifan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 bool	is_wall(t_game *game, int x, int y)
 {
+	printf("is_wall called with x=%d, y=%d\n", x, y);//! debug
 	x = x / game->size_mini;
 	y = y / game->size_mini;
 	if (y < 0 || y >= game->cub->height || x < 0 || x >= game->cub->width)
@@ -38,7 +39,7 @@ void	set_map_size(t_game *game)
 		max_dim = game->cub->height;
 	if (WIDTH / game->cub->width < 64)
 		game->size_block = WIDTH / game->cub->width;
-	else 
+	else
 		game->size_block = 64;
 	game->size_mini = WIDTH / PROPORTIONAL / max_dim;
 	game->size_mini_player = game->size_mini / 1.5;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yy <yy@student.42.fr>                      +#+  +:+       +#+        */
+/*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 11:44:28 by lifan             #+#    #+#             */
-/*   Updated: 2025/07/02 17:40:10 by yy               ###   ########.fr       */
+/*   Updated: 2025/07/07 13:44:19 by lifan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ void	ft_init_player(t_player *player)
 	player->key_left = false;
 	player->left_rotate = false;
 	player->right_rotate = false;
-	//! init player
 }
 
 static	void	ft_init_config(t_game *game)

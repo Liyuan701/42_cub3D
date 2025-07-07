@@ -13,8 +13,10 @@
 #include "../include/cub3D.h"
 
 //* the suite of the ft_init_ray.
-//* step means dir. +: towards right (x+)or down(y+); -:towards left (x-)or up(y-).
-//* cause we don't start from an angle of the square, so calculate the left dis side_x, side_y.
+//* step means dir. +: towards right (x+)or down(y+);
+//* -:towards left (x-)or up(y-).
+//* we don't start from an angle of the square
+//* so calculate the left dis side_x, side_y.
 //* side_x : the distance to the next vertical line.
 //* side_y : the distance to the next horizontal line.
 static void	ft_side_ray(t_game *game)

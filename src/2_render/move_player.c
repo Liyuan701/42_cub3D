@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   move_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yy <yy@student.42.fr>                      +#+  +:+       +#+        */
+/*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 17:12:08 by lifan             #+#    #+#             */
-/*   Updated: 2025/07/05 23:43:41 by yy               ###   ########.fr       */
+/*   Updated: 2025/07/07 13:01:45 by lifan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
 
-void	move_init(t_game *game, double size_square)
+void	move_init(t_game *game)
 {
 	game->move.speed = 0.2;
 	game->move.angle_speed = 0.03;
@@ -54,16 +54,15 @@ void	move_new_point(t_game *game)
 // si tous les deux peuvent marche, change de new_x et new_yp
 void	move_check(t_game *game)
 {
-	double old_xp;
-	double old_yp;
-	double new_xp;
-	double new_yp;
-	
+	double	old_xp;
+	double	old_yp;
+	double	new_xp;
+	double	new_yp;
+
 	old_xp = game->player->xp;
 	old_yp = game->player->yp;
 	new_xp = game->move.new_xp;
 	new_yp = game->move.new_yp;
-
 	if (is_wall(game, new_xp, old_yp) == false
 		&& is_wall(game, new_xp + game->move.size_player, old_yp) == false
 		&& is_wall(game, new_xp, old_yp + game->move.size_player) == false
@@ -80,9 +79,9 @@ void	move_check(t_game *game)
 	}
 }
 
-void	move_player(t_game *game, double size_square)
+void	move_player(t_game *game)
 {
-	move_init(game, size_square);
+	move_init(game);
 	move_new_point(game);
 	move_check(game);
 }

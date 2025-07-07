@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yy <yy@student.42.fr>                      +#+  +:+       +#+        */
+/*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 14:42:55 by lifan             #+#    #+#             */
-/*   Updated: 2025/07/02 20:51:04 by yy               ###   ########.fr       */
+/*   Updated: 2025/07/07 13:02:02 by lifan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,16 +170,16 @@ typedef struct s_move
 //algorithm Bresenham
 typedef struct s_br
 {
-	int distance_x;
-	int distance_y;
-	int dir_x;
-	int dir_y;
-	int error;
-	int error2;
-	int x0;
-	int y0;
-	int x1;
-	int y1;
+	int	distance_x;
+	int	distance_y;
+	int	dir_x;
+	int	dir_y;
+	int	error;
+	int	error2;
+	int	x0;
+	int	y0;
+	int	x1;
+	int	y1;
 }	t_br;
 
 //* Here I stcok all info of this game.
@@ -267,10 +267,10 @@ void	draw_line(t_game *game, unsigned int color);
 void	draw_player(t_game *game, int size, int color);
 
 //move player
-void	move_init(t_game *game, double size_square);
+void	move_init(t_game *game);
 void	move_new_point(t_game *game);
 void	move_check(t_game *game);
-void	move_player(t_game *game, double size_square);
+void	move_player(t_game *game);
 
 //refresh
 void	ft_init_window(t_game *game);
@@ -290,8 +290,8 @@ int		get_tex_color(t_tex *tex, int x, int y);
 int		calculate_tex_x(t_game *game, t_tex *tex, double dist);
 void	ft_select_wall(t_game *game, char side, t_wall *wall);
 char	ft_hit_wall(t_ray *ray);
-void	ft_draw_floor(t_game *game, int	y, int column);
-void	ft_def_wall(t_wall *wall,t_game *game, double distance, int dis_plane);
+void	ft_draw_floor(t_game *game, int y, int column);
+void	ft_def_wall(t_wall *wall, t_game *game, double distance, int dis_plane);
 
 //distance
 
