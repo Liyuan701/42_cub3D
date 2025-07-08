@@ -6,12 +6,12 @@
 /*   By: yren <yren@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 17:12:08 by lifan             #+#    #+#             */
-/*   Updated: 2025/07/08 16:53:08 by yren             ###   ########.fr       */
+/*   Updated: 2025/07/08 17:07:42 by yren             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
-//!change
+
 void	move_set(t_game *game)
 {
 	game->move.speed = 0.1;
@@ -61,7 +61,7 @@ void	move_check(t_game *game)
 	double	old_yp;
 	double	new_xp;
 	double	new_yp;
-	
+
 	old_xp = game->player->m_xp;
 	old_yp = game->player->m_yp;
 	new_xp = game->move.new_xp;
