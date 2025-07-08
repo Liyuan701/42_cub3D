@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
+/*   By: yren <yren@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 14:41:01 by lifan             #+#    #+#             */
-/*   Updated: 2025/07/07 17:07:31 by lifan            ###   ########.fr       */
+/*   Updated: 2025/07/08 18:19:50 by yren             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,10 @@ void	set_map_size(t_game *game)
 		game->size_block = WIDTH / game->cub->width;
 	else
 		game->size_block = 64;
-	game->size_mini = WIDTH / PROPORTIONAL / max_dim;
+	if (max_dim > 200)
+		game->size_mini = WIDTH / max_dim;
+	else
+		game->size_mini = WIDTH / PROPORTIONAL / max_dim;
 	game->size_mini_player = game->size_mini / 1.5;
 	game->player->m_xp = game->player->init_x * game->size_mini;
 	game->player->m_yp = game->player->init_y * game->size_mini;
