@@ -41,6 +41,7 @@ RENDER = 2_render/refresh.c\
 		2_render/move_player.c\
 		2_render/cast_wall.c\
 		2_render/def_wall.c\
+		2_render/distance.c\
 
 UTILS = 3_utils/clean.c \
 		3_utils/count.c \

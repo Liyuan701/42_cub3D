@@ -6,7 +6,7 @@
 /*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 14:42:55 by lifan             #+#    #+#             */
-/*   Updated: 2025/07/07 19:13:20 by lifan            ###   ########.fr       */
+/*   Updated: 2025/07/08 15:28:07 by lifan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -303,8 +303,9 @@ void	ft_draw_floor(t_game *game, int y, int column);
 void	ft_def_wall(t_wall *wall, t_game *game, double distance, int dis_plane);
 
 //distance
-
 bool	ft_if_encounter(t_game *game);
+void	ft_distance_lr(t_game *game);
+void	ft_distance_ud(t_game *game);
 double	ft_distance(t_game *game);
 double	ft_cali_fisheye(t_game *game, t_player *player);
 
@@ -353,6 +354,5 @@ int		print_config(t_config *cfg);
 int		print_cub(t_cub *c);
 int		print_player(t_player *p);
 void	print_map(char **map);
-void	ft_draw_ray_line(t_game *game);
 
 #endif
