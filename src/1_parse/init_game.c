@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
+/*   By: yren <yren@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 11:44:28 by lifan             #+#    #+#             */
-/*   Updated: 2025/07/07 17:16:06 by lifan            ###   ########.fr       */
+/*   Updated: 2025/07/08 16:20:35 by yren             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,10 @@ void	ft_init_move(t_game *game)
 	game->move.angle_speed = 0;
 	game->move.cos_angle = 0;
 	game->move.sin_angle = 0;
+	//!add:
+	game->move.cos_speed = 0;
+	game->move.sin_speed = 0;
+
 	game->move.size_player = 0;
 	game->move.new_xp = 0;
 	game->move.new_yp = 0;

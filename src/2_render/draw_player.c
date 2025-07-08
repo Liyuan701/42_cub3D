@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
+/*   By: yren <yren@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 14:36:42 by lifan             #+#    #+#             */
-/*   Updated: 2025/07/07 17:00:23 by lifan            ###   ########.fr       */
+/*   Updated: 2025/07/08 17:00:15 by yren             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	draw_player(t_game *game, int size, int color)
 	draw_square(&p, size, color);
 	game->br.x0 = p.x + size / 2;
 	game->br.y0 = p.y + size / 2;
-	game->br.x1 = game->br.x0 - cos(game->player->angle) * size;
+	game->br.x1 = game->br.x0 + cos(game->player->angle) * size;
 	game->br.y1 = game->br.y0 + sin(game->player->angle) * size;
 	init_draw_line(game);
 	draw_line(game, 0xF08080);
@@ -63,3 +63,17 @@ void	draw_line(t_game *game, unsigned int color)
 		}
 	}
 }
+
+// void init_bresenham(t_game *game)
+// {
+// 	game->br.distance_x = 0;
+// 	game->br.distance_y = 0;
+// 	game->br.dir_x = 0;
+// 	game->br.dir_y = 0;
+// 	game->br.error = 0;
+// 	game->br.error2 = 0;
+// 	game->br.x0 = -1;
+// 	game->br.y0 = -1;
+// 	game->br.x1 = -1;
+// 	game->br.y1 = -1;
+// }

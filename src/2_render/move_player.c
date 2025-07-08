@@ -3,49 +3,52 @@
 /*                                                        :::      ::::::::   */
 /*   move_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
+/*   By: yren <yren@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 17:12:08 by lifan             #+#    #+#             */
-/*   Updated: 2025/07/08 14:50:26 by lifan            ###   ########.fr       */
+/*   Updated: 2025/07/08 16:53:08 by yren             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
-
+//!change
 void	move_set(t_game *game)
 {
 	game->move.speed = 0.1;
-	game->move.angle_speed = 0.2;
+	game->move.angle_speed = 0.02;
+	if (game->player->left_rotate == true)
+		game->player->angle -= game->move.angle_speed;
+	if (game->player->right_rotate == true)
+		game->player->angle += game->move.angle_speed;
 	game->move.cos_angle = cos(game->player->angle);
 	game->move.sin_angle = sin(game->player->angle);
+	game->move.cos_speed = game->move.cos_angle * game->move.speed;
+	game->move.sin_speed = game->move.sin_angle * game->move.speed;
 	game->move.size_player = game->size_mini_player;
-	if (game->player->left_rotate == true)
-		game->player->angle += game->move.angle_speed;
-	if (game->player->right_rotate == true)
-		game->player->angle -= game->move.angle_speed;
+
 }
 
 void	move_new_point(t_game *game)
 {
 	if (game->player->key_up == true)
 	{
-		game->move.new_xp = game->player->m_xp - game->move.cos_angle * game->move.speed;
-		game->move.new_yp = game->player->m_yp + game->move.sin_angle * game->move.speed;
+		game->move.new_xp = game->player->m_xp + game->move.cos_speed;
+		game->move.new_yp = game->player->m_yp + game->move.sin_speed;
 	}
 	if (game->player->key_down == true)
 	{
-		game->move.new_xp = game->player->m_xp + game->move.cos_angle * game->move.speed;
-		game->move.new_yp = game->player->m_yp - game->move.sin_angle * game->move.speed;
+		game->move.new_xp = game->player->m_xp - game->move.cos_speed;
+		game->move.new_yp = game->player->m_yp - game->move.sin_speed;
 	}
 	if (game->player->key_left == true)
 	{
-		game->move.new_xp = game->player->m_xp + game->move.sin_angle * game->move.speed;
-		game->move.new_yp = game->player->m_yp + game->move.cos_angle * game->move.speed;
+		game->move.new_xp = game->player->m_xp + game->move.sin_speed;
+		game->move.new_yp = game->player->m_yp - game->move.cos_speed;
 	}
 	if (game->player->key_right == true)
 	{
-		game->move.new_xp = game->player->m_xp - game->move.sin_angle * game->move.speed;
-		game->move.new_yp = game->player->m_yp - game->move.cos_angle * game->move.speed;
+		game->move.new_xp = game->player->m_xp - game->move.sin_speed;
+		game->move.new_yp = game->player->m_yp + game->move.cos_speed;
 	}
 }
 
@@ -58,6 +61,7 @@ void	move_check(t_game *game)
 	double	old_yp;
 	double	new_xp;
 	double	new_yp;
+	
 	old_xp = game->player->m_xp;
 	old_yp = game->player->m_yp;
 	new_xp = game->move.new_xp;
