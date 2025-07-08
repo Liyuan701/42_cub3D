@@ -6,7 +6,7 @@
 /*   By: yren <yren@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 14:36:42 by lifan             #+#    #+#             */
-/*   Updated: 2025/07/08 17:00:15 by yren             ###   ########.fr       */
+/*   Updated: 2025/07/08 17:06:22 by yren             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,17 +63,3 @@ void	draw_line(t_game *game, unsigned int color)
 		}
 	}
 }
-
-// void init_bresenham(t_game *game)
-// {
-// 	game->br.distance_x = 0;
-// 	game->br.distance_y = 0;
-// 	game->br.dir_x = 0;
-// 	game->br.dir_y = 0;
-// 	game->br.error = 0;
-// 	game->br.error2 = 0;
-// 	game->br.x0 = -1;
-// 	game->br.y0 = -1;
-// 	game->br.x1 = -1;
-// 	game->br.y1 = -1;
-// }

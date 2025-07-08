@@ -6,7 +6,7 @@
 /*   By: yren <yren@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 14:42:55 by lifan             #+#    #+#             */
-/*   Updated: 2025/07/08 16:17:25 by yren             ###   ########.fr       */
+/*   Updated: 2025/07/08 17:07:57 by yren             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,10 +166,8 @@ typedef struct s_wall
 typedef struct s_move
 {
 	double	speed;
-	//!add:
 	double	cos_speed;
 	double	sin_speed;
-	
 	double	angle_speed;
 	double	cos_angle;
 	double	sin_angle;
