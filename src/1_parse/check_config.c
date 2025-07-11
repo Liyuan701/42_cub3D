@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_config.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
+/*   By: yren <yren@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 14:43:04 by lifan             #+#    #+#             */
-/*   Updated: 2025/06/25 14:44:37 by lifan            ###   ########.fr       */
+/*   Updated: 2025/07/11 17:58:02 by yren             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ int	check_parse_color(t_game *game, char *line)
 	if (tab[0] == NULL || tab[1] == NULL || tab[2] != NULL)
 		free2tab_exit(game, tab, rgb, "Color config: invalid format");
 	if (rgb[0] == NULL || rgb[1] == NULL || rgb[2] == NULL || rgb[3] != NULL)
-		free2tab_exit(game, tab, rgb, "\
-			Color config: must have exactly 3 components");
-	if (str_is_digit(rgb[0]) != 0 \
+		free2tab_exit(game, tab, rgb, \
+			"Color config: must have exactly 3 components");
+	if (str_is_digit(rgb[0]) != 0
 		&& str_is_digit(rgb[1]) != 0 && str_is_digit(rgb[2]) != 0)
 	{
 		game->config.r = ft_atoi(rgb[0]);
@@ -58,8 +58,8 @@ int	check_parse_color(t_game *game, char *line)
 	if (game->config.r < 0 || game->config.r > 255
 		|| game->config.g < 0 || game->config.g > 255
 		|| game->config.b < 0 || game->config.b > 255)
-		free2tab_exit(game, tab, rgb, "\
-			Color config: components out of range 0-255");
+		free2tab_exit(game, tab, rgb, \
+			"Color config: components out of range 0-255");
 	ft_free_tab(rgb);
 	ft_free_tab(tab);
 	return ((game->config.r << 16) | (game->config.g << 8) | game->config.b);

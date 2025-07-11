@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
+/*   By: yren <yren@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 17:29:12 by lifan             #+#    #+#             */
-/*   Updated: 2025/07/07 16:38:00 by lifan            ###   ########.fr       */
+/*   Updated: 2025/07/11 16:45:46 by yren             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,8 +76,8 @@ int	ft_check_map(t_game *game, char **map)
 			else if (ft_find(map[y][x], "NEWS") == 1)
 				ft_set_player(game, map[y][x], y, x);
 			else if (map[y][x] != 'V' && map[y][x] != '1')
-				return (ft_error("There \
-					are invalid symbols in the map."), FAIL);
+				return (ft_error("There are invalid symbols in the map."), \
+							FAIL);
 			x++;
 		}
 		y++;

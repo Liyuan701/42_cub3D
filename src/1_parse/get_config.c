@@ -58,21 +58,19 @@ char	*mylloc_strdup(t_game *game, const char *src)
 char	*mylloc_value(t_game *game, char *line)
 {
 	int		start;
-	int		len;
+	int		end;
 	char	*value;
 
 	start = get_start(line);
 	if (start == -1)
 		return (NULL);
-	value = mylloc_strdup(game, line + start);
+	end = ft_strlen(line) - 1;
+	while (end > start && ft_isspace(line[end]))
+		end--;
+	value = ft_mylloc(game, end - start + 2);
 	if (value == NULL)
 		return (NULL);
-	len = ft_strlen(value);
-	while (len > 0 && ft_isspace(value[len - 1] == 1))
-	{
-		value[len - 1] = '\0';
-		len--;
-	}
+	ft_strlcpy(value, line + start, end - start + 2);
 	return (value);
 }
 
