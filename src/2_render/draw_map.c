@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yren <yren@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 14:41:01 by lifan             #+#    #+#             */
-/*   Updated: 2025/07/08 18:19:50 by yren             ###   ########.fr       */
+/*   Updated: 2025/07/11 15:39:46 by lifan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	set_map_size(t_game *game)
 	game->player->m_xp = game->player->init_x * game->size_mini;
 	game->player->m_yp = game->player->init_y * game->size_mini;
 	game->player->b_xp = game->player->init_x * game->size_block;
-	game->player->b_xp = game->player->init_x * game->size_block;
+	game->player->b_yp = game->player->init_y * game->size_block;
 	game->ratio = game->size_block / game->size_mini;
 }
 

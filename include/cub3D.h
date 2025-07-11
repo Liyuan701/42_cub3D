@@ -6,7 +6,7 @@
 /*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 14:42:55 by lifan             #+#    #+#             */
-/*   Updated: 2025/07/11 11:19:57 by lifan            ###   ########.fr       */
+/*   Updated: 2025/07/11 15:32:12 by lifan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@
 # define BLOCK		64
 
 # define PI		3.14159265358979323846
+# define EPSILON 0.0001
 
 # define PARSE	101
 # define GAME	102
@@ -308,8 +309,8 @@ void	ft_def_wall(t_wall *wall, t_game *game, double distance, int dis_plane);
 
 //distance
 bool	ft_if_encounter(t_game *game);
-void	ft_distance_lr(t_game *game);
-void	ft_distance_ud(t_game *game);
+void	ft_distance_lr(t_game *game, double centre_x, double centre_y);
+void	ft_distance_ud(t_game *game, double centre_x, double centre_y);
 double	ft_distance(t_game *game);
 double	ft_cali_fisheye(t_game *game, t_player *player);
 

@@ -6,7 +6,7 @@
 /*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 13:56:56 by lifan             #+#    #+#             */
-/*   Updated: 2025/07/11 11:06:15 by lifan            ###   ########.fr       */
+/*   Updated: 2025/07/11 15:37:34 by lifan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 //* draw the line from (x0, y0) to (x1, y1)
 void	ft_draw_one_ray(t_game *game, double x1, double y1)
 {
-	game->br.x0 = (int)game->player->m_xp + game->size_mini_player / 2;
-	game->br.y0 = (int)game->player->m_yp + game->size_mini_player / 2;
+	game->br.x0 = (int)game->player->m_xp + game->size_mini_player / 2.0;
+	game->br.y0 = (int)game->player->m_yp + game-> size_mini_player / 2.0;
 	game->br.x1 = (int)x1;
 	game->br.y1 = (int)y1;
 	init_draw_line(game);
