@@ -128,6 +128,9 @@ debug-v1:
 debug-v2:
 		./cub3D asset/map/v_irregular.cub
 
+debug-v3:
+		./cub3D asset/maps/good/test_pos_bottom.cub
+
 re:	fclean all
 
 .PHONY:	clean fclean all re debug
