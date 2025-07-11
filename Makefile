@@ -47,7 +47,6 @@ UTILS = 3_utils/clean.c \
 		3_utils/count.c \
 		3_utils/config_util.c \
 		3_utils/config_util2.c \
-		3_utils/debug.c \
 		3_utils/error.c \
 		3_utils/mylloc.c \
 
@@ -117,19 +116,19 @@ fclean:	clean
 		@echo "🗑️  ${BLUE}Fclean done, all cleaned.\n"
 
 debug-n1:
-		valgrind --leak-check=full --track-origins=yes ./cub3D asset/map/n_not_close.cub
+		valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./cub3D asset/map/n_not_close.cub
 
 debug-n2:
-		valgrind --leak-check=full --track-origins=yes ./cub3D asset/map/n_nomap.cub
+		valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./cub3D asset/map/n_nomap.cub
 
 debug-v1:
-		./cub3D asset/map/v_one.cub
+		valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./cub3D asset/map/v_one.cub
 
 debug-v2:
-		./cub3D asset/map/v_irregular.cub
+		valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./cub3D asset/map/v_irregular.cub
 
 debug-v3:
-		./cub3D asset/maps/good/test_pos_bottom.cub
+		valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./cub3D asset/maps/good/test_pos_bottom.cub
 
 re:	fclean all
 

@@ -38,7 +38,6 @@ UTILS_SRC   = 3_utils/clean.c \
 		3_utils/count.c \
 		3_utils/config_util.c \
 		3_utils/config_util2.c \
-		3_utils/debug.c \
 		3_utils/error.c \
 		3_utils/mylloc.c \
 

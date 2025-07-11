@@ -6,7 +6,7 @@
 /*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 14:42:55 by lifan             #+#    #+#             */
-/*   Updated: 2025/07/11 20:04:28 by lifan            ###   ########.fr       */
+/*   Updated: 2025/07/11 20:55:50 by lifan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # include <math.h>
 # include "../libft/libft.h"
 # include <X11/keysym.h>
-# include "../minilibx-opengl/mlx.h"
+//# include "../minilibx-opengl/mlx.h"
 # include "../lib/minilibx-linux/mlx.h"
 
 //####################  KEYS #####################################

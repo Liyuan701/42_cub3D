@@ -6,7 +6,7 @@
 /*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 15:30:14 by lifan             #+#    #+#             */
-/*   Updated: 2025/06/25 15:06:09 by lifan            ###   ########.fr       */
+/*   Updated: 2025/07/11 20:45:25 by lifan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@ void	ft_clean(t_game	*game)
 		ft_free_all(game);
 		if (game->win_ptr)
 			mlx_destroy_window(game->mlx_ptr, game->win_ptr);
+		if (game->mlx_ptr)
+			mlx_destroy_display(game-> mlx_ptr);
 		if (game->mlx_ptr)
 			free(game->mlx_ptr);
 	}
