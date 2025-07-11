@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yren <yren@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 11:44:28 by lifan             #+#    #+#             */
-/*   Updated: 2025/07/08 17:07:46 by yren             ###   ########.fr       */
+/*   Updated: 2025/07/11 11:28:05 by lifan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,12 @@ void	ft_init_player(t_player *player)
 {
 	player->init_x = -1;
 	player->init_y = -1;
-	player->m_xp = 0;
-	player->m_yp = 0;
-	player->b_xp = 0;
-	player->b_yp = 0;
+	player->m_xp = 0.0;
+	player->m_yp = 0.0;
+	player->b_xp = 0.0;
+	player->b_yp = 0.0;
+	player->pos_x = 0.0;
+	player->pos_y = 0.0;
 	player->dir = '\0';
 	player->color = -1;
 	player->key_up = false;

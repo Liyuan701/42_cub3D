@@ -24,41 +24,48 @@ static void	ft_side_ray(t_game *game)
 	if (game->ray.vector_x < 0)
 	{
 		game->ray.step_x = -1;
-		game->ray.side_x = (game->player->m_xp \
-			- game->ray.map_x * game->size_mini) * game->ray.d_x;
+		game->ray.side_x = (game->player->pos_x \
+			- game->ray.map_x) * game->ray.d_x;
 	}
 	else
 	{
 		game->ray.step_x = 1;
-		game->ray.side_x = ((game->ray.map_x \
-			+ 1) * game->size_mini - game->player->m_xp) * game->ray.d_x;
+		game->ray.side_x = (game->ray.map_x \
+			+ 1.0 - game->player->pos_x) * game->ray.d_x;
 	}
 	if (game->ray.vector_y < 0)
 	{
 		game->ray.step_y = -1;
-		game->ray.side_y = (game->player->m_yp \
-			- game->ray.map_y * game->size_mini) * game->ray.d_y;
+		game->ray.side_y = (game->player->pos_y \
+			- game->ray.map_y) * game->ray.d_y;
 	}
 	else
 	{
 		game->ray.step_y = 1;
-		game->ray.side_y = ((game->ray.map_y \
-		+ 1) * game->size_mini - game->player->m_yp) * game->ray.d_y;
+		game->ray.side_y = (game->ray.map_y \
+		+ 1.0 - game->player->pos_y) * game->ray.d_y;
 	}
 }
 
 //* d_x/d_y the distance passed when we move a x or a y.
 //* side_x side_y, current distance to the nearest x or y.
+//*fabs double absolute value.
 void	ft_init_ray(t_game *game, double dir, int column)
 {
 	game->ray.vector_x = cos(dir);
 	game->ray.vector_y = sin(dir);
 	game->ray.hit_x = -1;
 	game->ray.hit_y = -1;
-	game->ray.map_x = game->player->m_xp / game->size_mini;
-	game->ray.map_y = game->player->m_yp / game->size_mini;
-	game->ray.d_x = fabs(game->size_mini / game->ray.vector_x);
-	game->ray.d_y = fabs(game->size_mini / game->ray.vector_y);
+	game->ray.map_x = (int)game->player->pos_x;
+	game->ray.map_y = (int)game->player->pos_y;
+	if (game->ray.vector_x == 0)
+		game->ray.d_x = 1e30;
+	else
+		game->ray.d_x = fabs(1 / game->ray.vector_x);
+	if (game->ray.vector_y == 0)
+		game->ray.d_y = 1e30;
+	else
+		game->ray.d_y = fabs(1 / game->ray.vector_y);
 	game->ray.hit[column].x = -1;
 	game->ray.hit[column].y = -1;
 	ft_side_ray(game);
@@ -67,8 +74,8 @@ void	ft_init_ray(t_game *game, double dir, int column)
 //* chose the longest dis, and move.
 //* dis is game->ray.side_x += game->ray.d_x or y. it's not the coor.
 //* verify if touch the wall
-//* hit_side == 1 horizontale aka x
-//* hit side == 0 vertical aka y.
+//* hit_side == 1 horizontale aka y.
+//* hit side == 0 vertical aka x.
 bool	ft_if_encounter(t_game *game)
 {
 	while (1)
@@ -92,5 +99,4 @@ bool	ft_if_encounter(t_game *game)
 		if (game->cub->copy[game->ray.map_y][game->ray.map_x] == '1')
 			return (true);
 	}
-	return (false);
 }

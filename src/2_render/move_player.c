@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yren <yren@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 17:12:08 by lifan             #+#    #+#             */
-/*   Updated: 2025/07/08 18:20:14 by yren             ###   ########.fr       */
+/*   Updated: 2025/07/11 11:26:13 by lifan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void	move_set(t_game *game)
 	game->move.cos_speed = game->move.cos_angle * game->move.speed;
 	game->move.sin_speed = game->move.sin_angle * game->move.speed;
 	game->move.size_player = game->size_mini_player;
-
 }
 
 void	move_new_point(t_game *game)
@@ -89,4 +88,6 @@ void	move_player(t_game *game)
 	move_set(game);
 	move_new_point(game);
 	move_check(game);
+	game->player->pos_x = game->player->m_xp / game->size_mini;
+	game->player->pos_y = game->player->m_yp / game->size_mini;
 }

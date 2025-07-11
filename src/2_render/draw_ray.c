@@ -6,7 +6,7 @@
 /*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 13:56:56 by lifan             #+#    #+#             */
-/*   Updated: 2025/07/08 18:32:35 by lifan            ###   ########.fr       */
+/*   Updated: 2025/07/11 11:06:15 by lifan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,6 @@ int	ft_ray(t_game *game, t_player *player, double dir, int column)
 	distance = ft_cali_fisheye(game, player);
 	wall = ft_hit_wall(&game->ray);
 	ft_cast_wall(game, distance, column, wall);
-	int mini_hit_x = game->ray.hit_x / game->size_mini * game->size_mini;
-	int mini_hit_y = game->ray.hit_y / game->size_mini * game->size_mini;
-	put_pixel(game, mini_hit_x, mini_hit_y, 0xFF0000);
 	ft_save_end_ray(game, column);
 	return (0);
 }

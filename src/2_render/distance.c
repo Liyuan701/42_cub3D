@@ -6,7 +6,7 @@
 /*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 15:18:57 by lifan             #+#    #+#             */
-/*   Updated: 2025/07/08 18:33:24 by lifan            ###   ########.fr       */
+/*   Updated: 2025/07/11 10:35:18 by lifan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,6 @@ double	ft_distance(t_game *game)
 		return (sqrt(dx * dx + dy * dy));
 	}
 	return (ft_error_close(game, "error in hit wall"), 0.0);
-/*	printf("hit_x = %.2f, hit_y = %.2f, hit_side = %d\n",
-		game->ray.hit_x, game->ray.hit_y, game->ray.hit_side);*/
 }
 
 //* correct the fish-eye effect by fixing the ray distance
