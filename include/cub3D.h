@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
+/*   By: yren <yren@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/30 14:42:55 by lifan             #+#    #+#             */
-/*   Updated: 2025/07/11 15:32:12 by lifan            ###   ########.fr       */
+/*   Updated: 2025/07/11 19:15:07 by yren             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -246,7 +246,6 @@ void	ft_flood_map(t_game *game, char **map);
 
 //get config
 int		get_start(char *line);
-char	*mylloc_strdup(t_game *game, const char *src);
 char	*mylloc_value(t_game *game, char *line);
 void	get_index_value(char *line, t_game *game);
 void	ft_get_config(t_game *game);
@@ -324,13 +323,12 @@ void	ft_draw_one_ray(t_game *game, double x1, double y1);
 //##################### UTILS ######################################
 //config util
 void	init_seen(int seen[6]);
-int		str_is_digit(char *s);
+int		str_is_digit_space(char *s);
 int		ft_isspace(char c);
 int		ft_str_isspace(char *str);
 
-//config util
-char	*replace_space(char *line);
-void	free2tab_exit(t_game *game, char **tab1, char **tab2, char *error_msg);
+//config util2
+void	free_tab_exit(t_game *game, char **tab, char *error_msg);
 
 //clean
 int		ft_free_one(t_game *game, void *ptr);

@@ -33,28 +33,6 @@ int	get_start(char *line)
 	return (i);
 }
 
-char	*mylloc_strdup(t_game *game, const char *src)
-{
-	char	*str;
-	int		len;
-	int		i;
-
-	len = 0;
-	i = 0;
-	while (src[len])
-		len++;
-	str = ft_mylloc(game, len + 1);
-	if (!str)
-		return (NULL);
-	while (src[i])
-	{
-		str[i] = src [i];
-		i++;
-	}
-	str[i] = 0;
-	return (str);
-}
-
 char	*mylloc_value(t_game *game, char *line)
 {
 	int		start;

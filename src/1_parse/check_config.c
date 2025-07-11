@@ -6,14 +6,14 @@
 /*   By: yren <yren@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 14:43:04 by lifan             #+#    #+#             */
-/*   Updated: 2025/07/11 17:58:02 by yren             ###   ########.fr       */
+/*   Updated: 2025/07/11 19:14:38 by yren             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3D.h"
 
 //* format attendu : "identifiant chemin/vers/texture.xpm"
-//* séparer la ligne en tokens avec ft_split() puis verifier
+//* supprimer les espace puis malloc avec mylloc
 //* contrôler que le chemin se termine par .xpm
 //* essayer d'ouvrir
 void	check_xpm_exit(t_game *game, char *line)
@@ -36,32 +36,29 @@ void	check_xpm_exit(t_game *game, char *line)
 //* rendre un int hexadecimal 0xRRGGBB
 int	check_parse_color(t_game *game, char *line)
 {
-	char	**tab;
+	int		start;
 	char	**rgb;
 
-	tab = ft_split(line, ' ');
-	rgb = ft_split(tab[1], ',');
-	if (tab[0] == NULL || tab[1] == NULL || tab[2] != NULL)
-		free2tab_exit(game, tab, rgb, "Color config: invalid format");
+	start = get_start(line);
+	rgb = ft_split(line + start, ',');
 	if (rgb[0] == NULL || rgb[1] == NULL || rgb[2] == NULL || rgb[3] != NULL)
-		free2tab_exit(game, tab, rgb, \
+		free_tab_exit(game, rgb, \
 			"Color config: must have exactly 3 components");
-	if (str_is_digit(rgb[0]) != 0
-		&& str_is_digit(rgb[1]) != 0 && str_is_digit(rgb[2]) != 0)
+	if (str_is_digit_space(rgb[0]) == 0
+		&& str_is_digit_space(rgb[1]) == 0 && str_is_digit_space(rgb[2]) == 0)
 	{
 		game->config.r = ft_atoi(rgb[0]);
 		game->config.g = ft_atoi(rgb[1]);
 		game->config.b = ft_atoi(rgb[2]);
 	}
 	else
-		free2tab_exit(game, tab, rgb, "Color config: must be digit");
+		free_tab_exit(game, rgb, "Color config: must be digit");
 	if (game->config.r < 0 || game->config.r > 255
 		|| game->config.g < 0 || game->config.g > 255
 		|| game->config.b < 0 || game->config.b > 255)
-		free2tab_exit(game, tab, rgb, \
+		free_tab_exit(game, rgb, \
 			"Color config: components out of range 0-255");
 	ft_free_tab(rgb);
-	ft_free_tab(tab);
 	return ((game->config.r << 16) | (game->config.g << 8) | game->config.b);
 }
 

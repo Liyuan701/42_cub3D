@@ -26,19 +26,23 @@ void	init_seen(int seen[6])
 	}
 }
 
-int	str_is_digit(char *s)
+int	str_is_digit_space(char *s)
 {
 	int	i;
 
-	i = 0;
-	if (s[0] == '\0')
+	if (s == NULL)
 		return (FAIL);
-	while (s[i] != '\0')
-	{
-		if (ft_isdigit(s[i]) != 0)
-			return (FAIL);
+	while (*s && (*s == ' ' || *s == '\t'))
+		s++;
+	if (*s == '\0')
+		return (FAIL);
+	i = 0;
+	while (s[i] && ft_isdigit(s[i]) == 1)
 		i++;
-	}
+	while (s[i] && (s[i] == ' ' || s[i] == '\t'))
+		i++;
+	if (s[i] != '\0')
+		return (FAIL);
 	return (0);
 }
 
