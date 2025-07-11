@@ -6,7 +6,7 @@
 /*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/27 11:44:28 by lifan             #+#    #+#             */
-/*   Updated: 2025/07/11 11:28:05 by lifan            ###   ########.fr       */
+/*   Updated: 2025/07/11 20:11:24 by lifan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ static	void	ft_init_config(t_game *game)
 	game->config.r = 0;
 	game->config.g = 0;
 	game->config.b = 0;
+	game->wall.off_y = 0;
 }
 
 void	ft_init_move(t_game *game)
@@ -69,7 +70,7 @@ void	ft_init_move(t_game *game)
 	game->br.y1 = -1;
 }
 
-void	ft_init_game(t_game *game)
+static void	ft_init_in_game(t_game *game)
 {
 	game->mlx_ptr = NULL;
 	game->win_ptr = NULL;
@@ -82,6 +83,12 @@ void	ft_init_game(t_game *game)
 	game->size_block = 0.0;
 	game->size_mini = 0.0;
 	game->size_mini_player = 0.0;
+	ft_memset(&game->wall, 0, sizeof(t_wall));
+}
+
+void	ft_init_game(t_game *game)
+{
+	ft_init_in_game(game);
 	ft_init_config(game);
 	game->cub = ft_mylloc(game, sizeof(t_cub));
 	if (!game->cub)

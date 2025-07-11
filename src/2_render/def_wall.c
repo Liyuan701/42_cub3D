@@ -6,7 +6,7 @@
 /*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/03 07:08:48 by marvin            #+#    #+#             */
-/*   Updated: 2025/07/07 18:39:40 by lifan            ###   ########.fr       */
+/*   Updated: 2025/07/11 20:13:21 by lifan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,10 @@ void	ft_def_wall(t_wall *wall, t_game *game, double distance, int dis_plane)
 	wall->wall_height = (int)((game->size_block / d_dis) * dis_plane);
 	wall->start_y = (HEIGHT / 2) - (wall->wall_height / 2);
 	if (wall->start_y < 0)
+	{
+		wall->off_y = -wall->start_y;
 		wall->start_y = 0;
+	}
 	wall->end_y = wall->start_y + wall->wall_height;
 	if (wall->end_y > HEIGHT)
 		wall->end_y = HEIGHT;

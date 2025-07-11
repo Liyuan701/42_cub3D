@@ -6,7 +6,7 @@
 /*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 22:34:42 by liyu              #+#    #+#             */
-/*   Updated: 2025/07/07 18:02:04 by lifan            ###   ########.fr       */
+/*   Updated: 2025/07/11 20:18:41 by lifan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	ft_cast_wall(t_game *game, double distance, int column, char side)
 	t_wall	*wall;
 	int		y;
 	int		dis_plane;
+	int		tex_y_off;
 
 	wall = &game->wall;
 	ft_memset(wall, 0, sizeof(t_wall));
@@ -43,8 +44,8 @@ void	ft_cast_wall(t_game *game, double distance, int column, char side)
 	}
 	while (y < wall->end_y)
 	{
-		wall->tex_y = (y - wall->start_y) \
-		* wall->tex->height / wall->wall_height;
+		tex_y_off = (y - wall->start_y) + wall->off_y;
+		wall->tex_y = tex_y_off * wall->tex->height / wall->wall_height;
 		wall->color = get_tex_color(wall->tex, wall->tex_x, wall->tex_y);
 		put_pixel(game, column, y, wall->color);
 		y++;
