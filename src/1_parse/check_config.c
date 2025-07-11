@@ -6,7 +6,7 @@
 /*   By: yren <yren@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 14:43:04 by lifan             #+#    #+#             */
-/*   Updated: 2025/07/11 19:14:38 by yren             ###   ########.fr       */
+/*   Updated: 2025/07/11 19:46:22 by yren             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	check_parse_color(t_game *game, char *line)
 		game->config.b = ft_atoi(rgb[2]);
 	}
 	else
-		free_tab_exit(game, rgb, "Color config: must be digit");
+		free_tab_exit(game, rgb, "Color config: must be valid digit");
 	if (game->config.r < 0 || game->config.r > 255
 		|| game->config.g < 0 || game->config.g > 255
 		|| game->config.b < 0 || game->config.b > 255)
