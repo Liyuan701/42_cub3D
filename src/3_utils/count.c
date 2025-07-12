@@ -22,11 +22,13 @@ int	ft_count_lines(t_game *game, char *file)
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
 		ft_error_close(game, "can't open the file.");
-	while ((line = get_next_line(fd)) != NULL)
-		{
-			count++;
-			free(line);
-		}
+	line = get_next_line(fd);
+	while (line)
+	{
+		count++;
+		free(line);
+		line = get_next_line(fd);
+	}
 	close(fd);
 	return (count);
 }
@@ -45,7 +47,7 @@ void	ft_count_width(t_game *game, int height, int start)
 			game->cub->width = col_w;
 		i++;
 	}
-}	
+}
 
 //* if can't find, return 0
 //* if find, return 1

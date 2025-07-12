@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yren <yren@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: lifan <rohanafan@sina.com>                 +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 14:36:42 by lifan             #+#    #+#             */
-/*   Updated: 2025/07/08 17:06:22 by yren             ###   ########.fr       */
+/*   Updated: 2025/07/12 12:10:02 by lifan            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ void	draw_player(t_game *game, int size, int color)
 	p.x = game->player->m_xp;
 	p.y = game->player->m_yp;
 	draw_square(&p, size, color);
-	game->br.x0 = p.x + size / 2;
-	game->br.y0 = p.y + size / 2;
+	game->br.x0 = p.x;
+	game->br.y0 = p.y;
 	game->br.x1 = game->br.x0 + cos(game->player->angle) * size;
 	game->br.y1 = game->br.y0 + sin(game->player->angle) * size;
 	init_draw_line(game);
@@ -31,8 +31,8 @@ void	draw_player(t_game *game, int size, int color)
 void	init_draw_line(t_game *game)
 {
 	game->br.distance_x = abs(game->br.x1 - game->br.x0);
-	game->br.distance_y = -abs(game->br.y1 - game->br.y0);
-	game->br.error = game->br.distance_x + game->br.distance_y;
+	game->br.distance_y = abs(game->br.y1 - game->br.y0);
+	game->br.error = game->br.distance_x - game->br.distance_y;
 	if (game->br.x0 < game->br.x1)
 		game->br.dir_x = 1;
 	else
@@ -51,12 +51,12 @@ void	draw_line(t_game *game, unsigned int color)
 		if (game->br.x0 == game->br.x1 && game->br.y0 == game->br.y1)
 			break ;
 		game->br.error2 = 2 * game->br.error;
-		if (game->br.error2 >= game->br.distance_y)
+		if (game->br.error2 > -game->br.distance_y)
 		{
-			game->br.error += game->br.distance_y;
+			game->br.error -= game->br.distance_y;
 			game->br.x0 += game->br.dir_x;
 		}
-		if (game->br.error2 <= game->br.distance_x)
+		if (game->br.error2 < game->br.distance_x)
 		{
 			game->br.error += game->br.distance_x;
 			game->br.y0 += game->br.dir_y;
